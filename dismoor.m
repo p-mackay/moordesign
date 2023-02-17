@@ -69,7 +69,7 @@ function dismoor(command)
 		ht=title(tit);
 		pos=get(ht,'Position');
 		set(ht,'Position',[pos(1) pos(2)*1.02 pos(3)],'Fontname','Courier New','FontSize',fs*1.2);
-		%orient tall
+		orient tall
 		ypos=1+3/90;
 		h=text(-0.1,ypos,'   In-Line');
 		set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
@@ -166,10 +166,11 @@ function dismoor(command)
 		if command==1 & ell==80, % for printer output, go to next page
 			ell=1;
 			figure(5);
-			%orient tall;
+			orient tall;
 
-            system(
+            %system(
             print -dpsc
+            print -dpng
             %print -deps figure5.eps
             %print -f5 figure5.pdf
             %open figure5.pdf
@@ -179,7 +180,7 @@ function dismoor(command)
 			%open (fileOut); 
 
 			clf ();axis off
-			%orient tall
+			orient tall
 			ypos=1+3/90;
 			h=text(-0.1,ypos,'   In-Line');
 			set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
@@ -278,7 +279,7 @@ function dismoor(command)
 			if command==1 & ell==80, % for printer output, go to next page
 				ell=1;
 				figure(5);
-				%orient tall;
+				orient tall;
 				unis = get(gcf,'units');
 				ppos = get(gcf,'paperposition');
 				set(gcf,'units',get(gcf,'paperunits'));
@@ -297,7 +298,7 @@ function dismoor(command)
                 %open figure5.pdf
 
 				clf ();axis off
-				%orient tall
+				orient tall
 				ypos=1+3/90;
 				h=text(-0.1,ypos,'   In-Line');
 				set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
@@ -431,7 +432,7 @@ function dismoor(command)
 	%
 	if command==1,
 		figure(5);
-		%orient tall;
+		orient tall;
 		% wysiwyg
 		unis = get(gcf,'units');
 		ppos = get(gcf,'paperposition');
