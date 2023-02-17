@@ -168,9 +168,15 @@ function dismoor(command)
 			figure(5);
 			%orient tall;
 
+            system(
+            print -dpsc
+            %print -deps figure5.eps
+            %print -f5 figure5.pdf
+            %open figure5.pdf
+            %print (5, fileOut);
 			%print -f5 fileOut; 
-			saveas (5, fileOut);
-			open (fileOut); 
+			%saveas (5, fileOut);
+			%open (fileOut); 
 
 			clf ();axis off
 			%orient tall
@@ -281,9 +287,14 @@ function dismoor(command)
 				set(gcf,'position',pos);
 				set(gcf,'units',unis);
 
+                print -dpsc
 				%print -f5 fileOut; 
-				saveas (5, fileOut);
-				open (fileOut); 
+                %print (5, fileOut);
+				%saveas (5, fileOut);
+				%open (fileOut); 
+                %print -deps figure5.eps
+                %print -f5 figure5.pdf
+                %open figure5.pdf
 
 				clf ();axis off
 				%orient tall
@@ -429,10 +440,17 @@ function dismoor(command)
 		pos(3:4) = ppos(3:4);
 		set(gcf,'position',pos);
 		set(gcf,'units',unis);
+
+        print -dpsc
+        %print -deps figure5.eps
+        %print -f5 figure5.pdf
+        %open figure5.pdf
+
 		%set(pf,'Visible','off');
 		%print -f5 fileOut; 
-		saveas (5, fileOut);
-		open (fileOut); 
+        %print (5, fileOut);
+		%saveas (5, fileOut);
+		%open (fileOut); 
 		%print -dps MDDout.ps   % if you want a postscript file
 		close(5);
 	else
