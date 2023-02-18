@@ -171,8 +171,9 @@ function dismoor(command)
 			orient tall;
 
             %system(
-            print -dpsc
-            print -dpng
+            print -f5 -dpsc;
+            print -f5 -deps;
+            %print -dpng
             %print -deps figure5.eps
             %print -f5 figure5.pdf
             %open figure5.pdf
@@ -290,7 +291,8 @@ function dismoor(command)
 				set(gcf,'position',pos);
 				set(gcf,'units',unis);
 
-                print -dpsc
+                print -f5 -dpsc;
+                print -f5 -deps;
 				%print -f5 fileOut; 
                 %print (5, fileOut);
 				%saveas (5, fileOut);
@@ -444,7 +446,8 @@ function dismoor(command)
 		set(gcf,'position',pos);
 		set(gcf,'units',unis);
 
-        print -dpsc
+        print -f5 -dpsc;
+        print -f5 -deps;
         %print -deps figure5.eps
         %print -f5 figure5.pdf
         %open figure5.pdf
