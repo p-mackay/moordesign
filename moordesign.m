@@ -29,6 +29,7 @@ function moordesign(command);
 	% Please forward improvements/suggestions/bugs to rdewey@uvic.ca
 	% The latest version of Mooring Dynamics is available at: ftp://canuck.seos.uvic.ca/
 	% This code has been tested on Windows 95, NT (4.0), and HP-UNIX, but is not idiot proof.
+    %graphics_toolkit("gnuplot")
 
 	global U V W z rho time uw vw
 	global Xts Yts Zts Tits psits iobjts M figs   % these are time series variables

@@ -10,6 +10,8 @@ function dismoor(command)
 	global ct = strftime ("%e_%B_%Y", localtime (time ())); %current time
 	global fileOut = ["Mooring_Elements" ct ".pdf"]; %pdf file produced 
 
+    %graphics_toolkit("gnuplot")
+
 	moorele=char(moorele); % reset these matrices as character strings
 	mooreleCO=char(mooreleCO);
 	moorelet=char(moorelet);
