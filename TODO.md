@@ -8,5 +8,9 @@
 
 - need to add velocity profiles to the print-out, and potentially other information.
 
+#### 2023/02/21
+
+- potential bug when using octave gui: have to delete the following file: C:\Users\<USERNAME>\AppData\Roaming\octave\octave-gui.ini
+- adding "getvelocity" to the main print function
 
 

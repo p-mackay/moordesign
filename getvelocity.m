@@ -5,6 +5,12 @@ function getvelocity(command)
 	global h_edit_velocity h_edit_depths h_edit_density h_edit_windspd h_edit_winddir h_edit_shipsp
 	global windspd winddir Usp Vsp uvsp
 	global fs
+    global getline1 getline2 getline3 getline4 
+    
+    
+    hf = figure(10);clf
+    axis off
+    fs=8;
 
 	if nargin==0, command=0; end
 	if command<40 & (uw^2+vw^2)==0,
@@ -456,6 +462,7 @@ function getvelocity(command)
 		if isempty(z), z=str2num(dep); end
 		if isempty(rhodis), rhodis=1025*ones(size(Udis));end;
 		if isempty(moorelet),
+
 			disp(' Height[m]    U [m/s]    V [m/s]    W [m/s] Density [kg/m^3]');
 			%     123456789112345678921234567893123456789412345678951234567896
 		else
@@ -464,16 +471,22 @@ function getvelocity(command)
 		end
 
 		zdis=z;
-		%
+		%This is the main for-loop for displaying currents/ ship speed
 		for i=1:length(zdis),
 			if zdis(i)>999.99,
+                set(hf, 'PaperOrient','Portrait','PaperUnits',...
+                    'Normalized','PaperPosition',[0 0 1 1],'Visible','on');
 				disp([' ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]);
+                getline1 = [' ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')];
 			elseif zdis(i)<1000 & zdis(i)>99.99,
 				disp(['  ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]);
+                getline2 = ['  ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')];
 			elseif zdis(i)<100 & zdis(i)>9.99,
-				disp(['   ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]);
+				disp(['   ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]); %displays height(first from bottom) and so on 
+                getline3 = ['   ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')];
 			elseif zdis(i)<10,
-				disp(['    ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]);
+				disp(['    ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]); %displays height(0m) u(0m) v(0m) w(0m) density(0m)
+                getline4 = ['    ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')];
 			end
 		end
 		if ~isempty(Usp),
@@ -663,7 +676,7 @@ function getvelocity(command)
 				end
 			end
 		end
-		%
+		% It does not go to this for loop
 		for i=1:length(zdis),
 			if zdis(i)>999.99,
 				disp([' ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]);

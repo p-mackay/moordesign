@@ -9,6 +9,7 @@ function dismoor(command)
 
 	global ct = strftime ("%e_%B_%Y", localtime (time ())); %current time
 	global fileOut = ["Mooring_Elements" ct ".pdf"]; %pdf file produced 
+    text_data = ""
 
     %graphics_toolkit("gnuplot")
 
@@ -162,6 +163,8 @@ function dismoor(command)
 			ypos=1-ell/90;
 			h=text(-0.1,ypos,line);
 			set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
+			disp(line);
+            text_data = [text_data newline line]
 		else
 			disp(line);
 		end
@@ -170,9 +173,13 @@ function dismoor(command)
 			figure(5);
 			orient tall;
 
-            %system(
-            print -f5 -dpsc;
-            print -f5 -deps;
+            tmpfname = tempname ();
+            fid = fopen (tmpfname, "w+");
+            fprintf (fid, "%s", text_data)
+            fclose (fid)
+            edit (tmpfname)
+
+                %print -f5 -dpsc;
             %print -dpng
             %print -deps figure5.eps
             %print -f5 figure5.pdf
@@ -276,6 +283,8 @@ function dismoor(command)
 				ypos=1-ell/90;
 				h=text(-0.1,ypos,line);
 				set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
+                disp(line);
+                text_data = [text_data newline line];
 			else
 				disp(line);
 			end
@@ -291,8 +300,15 @@ function dismoor(command)
 				set(gcf,'position',pos);
 				set(gcf,'units',unis);
 
-                print -f5 -dpsc;
-                print -f5 -deps;
+                tmpfname = tempname ();
+                fid = fopen (tmpfname, "w+");
+                %text_data = [text_data line];
+                fprintf (fid, "%s", text_data)
+                fclose (fid)
+                edit (tmpfname)
+
+                %saveas (5, fileOut);
+                %print -f5 -dpsc;
 				%print -f5 fileOut; 
                 %print (5, fileOut);
 				%saveas (5, fileOut);
@@ -427,6 +443,7 @@ function dismoor(command)
 					ypos=(mt-i)/90-.1;
 					h=text(-0.1,ypos,line);
 					set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
+                    text_data = [text_data newline line]
 				else
 					disp(line);
 				end
@@ -446,8 +463,15 @@ function dismoor(command)
 		set(gcf,'position',pos);
 		set(gcf,'units',unis);
 
-        print -f5 -dpsc;
-        print -f5 -deps;
+        tmpfname = tempname ();
+        fid = fopen (tmpfname, "w+");
+        %text_data = [text_data line];
+        fprintf (fid, "%s", text_data)
+        fclose (fid)
+        edit (tmpfname)
+
+        %saveas (5, fileOut);
+        %print -f5 -dpsc;
         %print -deps figure5.eps
         %print -f5 figure5.pdf
         %open figure5.pdf
