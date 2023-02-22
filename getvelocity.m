@@ -5,13 +5,7 @@ function getvelocity(command)
 	global h_edit_velocity h_edit_depths h_edit_density h_edit_windspd h_edit_winddir h_edit_shipsp
 	global windspd winddir Usp Vsp uvsp
 	global fs
-    global getline1 getline2 getline3 getline4 
     
-    
-    hf = figure(10);clf
-    axis off
-    fs=8;
-
 	if nargin==0, command=0; end
 	if command<40 & (uw^2+vw^2)==0,
 		windspd=0;winddir=360;
@@ -471,11 +465,11 @@ function getvelocity(command)
 		end
 
 		zdis=z;
-		%This is the main for-loop for displaying currents/ ship speed
+		%This is the main for-loop for displaying currents/ ship speed pm
 		for i=1:length(zdis),
 			if zdis(i)>999.99,
-                set(hf, 'PaperOrient','Portrait','PaperUnits',...
-                    'Normalized','PaperPosition',[0 0 1 1],'Visible','on');
+                %set(hf, 'PaperOrient','Portrait','PaperUnits',...
+                %    'Normalized','PaperPosition',[0 0 1 1],'Visible','on');
 				disp([' ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]);
                 getline1 = [' ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')];
 			elseif zdis(i)<1000 & zdis(i)>99.99,
