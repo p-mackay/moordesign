@@ -12,5 +12,11 @@
 
 - potential bug when using octave gui: have to delete the following file: C:\Users\<USERNAME>\AppData\Roaming\octave\octave-gui.ini
 - adding "getvelocity" to the main print function
+- need the following in text file created:
+    - at the top Height U V W Density
+    - headers describing what each column is
+SOLUTION
+- create a completely seperate class and methods to pass values beween functions
+- and in this case we are trying to get values from "getvelocity.m" -> "dismoor.m" 
 
 
