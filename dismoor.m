@@ -45,50 +45,56 @@ function dismoor(command)
 	if ~isempty(H) & isempty(Ht),
 		hdr1=' # Mooring Element   Length[m] Buoy[kg] Height[m]    dZ[m]   dX[m]   dY[m]   Tension[kg]   Angle[deg]';
 		%     1234567891123456789212345678931234567894123456789512345678961234567897123456789812345678991234567890123
+        text_data = [text_data newline hdr1];
 		if isempty(Z),
 			hdr2='                                         (top)                               Top  Bottom   Top Bottom';
+            text_data = [text_data newline hdr2];
 		else
 			hdr2='                                        (middle)                             Top  Bottom   Top Bottom';
+            text_data = [text_data newline hdr2];
 		end
 	else % then this is a towed body solution
 		hdr1=' # Towed Element     Length[m] Buoy[kg]  Depth[m]    dZ[m]   dX[m]   dY[m]   Tension[kg]   Angle[deg]';
 		%     1234567891123456789212345678931234567894123456789512345678961234567897123456789812345678991234567890123
+        text_data = [text_data newline hdr1];
 		if isempty(Z),
 			hdr2='                                        (bottom)                             Bottom  Top   Bottom Top';
+            text_data = [text_data newline hdr2];
 		else
 			hdr2='                                        (middle)                             Bottom  Top   Bottom Top';
+            text_data = [text_data newline hdr2];
 		end
 	end
 
 	% first display the In-Line mooring components, then do the Clamp-on, then tally up all components
-	if command==1, % then print to printer
-		pf=figure(5);clf 
-		axis off
-		fs=8;
-		set(pf,'PaperOrient','Portrait','PaperUnits',...
-			'Normalized','PaperPosition',[0 0 1 1],'Visible','on');
-		dates=num2str(fix(clock),'%3.0f');dates(8)='/';dates([14 17])=':';
-		tit=['Mooring Design and Dynamics  ',dates];
-		ht=title(tit);
-		pos=get(ht,'Position');
-		set(ht,'Position',[pos(1) pos(2)*1.02 pos(3)],'Fontname','Courier New','FontSize',fs*1.2);
-		orient tall
-		ypos=1+3/90;
-		h=text(-0.1,ypos,'   In-Line');
-		set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
-		ypos=1+2/90;
-		h=text(-0.1,ypos,hdr1);
-		set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
-		ypos=1+1/90;
-		h=text(-0.1,ypos,hdr2);
-		set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
-	else % display to the command window
-		disp(' ');
-		disp('   In-Line');
-		disp(hdr1);
-		disp(hdr2);
-		refresh
-	end
+	%if command==1, % then print to printer
+		%pf=figure(5);clf 
+		%axis off
+		%fs=8;
+		%set(pf,'PaperOrient','Portrait','PaperUnits',...
+		%'Normalized','PaperPosition',[0 0 1 1],'Visible','on');
+		%dates=num2str(fix(clock),'%3.0f');dates(8)='/';dates([14 17])=':';
+		%tit=['Mooring Design and Dynamics  ',dates];
+		%ht=title(tit);
+		%pos=get(ht,'Position');
+		%set(ht,'Position',[pos(1) pos(2)*1.02 pos(3)],'Fontname','Courier New','FontSize',fs*1.2);
+		%orient tall
+		%ypos=1+3/90;
+		%h=text(-0.1,ypos,'   In-Line');
+		%set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
+		%ypos=1+2/90;
+		%h=text(-0.1,ypos,hdr1);
+		%set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
+		%ypos=1+1/90;
+		%h=text(-0.1,ypos,hdr2);
+		%set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
+	%else % display to the command window
+	%	disp(' ');
+	%	disp('   In-Line');
+	%	disp(hdr1);
+	%	disp(hdr2);
+	%	refresh
+	%end
 	%
 	ell=0;
 	jo=0;io=0;
@@ -159,19 +165,19 @@ function dismoor(command)
 			line(95-length(tmp):94)=tmp;
 		end
 		if command==1,
-			figure(5);
-			ypos=1-ell/90;
-			h=text(-0.1,ypos,line);
-			set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
+			%figure(5);
+			%ypos=1-ell/90;
+			%h=text(-0.1,ypos,line);
+			%set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
 			disp(line);
-            text_data = [text_data newline line]
+            text_data = [text_data newline line] 
 		else
 			disp(line);
 		end
 		if command==1 & ell==80, % for printer output, go to next page
 			ell=1;
-			figure(5);
-			orient tall;
+			%figure(5);
+			%orient tall;
 
             tmpfname = tempname ();
             fid = fopen (tmpfname, "w+");
@@ -189,17 +195,17 @@ function dismoor(command)
 			%saveas (5, fileOut);
 			%open (fileOut); 
 
-			clf ();axis off
-			orient tall
-			ypos=1+3/90;
-			h=text(-0.1,ypos,'   In-Line');
-			set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
-			ypos=1+2/90;
-			h=text(-0.1,ypos,hdr1);
-			set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
-			ypos=1+1/90;
-			h=text(-0.1,ypos,hdr2);
-			set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
+			%clf ();axis off
+			%orient tall
+			%ypos=1+3/90;
+			%h=text(-0.1,ypos,'   In-Line');
+			%set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
+			%ypos=1+2/90;
+			%h=text(-0.1,ypos,hdr1);
+			%set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
+			%ypos=1+1/90;
+			%h=text(-0.1,ypos,hdr2);
+			%set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
 		end
 	end;
 
@@ -220,17 +226,17 @@ function dismoor(command)
 		ellz=ell+2;
 		% first display the In-Line mooring components, then do the Clamp-on, then tally up all
 		if command==1, % then print to printer
-			ypos=1-ellz/90;
-			h=text(-0.1,ypos,'   Clamp-On Devices');
-			set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
-			ellz=ellz+1;
-			ypos=1-ellz/90;
-			h=text(-0.1,ypos,hdr1);
-			set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
-			ellz=ellz+1;
-			ypos=1-ellz/90;
-			h=text(-0.1,ypos,hdr2);
-			set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
+			%ypos=1-ellz/90;
+			%h=text(-0.1,ypos,'   Clamp-On Devices');
+			%set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
+			%ellz=ellz+1;
+			%ypos=1-ellz/90;
+			%h=text(-0.1,ypos,hdr1);
+			%set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
+			%ellz=ellz+1;
+			%ypos=1-ellz/90;
+			%h=text(-0.1,ypos,hdr2);
+			%set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
 		else % display to the command window
 			disp(' ');
 			disp('   Clamp-On Devices');
@@ -279,10 +285,10 @@ function dismoor(command)
 				line(89-length(tmp):88)=tmp;
 			end
 			if command==1,
-				figure(5);
-				ypos=1-ell/90;
-				h=text(-0.1,ypos,line);
-				set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
+				%figure(5);
+				%ypos=1-ell/90;
+				%h=text(-0.1,ypos,line);
+				%set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
                 disp(line);
                 text_data = [text_data newline line];
 			else
@@ -290,15 +296,15 @@ function dismoor(command)
 			end
 			if command==1 & ell==80, % for printer output, go to next page
 				ell=1;
-				figure(5);
-				orient tall;
-				unis = get(gcf,'units');
-				ppos = get(gcf,'paperposition');
-				set(gcf,'units',get(gcf,'paperunits'));
-				pos  = get(gcf,'position');
-				pos(3:4) = ppos(3:4);
-				set(gcf,'position',pos);
-				set(gcf,'units',unis);
+				%figure(5);
+				%orient tall;
+				%unis = get(gcf,'units');
+				%ppos = get(gcf,'paperposition');
+				%set(gcf,'units',get(gcf,'paperunits'));
+				%pos  = get(gcf,'position');
+				%pos(3:4) = ppos(3:4);
+				%set(gcf,'position',pos);
+				%set(gcf,'units',unis);
 
                 tmpfname = tempname ();
                 fid = fopen (tmpfname, "w+");
@@ -317,17 +323,17 @@ function dismoor(command)
                 %print -f5 figure5.pdf
                 %open figure5.pdf
 
-				clf ();axis off
-				orient tall
-				ypos=1+3/90;
-				h=text(-0.1,ypos,'   In-Line');
-				set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
-				ypos=1+2/90;
-				h=text(-0.1,ypos,hdr1);
-				set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
-				ypos=1+1/90;
-				h=text(-0.1,ypos,hdr2);
-				set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
+				%clf ();axis off
+				%orient tall
+				%ypos=1+3/90;
+				%h=text(-0.1,ypos,'   In-Line');
+				%set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
+				%ypos=1+2/90;
+				%h=text(-0.1,ypos,hdr1);
+				%set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
+				%ypos=1+1/90;
+				%h=text(-0.1,ypos,hdr2);
+				%set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
 			end
 		end;
 	end
@@ -396,12 +402,12 @@ function dismoor(command)
 		end
 
 		if command==1,
-			ypos=(mt+2)/90-.1;
-			h=text(-0.1,ypos,hdr3);
-			set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
-			ypos=(mt+1)/90-.1;
-			h=text(-0.1,ypos,hdr4);
-			set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
+		%	ypos=(mt+2)/90-.1;
+		%	h=text(-0.1,ypos,hdr3);
+		%	set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
+		%	ypos=(mt+1)/90-.1;
+		%	h=text(-0.1,ypos,hdr4);
+		%	set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
 		else
 			disp(' ');
 			disp(hdr3);
@@ -422,10 +428,10 @@ function dismoor(command)
 			end
 			if H(4,moortally(i,1))==1, line(32)='m'; end
 			if command==1,
-				figure(5);
-				ypos=(mt-i)/90-.1;
-				h=text(-0.1,ypos,line);
-				set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
+				%figure(5);
+				%ypos=(mt-i)/90-.1;
+				%h=text(-0.1,ypos,line);
+				%set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
 			else
 				disp(line);
 			end
@@ -439,10 +445,10 @@ function dismoor(command)
 				line(60:75)=mooreleCO(moortallyco(ii,1),:);
 				line(87-length(num2str(moortallyco(ii,2))):86)=num2str(moortally(ii,2));
 				if command==1,
-					figure(5);
-					ypos=(mt-i)/90-.1;
-					h=text(-0.1,ypos,line);
-					set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
+					%figure(5);
+					%ypos=(mt-i)/90-.1;
+					%h=text(-0.1,ypos,line);
+					%set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
                     text_data = [text_data newline line]
 				else
 					disp(line);
@@ -452,16 +458,16 @@ function dismoor(command)
 	end
 	%
 	if command==1,
-		figure(5);
-		orient tall;
+		%figure(5);
+		%orient tall;
 		% wysiwyg
-		unis = get(gcf,'units');
-		ppos = get(gcf,'paperposition');
-		set(gcf,'units',get(gcf,'paperunits'));
-		pos  = get(gcf,'position');
-		pos(3:4) = ppos(3:4);
-		set(gcf,'position',pos);
-		set(gcf,'units',unis);
+		%unis = get(gcf,'units');
+		%ppos = get(gcf,'paperposition');
+		%set(gcf,'units',get(gcf,'paperunits'));
+		%pos  = get(gcf,'position');
+		%pos(3:4) = ppos(3:4);
+		%set(gcf,'position',pos);
+		%set(gcf,'units',unis);
 
         tmpfname = tempname ();
         fid = fopen (tmpfname, "w+");
@@ -482,7 +488,7 @@ function dismoor(command)
 		%saveas (5, fileOut);
 		%open (fileOut); 
 		%print -dps MDDout.ps   % if you want a postscript file
-		close(5);
+		%close(5);
 	else
 		disp(' ');
 	end
