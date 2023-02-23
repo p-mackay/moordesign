@@ -1,4 +1,4 @@
-function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
+function [X,Y,Z,iobj,retval]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 	% function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 	%
 	% Calculate the mooring element positions relative to anchor,
@@ -37,8 +37,11 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 	global nomovie
 	global Zoo
 	global Zi
+    anc_info = ""
+    
 
 	iprt=100; % If solution isn't converging, set this to 50-100 and watch to see what's happening.
+    %pm
 
 	X=[];Y=[];Z=[];Ti=[];iobj=[];jobj=[];psi=[];
 	if isempty(iss), Hs=H;Bs=B;Cds=Cd;MEs=ME; end % save the original mooring design.
@@ -908,28 +911,50 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 	HWa=Wa*sin(ba);
 	WoB=(Bi(N)+Qz(N)+Ti(N))/9.81; % weight under anchor
 	disp('  ');
+    %pm here I add all the output to a variable. Then I save it to retvar which is a return value 
 	if gamma >= 0.99 | ss==1,
 		disp('This is a sub-surface solution.');
+        anc_info = [anc_info 'This is a sub-surface solution.'];
 	else
 		disp(['This is a surface solution, using ',num2str(gamma*100,2),'% of the surface buoyancy.']);
+        anc_info = [anc_info newline ['This is a surface solution, using ',num2str(gamma*100,2),'% of the surface buoyancy.']];
 	end % NOTE: The calculation of % of surface float used assumes a cylinder float.
 	%           In otherwords, the % submerged = the percent buoyancy (not so for a shpere).
 	%
 	disp(['Total Tension on Anchor [kg] = ',num2str(Wa,'%8.1f')]);
+    anc_info = [anc_info newline ['Total Tension on Anchor [kg] = ',num2str(Wa,'%8.1f')]];
+
 	disp(['Vertical load [kg] = ',num2str(VWa,'%8.1f'),'  Horizontal load [kg] = ',num2str(HWa,'%8.1f')]);
+    anc_info = [anc_info newline ['Vertical load [kg] = ',num2str(VWa,'%8.1f'),'  Horizontal load [kg] = ',num2str(HWa,'%8.1f')]];
 	% disp(['After applying a WHOI saftey factor:']);
 	TWa=1.5*(VWa + HWa/0.6);
 	disp(['Safe wet anchor mass = ',num2str(TWa,'%8.1f'),' [kg] = ',num2str((TWa*2.2),'%8.1f'),' [lb]']);
+    anc_info = [anc_info newline ['Safe wet anchor mass = ',num2str(TWa,'%8.1f'),' [kg] = ',num2str((TWa*2.2),'%8.1f'),' [lb]']];
+
 	disp(['Safe dry steel anchor mass = ',num2str((TWa/0.87),'%8.1f'),' [kg] = ',num2str((TWa*2.2/0.87),'%8.1f'),' [lb]']);
+    anc_info = [anc_info newline ['Safe dry steel anchor mass = ',num2str((TWa/0.87),'%8.1f'),' [kg] = ',num2str((TWa*2.2/0.87),'%8.1f'),' [lb]']];
+
 	disp(['Safe dry concrete anchor mass = ',num2str((TWa/0.65),'%8.1f'),' [kg] = ',num2str((TWa*2.2/0.65),'%8.1f'),' [lb]']);
+    anc_info = [anc_info newline ['Safe dry concrete anchor mass = ',num2str((TWa/0.65),'%8.1f'),' [kg] = ',num2str((TWa*2.2/0.65),'%8.1f'),' [lb]']];
+
 	disp(['Weight under anchor = ',num2str(WoB,'%8.1f'),' [kg]  (negative is down)']);
+    anc_info = [anc_info newline ['Weight under anchor = ',num2str(WoB,'%8.1f'),' [kg]  (negative is down)']];
+
 	%
 	if abs(B(end)) < TWa,
 		disp('*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*');
+        anc_info = [anc_info newline ['*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*']];
+
 		disp('*!*!*!*  Warning. Anchor is likely TOO light!   *!*!*!*')
+        anc_info = [anc_info newline ['*!*!*!*  Warning. Anchor is likely TOO light!   *!*!*!*']];
+
 		disp('*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*');
+        anc_info = [anc_info newline ['*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*!*']];
 	end
 	%disp([S SS]); % display the summed length of mooring as a check...
 	% reset original current profile.
 	z=ztmp;U=Utmp;V=Vtmp;W=Wtmp;rho=rhotmp;
+    retval = anc_info;
+    disp(["ANCHOR INFO: " anc_info])
+    disp("Hello World!")
 	% fini

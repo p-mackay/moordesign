@@ -11,6 +11,7 @@ function dismoor(command)
 	%fileOut = ["Mooring_Elements" ct ".pdf"]; %pdf file produced 
     text_data = "";
     velocity_data = getvelocity(40);
+    text_data = [nthargout(5,@moordyn)];
     text_data = [text_data newline velocity_data newline];
 
     %graphics_toolkit("gnuplot")
@@ -172,7 +173,7 @@ function dismoor(command)
 			%h=text(-0.1,ypos,line);
 			%set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
 			disp(line);
-            text_data = [text_data newline line] 
+            text_data = [text_data newline line];
 		else
 			disp(line);
 		end
@@ -456,7 +457,7 @@ function dismoor(command)
 					%ypos=(mt-i)/90-.1;
 					%h=text(-0.1,ypos,line);
 					%set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
-                    text_data = [text_data newline line]
+                    text_data = [text_data newline line];
 				else
 					disp(line);
 				end
