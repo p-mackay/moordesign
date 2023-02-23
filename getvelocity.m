@@ -5,6 +5,10 @@ function getvelocity(command)
 	global h_edit_velocity h_edit_depths h_edit_density h_edit_windspd h_edit_winddir h_edit_shipsp
 	global windspd winddir Usp Vsp uvsp
 	global fs
+
+    %mobj1 = Mooring(0,0,0,0,0)
+    %mobj1.height = 10
+    %disp(mobj1.height)
     
 	if nargin==0, command=0; end
 	if command<40 & (uw^2+vw^2)==0,
@@ -471,18 +475,22 @@ function getvelocity(command)
                 %set(hf, 'PaperOrient','Portrait','PaperUnits',...
                 %    'Normalized','PaperPosition',[0 0 1 1],'Visible','on');
 				disp([' ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]);
-                getline1 = [' ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')];
+
 			elseif zdis(i)<1000 & zdis(i)>99.99,
 				disp(['  ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]);
-                getline2 = ['  ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')];
 			elseif zdis(i)<100 & zdis(i)>9.99,
 				disp(['   ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]); %displays height(first from bottom) and so on 
-                getline3 = ['   ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')];
 			elseif zdis(i)<10,
 				disp(['    ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]); %displays height(0m) u(0m) v(0m) w(0m) density(0m)
-                getline4 = ['    ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')];
 			end
 		end
+        %mobj = Mooring(zdis,Udis,Vdis,Wdis,rhodis)
+        %disp(mobj.height)
+        %disp(mobj.Udis)
+        %disp(mobj.Vdis)
+        %disp(mobj.Wdis)
+        %disp(mobj.rhodis)
+
 		if ~isempty(Usp),
 			disp(' ');
 			disp(' Ship U [m/s]   Ship V [m/s]');

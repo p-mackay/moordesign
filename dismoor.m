@@ -178,6 +178,8 @@ function dismoor(command)
 			ell=1;
 			%figure(5);
 			%orient tall;
+            disp("1HELLLLLLLLO")
+            %disp(mobj.height)
 
             tmpfname = tempname ();
             fid = fopen (tmpfname, "w+");
@@ -305,6 +307,9 @@ function dismoor(command)
 				%pos(3:4) = ppos(3:4);
 				%set(gcf,'position',pos);
 				%set(gcf,'units',unis);
+
+                disp("2HELLLLLLLLO")
+                %disp(mobj.height)
 
                 tmpfname = tempname ();
                 fid = fopen (tmpfname, "w+");
@@ -468,6 +473,9 @@ function dismoor(command)
 		%pos(3:4) = ppos(3:4);
 		%set(gcf,'position',pos);
 		%set(gcf,'units',unis);
+        
+        disp("3HELLLLLLLLO")
+        %disp(mobj.height)
 
         tmpfname = tempname ();
         fid = fopen (tmpfname, "w+");
