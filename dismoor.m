@@ -7,9 +7,11 @@ function dismoor(command)
 	global Zoo
 	global Ht Bt Cdt MEt moorelet Usp Vsp % for a Towed Body
 
-	global ct = strftime ("%e_%B_%Y", localtime (time ())); %current time
-	global fileOut = ["Mooring_Elements" ct ".pdf"]; %pdf file produced 
-    text_data = ""
+	%ct = strftime ("%e_%B_%Y", localtime (time ())); %current time
+	%fileOut = ["Mooring_Elements" ct ".pdf"]; %pdf file produced 
+    text_data = "";
+    velocity_data = getvelocity(40);
+    text_data = [text_data newline velocity_data newline];
 
     %graphics_toolkit("gnuplot")
 

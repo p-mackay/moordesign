@@ -1,10 +1,11 @@
-function getvelocity(command)
+function retval = getvelocity(command)
 	% Enter/Load the velocity profile(s)
 	global U V W z rho vel dep den time uw vw
 	global Ht Bt Cdt MEt moorelet Usp Vsp DD % for a Towed Body
 	global h_edit_velocity h_edit_depths h_edit_density h_edit_windspd h_edit_winddir h_edit_shipsp
 	global windspd winddir Usp Vsp uvsp
 	global fs
+    retval = ""
 
     %mobj1 = Mooring(0,0,0,0,0)
     %mobj1.height = 10
@@ -463,9 +464,11 @@ function getvelocity(command)
 
 			disp(' Height[m]    U [m/s]    V [m/s]    W [m/s] Density [kg/m^3]');
 			%     123456789112345678921234567893123456789412345678951234567896
+            retval = [retval newline ' Height[m]    U [m/s]    V [m/s]    W [m/s] Density [kg/m^3]'];
 		else
 			disp(' Depth [m]    U [m/s]    V [m/s]    W [m/s] Density [kg/m^3]');
 			%     123456789112345678921234567893123456789412345678951234567896
+            retval = [retval newline ' Depth [m]    U [m/s]    V [m/s]    W [m/s] Density [kg/m^3]'];
 		end
 
 		zdis=z;
@@ -475,13 +478,20 @@ function getvelocity(command)
                 %set(hf, 'PaperOrient','Portrait','PaperUnits',...
                 %    'Normalized','PaperPosition',[0 0 1 1],'Visible','on');
 				disp([' ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]);
-
+                temp1 = [' ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')];
+                retval = [retval newline temp1];
 			elseif zdis(i)<1000 & zdis(i)>99.99,
 				disp(['  ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]);
+                temp2 = ['  ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')];
+                retval = [retval newline temp2];
 			elseif zdis(i)<100 & zdis(i)>9.99,
 				disp(['   ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]); %displays height(first from bottom) and so on 
+                temp3 =['   ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')];
+                retval = [retval newline temp3];
 			elseif zdis(i)<10,
 				disp(['    ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]); %displays height(0m) u(0m) v(0m) w(0m) density(0m)
+                temp4 = ['    ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')];
+                retval = [retval newline temp4];
 			end
 		end
         %mobj = Mooring(zdis,Udis,Vdis,Wdis,rhodis)
@@ -698,6 +708,8 @@ function getvelocity(command)
 		end
 		close(4);
 		moordesign(0);
+        return;
 	end
+
 
 	% fini
