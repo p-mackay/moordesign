@@ -16,12 +16,11 @@
     - headers describing what each column is
 
 ##### SOLUTION
-- create a completely seperate class and methods to pass values beween functions
+- create a completely separate class and methods to pass values beween functions
 - and in this case we are trying to get values from "getvelocity.m" -> "dismoor.m" 
 
 #### 2023/02/22
 
-## CURRENTLY WORKING ON: 
 - IMPLEMENT OBJECT ORIENTED PROGRAMMING 
     - Mooring class
         - velocity
@@ -33,10 +32,18 @@
     - Height U V W Density
     - output when plotting the 3d model
     - This is a sub-surface solution.
-    Total Tension on Anchor ...
-    ...
-    ...
+    - Total Tension on Anchor ...
+    - ...
+    - ...
 ##### FEATURE
 - add a functionality to import spread sheets(.xlsx) files. To automatically create a mooring
 based on the information on the spread sheet.
+
+#### 2023/02/23
+- Got the desired info to print on one page.
+## CURRENTLY WORKING ON: 
+- Format the info so it is readable. Headers, position, font size. Make it pretty.
+- work on efficiency. The program runs slow currently.
+
+
 
