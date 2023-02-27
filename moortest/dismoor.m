@@ -11,16 +11,14 @@ function dismoor(command)
     global anc_info
     global ifile
 
+        
+
 	%ct = strftime ("%e_%B_%Y", localtime (time ())); %current time
 	%fileOut = ["Mooring_Elements" ct ".pdf"]; %pdf file produced 
     text_data = "";
     %velocity_data = getvelocity(40);
     %text_data = [nthargout(5,@moordyn)];
     %text_data = [text_data newline velocity_data newline];
-
-    %graphics_toolkit("gnuplot")
-    disp("ASD;LFKJAS;LFKJAS;LFKJASL;KFJAS;LKFJ")
-    disp(U)
 
 	moorele=char(moorele); % reset these matrices as character strings
 	mooreleCO=char(mooreleCO);
@@ -500,14 +498,16 @@ function dismoor(command)
             endif
         endfor
 
+
         %ct = strftime ("%e_%B_%Y", localtime (time ())); %current time
         ct = strftime ("%Y-%m-%d", localtime (time ())); %current time
 
         tmpfname = tempname ();
         fid = fopen (tmpfname, "w+");
         %text_data = [text_data line];
-
-        fprintf (fid, " %s", ct)
+        %if (!isempty(ifile))
+        %    fprintf (fid, " %s      ", ifile)
+        %endif
         fprintf (fid, " %s", ct)
         fprintf (fid, "%s", newline)
         fprintf (fid, "%s", text_data)

@@ -37,8 +37,8 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 	global nomovie
 	global Zoo
 	global Zi
-    global anc_info = ""
-    
+    global anc_info
+    anc_info = "";
 
 	iprt=100; % If solution isn't converging, set this to 50-100 and watch to see what's happening.
     %pm
