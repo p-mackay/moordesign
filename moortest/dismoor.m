@@ -6,6 +6,7 @@ function dismoor(command)
     global Z0co Zfco Xfco Yfco psifco
     global Zoo
     global Ht Bt Cdt MEt moorelet Usp Vsp % for a Towed Body
+    global z
     global a = mooring(H)
     global eles = mooring(moorele)
     disp(eles)
@@ -109,7 +110,7 @@ function dismoor(command)
         tmp=num2str(B(el),'%8.2f');
         line(40-length(tmp):39)=tmp;
         if isempty(Z),
-            hght=sum(H(1,el:mm));  % Height at the top of this element
+            hght=z(1,1)-sum(H(1,el:mm));  % Height from the top to the surface of this element pm
             tmp=num2str(hght,'%8.2f');
             line(50-length(tmp):49)=tmp;
         elseif ~isempty(Z) & H(4,el) ~=1 & el ~= mm, % this is an instrument/buoy...
