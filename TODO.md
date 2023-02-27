@@ -41,9 +41,13 @@ based on the information on the spread sheet.
 
 #### 2023/02/23
 - Got the desired info to print on one page.
-## CURRENTLY WORKING ON: 
 - Format the info so it is readable. Headers, position, font size. Make it pretty.
 - work on efficiency. The program runs slow currently.
+
+#### 2023/02/27
+- Got desired info to print on one page without breaking the program.
+- When user hits print button force it to calculate all info.
+- Force silent output to increase runtime speed
 
 
 
