@@ -9,6 +9,7 @@ function dismoor(command)
 	global Ht Bt Cdt MEt moorelet Usp Vsp % for a Towed Body
     global text_data
     global anc_info
+    global ifile
 
 	%ct = strftime ("%e_%B_%Y", localtime (time ())); %current time
 	%fileOut = ["Mooring_Elements" ct ".pdf"]; %pdf file produced 
@@ -125,7 +126,7 @@ function dismoor(command)
 		tmp=num2str(B(el),'%8.2f');
 		line(40-length(tmp):39)=tmp;
 		if isempty(Z),
-			hght=z(1,1)-sum(H(1,el:mm));  % Height at the top of this element
+			hght=sum(H(1,el:mm));  % Height at the top of this element
 			tmp=num2str(hght,'%8.2f');
 			line(50-length(tmp):49)=tmp;
 		elseif ~isempty(Z) & H(4,el) ~=1 & el ~= mm, % this is an instrument/buoy...
@@ -484,7 +485,6 @@ function dismoor(command)
 
 
         vel_data = ""
-        anc_data = anc_info 
 
         hdr4 = 'Height[m]    U [m/s]    V [m/s]    W [m/s] Density [kg/m^3]'
         vel_data = [vel_data hdr4]
@@ -500,22 +500,23 @@ function dismoor(command)
             endif
         endfor
 
-        disp(vel_data)
-
-        disp(U(1,1))
-        a = num2str(U(1,1))
-        %disp(mobj.height)
+        %ct = strftime ("%e_%B_%Y", localtime (time ())); %current time
+        ct = strftime ("%Y-%m-%d", localtime (time ())); %current time
 
         tmpfname = tempname ();
         fid = fopen (tmpfname, "w+");
         %text_data = [text_data line];
-        fprintf (fid, " %s", text_data)
+
+        fprintf (fid, " %s", ct)
+        fprintf (fid, " %s", ct)
+        fprintf (fid, "%s", newline)
+        fprintf (fid, "%s", text_data)
         fprintf (fid, "%s", newline)
         fprintf (fid, "%s", newline)
         fprintf (fid, "%s", vel_data)
         fprintf (fid, "%s", newline)
         fprintf (fid, "%s", newline)
-        fprintf (fid, "%s", anc_data)
+        fprintf (fid, "%s", anc_info)
         fclose (fid)
         edit (tmpfname)
 
@@ -532,9 +533,18 @@ function dismoor(command)
 		%open (fileOut); 
 		%print -dps MDDout.ps   % if you want a postscript file
 		%close(5);
+        clear text_data
+        clear vel_data
+        clear anc_info
 	else
 		disp(' ');
+        clear text_data
+        clear vel_data
+        clear anc_info
 	end
 	if ~isempty(Ht), moorele=[]; H=[]; B=[]; ME=[]; psi=psisave; end
 	drawnow
 	% fini
+    clear text_data
+    clear vel_data
+    clear anc_info

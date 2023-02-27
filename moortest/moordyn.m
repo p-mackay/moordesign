@@ -918,7 +918,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 	else
 		disp(['This is a surface solution, using ',num2str(gamma*100,2),'% of the surface buoyancy.']);
         anc_info = [anc_info newline ['This is a surface solution, using ',num2str(gamma*100,2),'% of the surface buoyancy.']];
-	end % NOTE: The calculation of % of surface float used assumes a cylinder float.
+	endif % NOTE: The calculation of % of surface float used assumes a cylinder float.
 	%           In otherwords, the % submerged = the percent buoyancy (not so for a shpere).
 	%
 	disp(['Total Tension on Anchor [kg] = ',num2str(Wa,'%8.1f')]);

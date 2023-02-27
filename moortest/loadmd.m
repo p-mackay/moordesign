@@ -6,6 +6,7 @@ global U V W z rho time
 global Xts Yts Zts Tits psits iobjts M figs   % these are time series variables
 global H B Cd ME moorele
 global Ht Bt Cdt MEt moorelet Usp Vsp
+global ifile
 
 [ifile,ipath]=uigetfile('*.mat','Load MD&D Mooring, Towed Body or Movie');
 
