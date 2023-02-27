@@ -1,4 +1,4 @@
-function [X,Y,Z,iobj,retval]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
+function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 	% function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 	%
 	% Calculate the mooring element positions relative to anchor,
@@ -961,7 +961,6 @@ function [X,Y,Z,iobj,retval]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 	%disp([S SS]); % display the summed length of mooring as a check...
 	% reset original current profile.
 	z=ztmp;U=Utmp;V=Vtmp;W=Wtmp;rho=rhotmp;
-    retval = anc_info;
     global acc = mooring(anc_info)
     acc.U = anc_info
     acc.v_load = VWa

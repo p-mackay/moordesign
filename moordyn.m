@@ -20,30 +20,30 @@ function [X,Y,Z,iobj,retval]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 	%          H(1,N) is the height of the anchor [m]
 	% H(2,:) = Width of cylinder (0=zero if sphere) [m]
 	% H(3,:) = Diameter of sphere (0=zero if cylinder or wire/chain) [m]
-	% H(4,:) = 1 for wire/chain, 2 for fastener, 0 otherwise. Divide wire/chain into 1 m lengths
-	%
-	% May be passed with no arguments, assuming: global U z H B Cd V W rho
-	% RKD 12/97
+    % H(4,:) = 1 for wire/chain, 2 for fastener, 0 otherwise. Divide wire/chain into 1 m lengths
+    %
+    % May be passed with no arguments, assuming: global U z H B Cd V W rho
+    % RKD 12/97
 
-	if nargin == 0,
-		global U V W z rho uw vw
-		global H B Cd ME
-	end
-	global Hs Bs Cds MEs iss % saved for multiple float or "S" moorings
-	global moorele X Y Z Ti iobj jobj psi iEle theta
-	global HCO BCO CdCO mooreleCO ZCO Jobj Pobj PIobj IEle % any clamped on devices
-	global Z0co Zfco Xfco Yfco psifco
-	global Iobj
-	global nomovie
-	global Zoo
-	global Zi
+    if nargin == 0,
+        global U V W z rho uw vw
+        global H B Cd ME
+    end
+    global Hs Bs Cds MEs iss % saved for multiple float or "S" moorings
+    global moorele X Y Z Ti iobj jobj psi iEle theta
+    global HCO BCO CdCO mooreleCO ZCO Jobj Pobj PIobj IEle % any clamped on devices
+    global Z0co Zfco Xfco Yfco psifco
+    global Iobj
+    global nomovie
+    global Zoo
+    global Zi
     anc_info = ""
-    
 
-	iprt=100; % If solution isn't converging, set this to 50-100 and watch to see what's happening.
+
+    iprt=100; % If solution isn't converging, set this to 50-100 and watch to see what's happening.
     %pm
 
-	X=[];Y=[];Z=[];Ti=[];iobj=[];jobj=[];psi=[];
+    X=[];Y=[];Z=[];Ti=[];iobj=[];jobj=[];psi=[];
 	if isempty(iss), Hs=H;Bs=B;Cds=Cd;MEs=ME; end % save the original mooring design.
 	if ~isempty(find(B==0)), B(find(B==0))=-0.0001; end  % things can go horribly wrong with neutral buoyancy
 	[mu,nu]=size(U);
