@@ -504,11 +504,17 @@ function dismoor(command)
 
         tmpfname = tempname ();
         fid = fopen (tmpfname, "w+");
+        %--------------------------
+        %start writing to temp file
+        
         %text_data = [text_data line];
         %if (!isempty(ifile))
         %    fprintf (fid, " %s      ", ifile)
         %endif
-        fprintf (fid, " %s", ct)
+        
+        fprintf (fid, "Date: %s     ", ct)
+        fprintf (fid, "Mooring File Name: %s     ", ifile)
+        fprintf (fid, "Mooring Name: %s", ifile)
         fprintf (fid, "%s", newline)
         fprintf (fid, "%s", text_data)
         fprintf (fid, "%s", newline)
@@ -519,6 +525,9 @@ function dismoor(command)
         fprintf (fid, "%s", anc_info)
         fclose (fid)
         edit (tmpfname)
+        
+        %end writing to temp file
+        %------------------------
 
         %saveas (5, fileOut);
         %print -f5 -dpsc;
