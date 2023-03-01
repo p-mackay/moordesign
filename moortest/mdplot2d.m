@@ -425,6 +425,7 @@ elseif command == 4,
        plot(swx,max(ylim)*ones(size(swx)),swzx,'b','Clipping','off');
        plot(swx,min(ylim)*ones(size(swx)),swzx,'b','Clipping','off');
        axis([xlim(1) xlim(2) ylim(1) ylim(2) 0 zm]);
+       campos([19.428 -1148.864 60])
    end
 
    drawnow;

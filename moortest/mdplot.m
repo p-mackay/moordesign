@@ -443,5 +443,7 @@ end
 else
     disp(' Must load or enter a mooring before evaluation/plotting. ');
 end
+figure(3);
+campos([19.428 -1148.864 60])
 moordesign(0);
 % fini
