@@ -35,9 +35,9 @@ end
 if isempty(its), its=1; end
     if nargin == 0, command=0; end
         if command == 0,
-            load('splash.mat'); % let's have a bit of fun. "Ok Cap'n, moorings away!"
-            sound(wavedata/8000,samplingrate,16);
-            clear wavedata samplingrate
+            %load('splash.mat'); % let's have a bit of fun. "Ok Cap'n, moorings away!"
+            %sound(wavedata/8000,samplingrate,16);
+            %clear wavedata samplingrate
 end
 if (~isempty(H) & ~isempty(B) & ~isempty(Cd))|(~isempty(Ht) & ~isempty(Bt) & ~isempty(Cdt)),
     if command == 0 | command>=20,
@@ -443,7 +443,5 @@ end
 else
     disp(' Must load or enter a mooring before evaluation/plotting. ');
 end
-figure(3);
-campos([19.428 -1148.864 60])
 moordesign(0);
 % fini
