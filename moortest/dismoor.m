@@ -112,7 +112,7 @@ function dismoor(command)
 		line(4-length(tmp):3)=tmp;
 		line(5:20)=moorele(el,:);
 		tmp=num2str(H(1,el),'%8.2f');
-		if ~isempty(Z) & H(4,el) == 1, % a wire, consider some stretching
+		if ~isempty(Z) && H(4,el) == 1, % a wire, consider some stretching
 			jo=jo+1;
 			if (jo+1)>length(jobj);
 				tmp=num2str(H(1,el)*(1+2*(Ti(jobj(jo))+Ti(jobj(jo)+1))/(pi*H(2,el)^2*ME(el))),'%8.2f');
@@ -156,7 +156,7 @@ function dismoor(command)
 			tmp=num2str(psi(jobj(jo)+1)*180/pi,'%4.1f');
 			line(101-length(tmp):100)=tmp;
 		end
-		if ~isempty(Z) & el == mm, % this is the anchor
+		if ~isempty(Z) && el == mm, % this is the anchor
 			io=io+1;
 			tmp=num2str(Z(iobj(io))/2,'%8.2f');
 			line(50-length(tmp):49)=tmp;
@@ -181,7 +181,7 @@ function dismoor(command)
 		else
 			disp(line);
 		end
-		if command==1 & ell==80, % for printer output, go to next page
+		if command==1 && ell==80, % for printer output, go to next page
 			ell=1;
 			%figure(5);
 			%orient tall;

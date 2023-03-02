@@ -151,11 +151,11 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 			if H(4,i)==1,  % this section is wire/chain
 				Hw=fix(H(1,i));
 				dz=0.2;
-				if Hw > 5 & Hw <=50
+				if Hw > 5 && Hw <=50
 					dz=0.5;  % segment lengths depends on total length
-				elseif Hw > 50 & Hw <= 100,
+				elseif Hw > 50 && Hw <= 100,
 					dz=1;
-				elseif Hw > 100 & Hw <= 500,
+				elseif Hw > 100 && Hw <= 500,
 					dz=2;
 				elseif Hw > 500,
 					dz=5;
@@ -371,11 +371,11 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 				dx0=LpdL*cos(theta(i))*sin(psi(i))/2;
 				dy0=LpdL*sin(theta(i))*sin(psi(i))/2;
 				dz0=LpdL*cos(psi(i))/2;
-				if Z(i) > Zw & Hi(4,i) == 1 & Bi(i) >0, Z(i)=Zw; psi(i)=pi/2; end % surface line
+				if Z(i) > Zw && Hi(4,i) == 1 && Bi(i) >0, Z(i)=Zw; psi(i)=pi/2; end % surface line
 				if Z(i) <= Z(N), Z(i)= Z(N); psi(i)=pi/2; end % bottom chain
 			end
 		end
-		if max(Z)>Zw & ss==1, ss=0; gamma=sqrt(gamma); end % this may be a surface mooring after all
+		if max(Z)>Zw && ss==1, ss=0; gamma=sqrt(gamma); end % this may be a surface mooring after all
 		%
 		% Now with the first order positions, we must re-estimate the new
 		% drags at the new heights (Zi) and for cylinders tilted by psi in flow.
@@ -557,13 +557,13 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 			end
 			%
 			Zf=Z(1)-Hi(1,1)/2;
-			if ss==0&(Zf+gamma*Hi(1,1))>Zw, Z=Z*(Zw/(Zf+gamma*Hi(1,1))); end % force mooring elements to be in water
+			if ss==0 && (Zf+gamma*Hi(1,1))>Zw, Z=Z*(Zw/(Zf+gamma*Hi(1,1))); end % force mooring elements to be in water
 			icnt=icnt+1;
 			if iiprt==0,
 				if mod(icnt,ilines)==0,fprintf(1,'.');end
 				if icnt>=60*ilines, icnt=0; ilines=ilines+1; fprintf(1,'%8i',isave); disp(' ');end
 			end
-			if iavg>iprt & ss==1, disp([Z(1) (Z(1)-Z1(isave-1))]); end
+			if iavg>iprt && ss==1, disp([Z(1) (Z(1)-Z1(isave-1))]); end
 			%
 			phix=atan2((cos(theta).*sin(psi)),cos(psi));
 			phiy=atan2((sin(theta).*sin(psi)),cos(psi));
@@ -754,7 +754,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 					dx0=0;dy0=0;dz0=0;
 					iint=iint+1;
 					for i=N-1:-1:1,  % i decreases from N (anchor) to 1, float.
-						if Hi(2,i)~=0 & MEi(i)<Inf,
+						if Hi(2,i)~=0 && MEi(i)<Inf,
 							dL=1+(Ti(i)*4/(pi*Hi(2,i)^2*MEi(i)));  % allow for stretching of wire/rope
 						else
 							dL=1;
@@ -768,7 +768,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 						X(i)=X(i+1) + dX/2 + dx0/2;
 						Y(i)=Y(i+1) + dY/2 + dy0/2;
 						Z(i)=Z(i+1) + dZ/2 + dz0/2;
-						if Z(i) > Zw & Hi(4,i) == 1 & Bi(i) >= 0,  % force line to lie on surface
+						if Z(i) > Zw && Hi(4,i) == 1 && Bi(i) >= 0,  % force line to lie on surface
 							Zii=1;Z(i)=Zw;
 							psi(i)=pi/2;
 						end
@@ -797,7 +797,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 			S=0;SS=0;
 			dx0=0;dy0=0;dz0=0;
 			for i=N-1:-1:1,  % i decreases from N (anchor) to 1, float.
-				if Hi(2,i)~=0 & MEi(i)<Inf,
+				if Hi(2,i)~=0 && MEi(i)<Inf,
 					dL=1+(Ti(i)*4/(pi*Hi(2,i)^2*MEi(i)));  % allow for stretching of wire/rope
 				else
 					dL=1;
@@ -811,7 +811,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 				X(i)=X(i+1) + dX/2 + dx0/2;
 				Y(i)=Y(i+1) + dY/2 + dy0/2;
 				Z(i)=Z(i+1) + dZ/2 + dz0/2;
-				if Z(i) > Zw & Hi(4,i) == 1 & Bi(i) >= 0,  % force line to lie on surface
+				if Z(i) > Zw && Hi(4,i) == 1 && Bi(i) >= 0,  % force line to lie on surface
 					Z(i)=Zw;
 					psi(i)=pi/2;
 				end
@@ -825,20 +825,20 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 			psi=real(psi);
 
 			Zf=Z(1)-Hi(1,1)/2;
-			if max(Z)>Zw & ss==1, ss=0; gamma=sqrt(gamma); end % this may be a surface mooring after all
+			if max(Z)>Zw && ss==1, ss=0; gamma=sqrt(gamma); end % this may be a surface mooring after all
 			%
 			%
 			if isave > 2, % must do at least three iterations to check convergence
-				if abs(Zsave(isave-1)-Z(1)) < deltaz & abs(Zsave(isave-2)-Zsave(isave-1)) < deltaz, % 2 close calls...
+				if abs(Zsave(isave-1)-Z(1)) < deltaz && abs(Zsave(isave-2)-Zsave(isave-1)) < deltaz, % 2 close calls...
 					if ss==1 & Zw>(Zf+Hi(1,1)) & gamma==1, % this is a sub-surface (ss) solution
 						breaknow=1; % then the solution has converged.
 					else % this may be a surface solution
-						if ss==0 & Zw>Zf & Zw<(Zf+Hi(1,1)) & abs(((Zw-Zf)/Hi(1,1))-gamma) < 0.01, % we're within 1%.
+						if ss==0 && Zw>Zf & Zw<(Zf+Hi(1,1)) && abs(((Zw-Zf)/Hi(1,1))-gamma) < 0.01, % we're within 1%.
 							breaknow=1; % then the surface solution has converged
 						end
 					end
 				end
-				if iavg == 120 | (iavg > 100 & dg < 1e-10), % after many iterations, force convergence
+				if iavg == 120 || (iavg > 100 & dg < 1e-10), % after many iterations, force convergence
 					X=Xavg/iavg;
 					Y=Yavg/iavg;
 					Z=Zavg/iavg;
@@ -873,7 +873,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 		end
 	end
 	%
-	if iconv & ss==0, % adjust heights slightly, bring down into water
+	if iconv && ss==0, % adjust heights slightly, bring down into water
 		zcorr=(Zw - Hi(1,1)*gamma + (Hi(1,1)/2)) - Z(1);
 		if abs(zcorr)>0.01, % need to be a little closer then 10 cm!
 			Z10=Z(1);
@@ -912,7 +912,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 	WoB=(Bi(N)+Qz(N)+Ti(N))/9.81; % weight under anchor
 	disp('  ');
     %pm here I add all the output to a variable. Then I save it to retvar which is a return value 
-	if gamma >= 0.99 | ss==1,
+	if gamma >= 0.99 || ss==1,
 		disp('This is a sub-surface solution.');
         anc_info = [anc_info 'This is a sub-surface solution.'];
 	else

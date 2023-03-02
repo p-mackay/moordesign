@@ -23,7 +23,7 @@ function mdplot(command)
    if isempty(rho), rho=[1024 1025 1026]'; end
    else
        [mu,nu]=size(U);
-       if mu==1 & nu>1,
+       if mu==1 && nu>1,
            U=U';V=V';W=W';z=z';rho=rho';
    end
 end
@@ -39,12 +39,12 @@ if isempty(its), its=1; end
             %sound(wavedata/8000,samplingrate,16);
             %clear wavedata samplingrate
 end
-if (~isempty(H) & ~isempty(B) & ~isempty(Cd))|(~isempty(Ht) & ~isempty(Bt) & ~isempty(Cdt)),
-    if command == 0 | command>=20,
+if (~isempty(H) && ~isempty(B) && ~isempty(Cd))||(~isempty(Ht) && ~isempty(Bt) && ~isempty(Cdt)),
+    if command == 0 || command>=20,
         if command==0, clear X Y Z iobj; end
             [mu,nu]=size(U);
             if nu>1, % then ask for time
-                if its==1 & command~=21,
+                if its==1 && command~=21,
                     if isempty(h_edit_timemd),
                         tmin=min(time);tmax=max(time);
                         figure(4);close(4);figure(4);clf
@@ -87,7 +87,7 @@ if (~isempty(H) & ~isempty(B) & ~isempty(Cd))|(~isempty(Ht) & ~isempty(Bt) & ~is
      else
          if isempty(Ht), % then this is a regular mooring
              Us=U;Vs=V;Ws=W;%rhos=rho;
-             if its>nu | its<1, its=1; end % just in case its got screwed up
+             if its>nu || its<1, its=1; end % just in case its got screwed up
                  U=Us(:,its);V=Vs(:,its);W=Ws(:,its);%rho=rhos(:,its);
                  itplt=its;
                  [X,Y,Z,iobj]=moordyn;
@@ -96,7 +96,7 @@ if (~isempty(H) & ~isempty(B) & ~isempty(Cd))|(~isempty(Ht) & ~isempty(Bt) & ~is
                  its=1;
          else % then this is a towed body
              Us=U;Vs=V;Ws=W;%rhos=rho;
-             if its>nu | its<1, its=1; end % just in case its got screwed up
+             if its>nu || its<1, its=1; end % just in case its got screwed up
                  U=Us(:,its);V=Vs(:,its);W=Ws(:,its);%rho=rhos(:,its);
                  itplt=its;
                  [X,Y,Z,iobj]=towdyn;
@@ -131,14 +131,14 @@ if (~isempty(H) & ~isempty(B) & ~isempty(Cd))|(~isempty(Ht) & ~isempty(Bt) & ~is
                        if icnt > 2,
                            ish=ish+1;
                            Htavg=Htavg + Ht(1,iwl);
-                           if ish>2 & idp>2, Ht(1,iwl)=Htavg/(ish+idp); end
+                           if ish>2 && idp>2, Ht(1,iwl)=Htavg/(ish+idp); end
                            end
                   else % the top is above the surface, shorten wire length
                       Ht(1,iwl)=Ht(1,iwl) - abs(abs(Z(1)-DD)/cos(psi(iend)));
                       if icnt > 2,
                           idp=idp+1;
                           Htavg=Htavg + Ht(1,iwl);
-                          if ish>2 & idp>2, Ht(1,iwl)=Htavg/(ish+idp); end
+                          if ish>2 && idp>2, Ht(1,iwl)=Htavg/(ish+idp); end
                           end
                   end
                   %
@@ -176,7 +176,7 @@ if (~isempty(H) & ~isempty(B) & ~isempty(Cd))|(~isempty(Ht) & ~isempty(Bt) & ~is
     xlabel('X [m]');
     ylabel('Y [m]');
     zlabel('Z [m]');
-    if isempty(time) | isempty(itplt),
+    if isempty(time) || isempty(itplt),
         title('Mooring Design and Dynamics');
     else
         title(['Mooring Forced by Currents at ',num2str(time(itplt))])
@@ -232,7 +232,7 @@ if (~isempty(H) & ~isempty(B) & ~isempty(Cd))|(~isempty(Ht) & ~isempty(Bt) & ~is
     xlabel('X [m]');
     ylabel('Y [m]');
     zlabel('Z [m]');
-    if isempty(time)&isempty(itplt),
+    if isempty(time)&&isempty(itplt),
         title('Mooring Design and Dynamics Towed Body');
     else
         title(['Towed Body at ',num2str(time(itplt))])
@@ -321,7 +321,7 @@ if (~isempty(H) & ~isempty(B) & ~isempty(Cd))|(~isempty(Ht) & ~isempty(Bt) & ~is
    'Position',[.6 .02 .3 .125],...
    'Callback','mdplot(7)');
 
-elseif command == 1 | command == 2,
+elseif command == 1 || command == 2,
     figure(3);axis normal
     az=str2num(get(h_edit_angle,'String'));
     el=str2num(get(h_edit_elevation,'String'));
@@ -335,7 +335,7 @@ elseif command == 4,
     if isempty(itplt), itplt=1; end;
         % Add 2% of wind speed to top current (10m) value
         ztmp=z;Utmp=U;Vtmp=V;
-        if (z(1)-z(2)) > 10.01 & (uw^2+vw^2)>0,
+        if (z(1)-z(2)) > 10.01 && (uw^2+vw^2)>0,
             mu=length(z);
             z(3:mu+1)=z(2:mu);
             z(2)=z(1)-10;
@@ -405,12 +405,12 @@ elseif command == 4,
    zmax1=max(abs(zlim));
    if ~isempty(up),
        umax=max(abs(U(:,itplt)));
-       hut=text(xmax1*1.1,ymax1,zmax1,['|Umax|=',num2str(umax),' m/s']);
+       hut=text(xmax1*1.1,ymax1,zmax1,['||Umax||=',num2str(umax),' m/s']);
        set(hut,'Color',[0 0.5 0],'FontSize',8);
    end
    if ~isempty(vp),
        vmax=max(abs(V(:,itplt)));
-       hvt=text(xmax1*1.1,0,zmax1-zmax1*0.05,['|Vmax|=',num2str(vmax),' m/s']);
+       hvt=text(xmax1*1.1,0,zmax1-zmax1*0.05,['||Vmax||=',num2str(vmax),' m/s']);
        set(hvt,'Color','m','FontSize',8);
    end
    if abs(max(Z)-max(z)) < 50, 
