@@ -49,5 +49,16 @@ based on the information on the spread sheet.
 - When user hits print button force it to calculate all info.
 - Force silent output to increase runtime speed
 
+#### 2023/03/07
+##### FEATURE 
+- Create a "New Mooring" by importing data from an xlsx file
+    - convert xlsx to mat:
+        `[a,b,c]=xlsread('yourfile.xlsx')
+        save yourmatfile c`
+
+##### FEATURE 
+- Make the static mooring more realistic
+
+
 
 

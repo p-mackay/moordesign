@@ -443,5 +443,7 @@ end
 else
     disp(' Must load or enter a mooring before evaluation/plotting. ');
 end
+figure(3);
+view(0,0);
 moordesign(0);
 % fini
