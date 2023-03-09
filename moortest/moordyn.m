@@ -422,8 +422,8 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 				izm=find(Z<0); % just in case any elements are below the bottom, oops.
 				Z(izm)=0;      % dig them up.
 				gamma0=Ti(2)*cos(psi(2))/Bi(1); % estimate required lift to support the mooring
-				if (1+gf)*dg >= gamma & gammas==-1, dg=dg/10; end % be careful if gamma is very small
-				if gamma+((1+gf)*gammas*dg) >=1 & gammas==-1, dg=dg/10; end % or if gamma is very large (1)
+				if (1+gf)*dg >= gamma && gammas==-1, dg=dg/10; end % be careful if gamma is very small
+				if gamma+((1+gf)*gammas*dg) >=1 && gammas==-1, dg=dg/10; end % or if gamma is very large (1)
 				if (Zf+Hi(1,1)) <= Zw,  % then we're completely submerged! Increase % buoyancy.
 					dgc=dgc+1;
 					dgf=0;
@@ -439,7 +439,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 						dgc=0;
 					end
 					%if (gamma+dg>1, gamma=1; ss=1; end % this is now a subsurface mooring.
-				elseif Zw > Zf & Zw < (Zf+Hi(1,1)),  % then we're partially floating (we're close)
+				elseif Zw > Zf && Zw < (Zf+Hi(1,1)),  % then we're partially floating (we're close)
 					dgc=dgc+1;
 					dgf=0;
 					if ((Zw-Zf)/Hi(1,1)) < gamma, % then decrease gamma
@@ -466,7 +466,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 						end
 					end
 					izz=find(Hi(4,:)==0);
-					if gamma<1e-10 & dg < 1e-09 & max(Z(izz))>(Zf+Hi(1,1)) & iavg > 200, % then there is still part of this mooring above water!
+					if gamma<1e-10 && dg < 1e-09 && max(Z(izz))>(Zf+Hi(1,1)) && iavg > 200, % then there is still part of this mooring above water!
 						NN=length(B);
 						inext=find(B>1); % look for positive (floation device)
 						if length(inext)>1,  % remove the top part of the mooring that is not contributing to top buoyancy
@@ -830,7 +830,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 			%
 			if isave > 2, % must do at least three iterations to check convergence
 				if abs(Zsave(isave-1)-Z(1)) < deltaz && abs(Zsave(isave-2)-Zsave(isave-1)) < deltaz, % 2 close calls...
-					if ss==1 & Zw>(Zf+Hi(1,1)) & gamma==1, % this is a sub-surface (ss) solution
+					if ss==1 && Zw>(Zf+Hi(1,1)) && gamma==1, % this is a sub-surface (ss) solution
 						breaknow=1; % then the solution has converged.
 					else % this may be a surface solution
 						if ss==0 && Zw>Zf & Zw<(Zf+Hi(1,1)) && abs(((Zw-Zf)/Hi(1,1))-gamma) < 0.01, % we're within 1%.

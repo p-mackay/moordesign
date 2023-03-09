@@ -11,6 +11,7 @@ function mdplot(command)
     global Iobj
     global fs
     global HWa ba ha wpm xair yair lgth
+    global ifile
 
     im1=[];iss=[];
     if isempty(U),
@@ -154,7 +155,7 @@ if (~isempty(H) && ~isempty(B) && ~isempty(Cd))||(~isempty(Ht) && ~isempty(Bt) &
          %
      end
  end
- figure(3);clf;hold on
+ figure(3);clf;hold on;drawnow;
  if isempty(Ht),
      set(gcf,'Units', 'Normalized',...
      'Position',[.4 .3 .5 .6],...
@@ -177,7 +178,7 @@ if (~isempty(H) && ~isempty(B) && ~isempty(Cd))||(~isempty(Ht) && ~isempty(Bt) &
     ylabel('Y [m]');
     zlabel('Z [m]');
     if isempty(time) || isempty(itplt),
-        title('Mooring Design and Dynamics');
+        title(ifile);
     else
         title(['Mooring Forced by Currents at ',num2str(time(itplt))])
     end
@@ -322,13 +323,13 @@ if (~isempty(H) && ~isempty(B) && ~isempty(Cd))||(~isempty(Ht) && ~isempty(Bt) &
    'Callback','mdplot(7)');
 
 elseif command == 1 || command == 2,
-    figure(3);axis normal
+    figure(3);axis normal;drawnow;
     az=str2num(get(h_edit_angle,'String'));
     el=str2num(get(h_edit_elevation,'String'));
     view(az,el);
     axis equal
 elseif command == 3,
-    figure(3);axis normal
+    figure(3);axis normal;drawnow;
     title(get(h_edit_plttitle,'String'));
     axis equal
 elseif command == 4,
@@ -347,7 +348,7 @@ elseif command == 4,
    U(1,itplt)=U(1,itplt)+uw;
    V(1,itplt)=V(1,itplt)+vw;
    %
-   figure(3);clf;axis normal
+   figure(3);clf;axis normal;drawnow;
    plot3(X,Y,Z,'b');hold on;
    li=length(iobj);
    plot3(X(iobj(2:li-1)),Y(iobj(2:li-1)),Z(iobj(2:li-1)),'or',...
@@ -430,10 +431,10 @@ elseif command == 4,
    drawnow;
    z=ztmp;U=Utmp;V=Vtmp;
 elseif command == 5,
-    figure(3);
+    figure(3);drawnow;
     print -f3 -v
 elseif command == 6,
-    figure(3);
+    figure(3);drawnow;
     rotate3d
     help rotate3d
 elseif command ==7,
@@ -443,7 +444,7 @@ end
 else
     disp(' Must load or enter a mooring before evaluation/plotting. ');
 end
-figure(3);
+figure(3);drawnow;
 view(0,0);
 moordesign(0);
 % fini

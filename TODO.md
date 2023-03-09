@@ -55,6 +55,10 @@ based on the information on the spread sheet.
     - convert xlsx to mat:
         `[a,b,c]=xlsread('yourfile.xlsx')
         save yourmatfile c`
+- look at the following formats and compare them:
+    - database
+    - moor.m
+    - try to create a moor.m from the c matrix from above
 
 ##### FEATURE 
 - Make the static mooring more realistic
