@@ -114,7 +114,7 @@ end
 if command == 2,
    addel=get(h_menu_addel,'Value'); % either 1 (add), 2 (delete) or 3 (modify)
 end
-if command==1 | command==2,
+if command==1 || command==2,
    if addel == 1,
     h_push_add=uicontrol('Style','Pushbutton',...
       'String','No Action','FontSize',fs,...
