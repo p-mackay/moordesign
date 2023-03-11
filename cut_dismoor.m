@@ -1,4 +1,16 @@
+global moorele
+global moorele H B ME X Y Z Ti iobj jobj psi  % for in-line and mooring elements
+global HCO BCO CdCO mooreleCO ZCO Iobj Jobj Pobj % for clamp-on devices
+global Z0co Zfco Xfco Yfco psifco
+global Zoo
+global Ht Bt Cdt MEt moorelet Usp Vsp % for a Towed Body
+global Z
 
+dZ=Zoo-Z;
+jo=0;
+io=0;
+line0 = '0'
+mm=size(moorele);
 ell=0;io=0;
 for el=1:mm,
     ell=ell+1;
@@ -66,36 +78,4 @@ if isempty(Z),
    tmp=num2str(psi(end)*180/pi,'%4.1f');
    line(95-length(tmp):94)=tmp;
    end
-   if command==1,
-   figure(5);
-ypos=1-ell/90;
-h=text(-0.1,ypos,line);
-set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
-else
-disp(line);
-end
-if command==1 & ell==80, % for printer output, go to next page
-ell=1;
-figure(5);
-orient tall;
-unis = get(gcf,'units');
-ppos = get(gcf,'paperposition');
-set(gcf,'units',get(gcf,'paperunits'));
-pos  = get(gcf,'position');
-pos(3:4) = ppos(3:4);
-set(gcf,'position',pos);
-set(gcf,'units',unis);
-print -f5 -v;
-clf;axis off
-orient tall
-ypos=1+3/90;
-h=text(-0.1,ypos,'   In-Line');
-set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
-ypos=1+2/90;
-h=text(-0.1,ypos,hdr1);
-set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
-ypos=1+1/90;
-h=text(-0.1,ypos,hdr2);
-set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
-end
 end;

@@ -25,7 +25,7 @@
 % pltrelease.m         Plots an acoustic release
 %
 % mmposition.mat       Mat file containing the main menu relative window position
-% mdcodes.mat          Mat file containing mooring element information
+% mdcodes1.mat          Mat file containing mooring element information
 % moor001.mat          An example (simple) mooring
 % moor001ts.mat        A time dependant version of moor001
 % moor002.mat          An example surface "S" mooring

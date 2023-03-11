@@ -1,20 +1,24 @@
 function dismoor(command)
 	% function to display the present mooring elements in the command window
 
+    global U V W z rho % U,V,W velocity profiles -- z height profile 
 	global moorele H B ME X Y Z Ti iobj jobj psi  % for in-line and mooring elements
 	global HCO BCO CdCO mooreleCO ZCO Iobj Jobj Pobj % for clamp-on devices
 	global Z0co Zfco Xfco Yfco psifco
 	global Zoo
 	global Ht Bt Cdt MEt moorelet Usp Vsp % for a Towed Body
+    global text_data
+    global anc_info
+    global ifile
+
+        
 
 	%ct = strftime ("%e_%B_%Y", localtime (time ())); %current time
 	%fileOut = ["Mooring_Elements" ct ".pdf"]; %pdf file produced 
     text_data = "";
-    velocity_data = getvelocity(40);
-    text_data = [nthargout(5,@moordyn)];
-    text_data = [text_data newline velocity_data newline];
-
-    %graphics_toolkit("gnuplot")
+    %velocity_data = getvelocity(40);
+    %text_data = [nthargout(5,@moordyn)];
+    %text_data = [text_data newline velocity_data newline];
 
 	moorele=char(moorele); % reset these matrices as character strings
 	mooreleCO=char(mooreleCO);
@@ -108,7 +112,7 @@ function dismoor(command)
 		line(4-length(tmp):3)=tmp;
 		line(5:20)=moorele(el,:);
 		tmp=num2str(H(1,el),'%8.2f');
-		if ~isempty(Z) & H(4,el) == 1, % a wire, consider some stretching
+		if ~isempty(Z) && H(4,el) == 1, % a wire, consider some stretching
 			jo=jo+1;
 			if (jo+1)>length(jobj);
 				tmp=num2str(H(1,el)*(1+2*(Ti(jobj(jo))+Ti(jobj(jo)+1))/(pi*H(2,el)^2*ME(el))),'%8.2f');
@@ -152,7 +156,7 @@ function dismoor(command)
 			tmp=num2str(psi(jobj(jo)+1)*180/pi,'%4.1f');
 			line(101-length(tmp):100)=tmp;
 		end
-		if ~isempty(Z) & el == mm, % this is the anchor
+		if ~isempty(Z) && el == mm, % this is the anchor
 			io=io+1;
 			tmp=num2str(Z(iobj(io))/2,'%8.2f');
 			line(50-length(tmp):49)=tmp;
@@ -177,7 +181,7 @@ function dismoor(command)
 		else
 			disp(line);
 		end
-		if command==1 & ell==80, % for printer output, go to next page
+		if command==1 && ell==80, % for printer output, go to next page
 			ell=1;
 			%figure(5);
 			%orient tall;
@@ -475,17 +479,55 @@ function dismoor(command)
 		%pos  = get(gcf,'position');
 		%pos(3:4) = ppos(3:4);
 		%set(gcf,'position',pos);
-		%set(gcf,'units',unis);
-        
-        disp("3HELLLLLLLLO")
-        %disp(mobj.height)
+        %set(gcf,'units',unis);
+
+
+        vel_data = ""
+
+        hdr4 = 'Height[m]    U [m/s]    V [m/s]    W [m/s] Density [kg/m^3]'
+        vel_data = [vel_data hdr4]
+        for i=1:length(z),
+            if z(i)>999.99,
+                vel_data = [vel_data newline [' ',num2str([z(i) U(i) V(i) W(i) rho(i)],'%11.2f')]];
+            elseif z(i)<1000 & z(i)>99.99,
+                vel_data = [vel_data newline ['  ',num2str([z(i) U(i) V(i) W(i) rho(i)],'%11.2f')]];
+            elseif z(i)<100 & z(i)>9.99,
+                vel_data = [vel_data newline ['   ',num2str([z(i) U(i) V(i) W(i) rho(i)],'%11.2f')]];
+            elseif z(i)<10,
+                vel_data = [vel_data newline ['    ',num2str([z(i) U(i) V(i) W(i) rho(i)],'%11.2f')]];
+            endif
+        endfor
+
+
+        %ct = strftime ("%e_%B_%Y", localtime (time ())); %current time
+        ct = strftime ("%Y-%m-%d", localtime (time ())); %current time
 
         tmpfname = tempname ();
         fid = fopen (tmpfname, "w+");
+        %--------------------------
+        %start writing to temp file
+        
         %text_data = [text_data line];
+        %if (!isempty(ifile))
+        %    fprintf (fid, " %s      ", ifile)
+        %endif
+        
+        fprintf (fid, "Date: %s     ", ct)
+        fprintf (fid, "Mooring File Name: %s     ", ifile)
+        fprintf (fid, "Mooring Name: %s", ifile)
+        fprintf (fid, "%s", newline)
         fprintf (fid, "%s", text_data)
+        fprintf (fid, "%s", newline)
+        fprintf (fid, "%s", newline)
+        fprintf (fid, "%s", vel_data)
+        fprintf (fid, "%s", newline)
+        fprintf (fid, "%s", newline)
+        fprintf (fid, "%s", anc_info)
         fclose (fid)
         edit (tmpfname)
+        
+        %end writing to temp file
+        %------------------------
 
         %saveas (5, fileOut);
         %print -f5 -dpsc;
@@ -500,9 +542,18 @@ function dismoor(command)
 		%open (fileOut); 
 		%print -dps MDDout.ps   % if you want a postscript file
 		%close(5);
+        clear text_data
+        clear vel_data
+        clear anc_info
 	else
 		disp(' ');
+        clear text_data
+        clear vel_data
+        clear anc_info
 	end
 	if ~isempty(Ht), moorele=[]; H=[]; B=[]; ME=[]; psi=psisave; end
 	drawnow
 	% fini
+    clear text_data
+    clear vel_data
+    clear anc_info
