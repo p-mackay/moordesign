@@ -11,6 +11,12 @@ for i = 1:rows(c)-1
             count = count+1;
             printf("COUNT SO FAR: %d \nMatch", count)
             disp(c(i,1))
+            %TODO 
+            %call subroutine that adds the element to the mooring (recycle code from modmoor.m)
+        %else
+        %   ask user to if add element to data base or
+        %   add from database
+
 
         endif
     endfor
