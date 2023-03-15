@@ -1,4 +1,4 @@
-function test_modmoor(command,parameter)
+function test_modmoor()
 % Program to make a GUI for modifying a mooring design
 
 global U V W z rho
@@ -133,9 +133,6 @@ load mdcodes1
 %      end
 %      clear ifile ipath
 %      test_modmoor(0);
-%elseif command == 1, % insert an element
-%   insert=str2num(get(h_edit_elenum,'String'));
-%   delele=0;
 %elseif command == 2, % delete an element
 %   delele=str2num(get(h_edit_delele,'String'));
 %elseif command == 3, % select a new type on mooring element and list
@@ -200,14 +197,11 @@ load mdcodes1
 %           ME=ME(inew); %JHJH
 %      	end
 %      	% re-set the next value to input.
+%
+        
       	elenum=length(B)+1;
-%      	if elenum<=0,elenum=1;end
-%      	delele=0;
-%      	set(h_edit_elenum,'String',num2str(elenum));
-%      	set(h_edit_delele,'String',num2str(delele));
-%   	end
-%	   insert=0;
-%   else
+        insert=elenum;
+
 	      mb=length(B);
 	      bump=[insert+1:mb+1];
 	      moorele(bump,:)=moorele(elenum:mb,:);
@@ -283,3 +277,4 @@ load mdcodes1
 %   moordesign(3);
 %end
 % fini
+endfunction

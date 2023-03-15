@@ -133,6 +133,8 @@ elseif command == 88,
       modmoor(0);
 elseif command == 1, % insert an element
    insert=str2num(get(h_edit_elenum,'String'));
+   disp("Hello World!")
+   disp(insert)
    delele=0;
 elseif command == 2, % delete an element
    delele=str2num(get(h_edit_delele,'String'));
@@ -206,7 +208,7 @@ elseif command == 44, % execute this update
    	end
 	   insert=0;
    else
-	   if insert ~= 0 & elenum <= length(B), % then we're inserting an element, bump rest
+	   if insert ~= 0 && elenum <= length(B), % then we're inserting an element, bump rest
 	      mb=length(B);
 	      bump=[insert+1:mb+1];
 	      moorele(bump,:)=moorele(elenum:mb,:);
