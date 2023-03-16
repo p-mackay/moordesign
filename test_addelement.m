@@ -9,6 +9,10 @@ function test_addelement;
     global h_push_add h_edit_elename h_edit_elebuoy h_edit_eledim h_edit_elecd
     global fs
 
+
+    load mooring_hardware
+    load mdcodes2
+
     %
     %   h_menu_addel=uicontrol('Style','popupmenu',...
     %      'Callback','test_addelement(2)','FontSize',fs,...
@@ -24,14 +28,17 @@ function test_addelement;
     %      'Callback','test_addelement(4)');
     %end
     %
+    
+    
+    [m,n]=size(chains);
 
 
-    [m,n]=size(floats);
 
-    name = "Test from prog";
-    buoy = str2num("999");
-    dim = str2num("165 0.0 165");
-    cd = str2num("0.65");
+
+    name = c(4,1);
+    buoy = str2num(c(4,2));
+    dim = str2num("4 0 0");
+    cd = str2num("1.65");
     mat = 1;
 
     buoy=num2str(buoy,'%8.3f');
