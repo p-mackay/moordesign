@@ -18,10 +18,10 @@ function addelement(command);
 				if ~strcmp(ifile,'*.mat'),
 					load([ipath ifile]);
 				else
-					load mdcodes1  % load default file (should be in path
+					load testdb  % load default file (should be in path
 				end
 			elseif ifile == 0 && ipath == 0,
-				load mdcodes1
+				load testdb 
 			end
 			clear ifile ipath
 		end
@@ -30,7 +30,7 @@ function addelement(command);
 		typelist='*';
 		[me,ne]=size(list);
 		for ii=1:me,
-			typelist(((ii-1)*17+1):((ii-1)*17+17))=[list(ii,1:16),'|'];
+			typelist(((ii-1)*30+1):((ii-1)*30+30))=[list(ii,1:30),'|'];
 		end
 		typelist=typelist(1:length(typelist)-1);
 		figure(4);clf;
@@ -55,7 +55,7 @@ function addelement(command);
 			'Units','Normalized',...
 			'Position',[.3 .695 .4 .1]);
 		h_text_ele=uicontrol('Style','text',...
-			'String','Element Name(16):','FontSize',fs,...
+			'String','Element Name(30):','FontSize',fs,...
 			'Units','Normalized',...
 			'Position',[.05 .6 .3 .08]);
 		h_edit_elename=uicontrol('Style','edit',...
@@ -161,7 +161,7 @@ function addelement(command);
 		end
 		[me,ne]=size(list);
 		for ii=1:me,
-			typelist(((ii-1)*17+1):((ii-1)*17+17))=[list(ii,1:16),'|'];
+			typelist(((ii-1)*31+1):((ii-1)*31+31))=[list(ii,1:30),'|'];
 		end
 		typelist=typelist(1:length(typelist)-1);
 		set(h_menu_list,'Value',1);
@@ -181,10 +181,10 @@ function addelement(command);
 						(dim(2) <= 1000 & dim(2) >= 0) & ...
 						(dim(3) <= 1000 & dim(3) >= 0) & ...
 						(cd >= 0 & cd <= 100),
-					text='*                '; % initialize empty array 17 char
+					text='*                              '; % initialize empty array 31 char
 					%12345678901234567
-					lname=min([length(name) 16]); % just incase name is too long
-					if length(name)>16, disp('Warning: Element Name has too many characters! Limited to 16.'); end
+					lname=min([length(name) 30]); % just incase name is too long
+					if length(name)>30, disp('Warning: Element Name has too many characters! Limited to 30.'); end
 					text(1:lname)=name(1:lname);
 					tbuoy='        ';
 					if abs(buoy) < 999, 
@@ -216,7 +216,7 @@ function addelement(command);
 					if type == 1,
 						[m,n]=size(floats);
 						for ii=1:m,
-							if sum(strcmp(text,floats(ii,1:17))) ~= 0,
+							if sum(strcmp(text,floats(ii,1:31))) ~= 0,
 								already=1;
 							end
 						end
@@ -229,7 +229,7 @@ function addelement(command);
 					elseif type == 2,
 						[m,n]=size(wires);
 						for ii=1:m,
-							if sum(strcmp(text,wires(ii,1:17))) ~= 0,
+							if sum(strcmp(text,wires(ii,1:31))) ~= 0,
 								already=1;
 							end
 						end
@@ -242,7 +242,7 @@ function addelement(command);
 					elseif type == 3,
 						[m,n]=size(chains);
 						for ii=1:m,
-							if sum(strcmp(text,chains(ii,1:17))) ~= 0,
+							if sum(strcmp(text,chains(ii,1:31))) ~= 0,
 								already=1;
 							end
 						end
@@ -255,7 +255,7 @@ function addelement(command);
 					elseif type == 4,
 						[m,n]=size(cms);
 						for ii=1:m,
-							if sum(strcmp(text,cms(ii,1:17))) ~= 0,
+							if sum(strcmp(text,cms(ii,1:31))) ~= 0,
 								already=1;
 							end
 						end
@@ -268,7 +268,7 @@ function addelement(command);
 					elseif type == 5,
 						[m,n]=size(acrels);
 						for ii=1:m,
-							if sum(strcmp(text,acrels(ii,1:17))) ~= 0,
+							if sum(strcmp(text,acrels(ii,1:31))) ~= 0,
 								already=1;
 							end
 						end
@@ -281,7 +281,7 @@ function addelement(command);
 					elseif type == 6,
 						[m,n]=size(anchors);
 						for ii=1:m,
-							if sum(strcmp(text,anchors(ii,1:17))) ~= 0,
+							if sum(strcmp(text,anchors(ii,1:31))) ~= 0,
 								already=1;
 							end
 						end
@@ -294,7 +294,7 @@ function addelement(command);
 					elseif type == 7
 						[m,n]=size(miscs);
 						for ii=1:m,
-							if sum(strcmp(text,miscs(ii,1:17))) ~= 0,
+							if sum(strcmp(text,miscs(ii,1:31))) ~= 0,
 								already=1;
 							end
 						end
@@ -443,7 +443,7 @@ function addelement(command);
 						(dim(2) <= 9999 & dim(2) >= 0) & ...
 						(dim(3) <= 9999 & dim(3) >= 0) & ...
 						(cd >= 0 & cd <= 10),
-					text='*                '; % initialize empty array
+					text='*                              '; % initialize empty array
 					%12345678901234567
 					text(1:length(name))=name;
 					tbuoy='        ';
@@ -476,7 +476,7 @@ function addelement(command);
 					if type == 1,
 						[m,n]=size(floats);
 						for ii=1:m,
-							if sum(strcmp(text,floats(ii,1:17))) ~= 0,
+							if sum(strcmp(text,floats(ii,1:31))) ~= 0,
 								already=1;
 								imod=ii;
 							end
@@ -489,7 +489,7 @@ function addelement(command);
 					elseif type == 2,
 						[m,n]=size(wires);
 						for ii=1:m,
-							if sum(strcmp(text,wires(ii,1:17))) ~= 0,
+							if sum(strcmp(text,wires(ii,1:31))) ~= 0,
 								already=1;
 								imod=ii
 							end
@@ -502,7 +502,7 @@ function addelement(command);
 					elseif type == 3,
 						[m,n]=size(chains);
 						for ii=1:m,
-							if sum(strcmp(text,chains(ii,1:17))) ~= 0,
+							if sum(strcmp(text,chains(ii,1:31))) ~= 0,
 								already=1;
 								imod=ii;
 							end
@@ -515,7 +515,7 @@ function addelement(command);
 					elseif type == 4,
 						[m,n]=size(cms);
 						for ii=1:m,
-							if sum(strcmp(text,cms(ii,1:17))) ~= 0,
+							if sum(strcmp(text,cms(ii,1:31))) ~= 0,
 								already=1;
 								imod=ii;
 							end
@@ -528,7 +528,7 @@ function addelement(command);
 					elseif type == 5,
 						[m,n]=size(acrels);
 						for ii=1:m,
-							if sum(strcmp(text,acrels(ii,1:17))) ~= 0,
+							if sum(strcmp(text,acrels(ii,1:31))) ~= 0,
 								already=1;
 								imod=ii;
 							end
@@ -541,7 +541,7 @@ function addelement(command);
 					elseif type == 6,
 						[m,n]=size(anchors);
 						for ii=1:m,
-							if sum(strcmp(text,anchors(ii,1:17))) ~= 0,
+							if sum(strcmp(text,anchors(ii,1:31))) ~= 0,
 								already=1;
 								imod=ii;
 							end
@@ -554,7 +554,7 @@ function addelement(command);
 					elseif type == 7
 						[m,n]=size(miscs);
 						for ii=1:m,
-							if sum(strcmp(text,miscs(ii,1:17))) ~= 0,
+							if sum(strcmp(text,miscs(ii,1:31))) ~= 0,
 								already=1;
 								imod=ii;
 							end

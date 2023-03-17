@@ -37,7 +37,7 @@ function modmoor(command,parameter)
 		h_menu_list = handle_list(4);
 	end 
 	%
-	if isempty(typelist)|strcmp(typelist,[' ']), load mdcodes1; end 
+	if isempty(typelist)|strcmp(typelist,[' ']), load testdb; end 
 	%
 	if command == 0,  % then initiale the menus/number
 		if isempty(elenum),
@@ -48,8 +48,7 @@ function modmoor(command,parameter)
 		type=1;
 		[me,ne]=size(list);
 		for ii=1:me
-			typelist(((ii-1)*17+1):((ii-1)*17+17))=[list(ii,1:16),'|'];
-            disp(typelist(((ii-1)*17+1):((ii-1)*17+17))) %pm
+			typelist(((ii-1)*31+1):((ii-1)*31+31))=[list(ii,1:30),'|'];
 		end
 		typelist=typelist(1:length(typelist)-1);
 		figure(2);clf;
@@ -125,10 +124,10 @@ function modmoor(command,parameter)
 			if ~strcmp(ifile,'*.mat'),
 				load([ipath ifile]);
 			else
-				load mdcodes1  % load default file (should be in path
+				load testdb  % load default file (should be in path
 			end
 		elseif ifile == 0 & ipath == 0,
-			load mdcodes1
+			load testdb
 		end
 		clear ifile ipath
 		modmoor(0);
@@ -159,7 +158,7 @@ function modmoor(command,parameter)
 		end
 		[me,ne]=size(list);
 		for ii=1:me
-			typelist(((ii-1)*17+1):((ii-1)*17+17))=[list(ii,1:16),'|'];
+			typelist(((ii-1)*31+1):((ii-1)*31+31))=[list(ii,1:30),'|'];
 		end
 		typelist=typelist(1:length(typelist)-1);
 		set(h_menu_list,'Value',1);
