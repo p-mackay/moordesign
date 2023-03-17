@@ -1,3 +1,18 @@
+Summary:
+#1
+### Added features:
+Print out a summary of all information of a mooring.
+View 2D plot of mooring.
+Create a mooring by parsing an xlsx spread sheet.
+### Made more efficient:
+rewriting parts of code in Octave
+
+#2
+Octave/ MATLAB
+Excel
+
+
+
 ####2023/03/13
 
 - be able to add an element to a mooring by hard coding it using code that already
