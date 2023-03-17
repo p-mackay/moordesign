@@ -35,3 +35,11 @@ Vim regex: matching a literal word, excluding sub-strings
 ```
 :%s/\(word\)/replace/g 
 ```
+
+Format multiple files from command line:
+
+```
+for i in ./*.{php,js,cpp,sh}; do
+    vim -c "normal gg=G" -c "x" $i
+done
+```

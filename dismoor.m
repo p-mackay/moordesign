@@ -1,24 +1,24 @@
 function dismoor(command)
 	% function to display the present mooring elements in the command window
 
-    global U V W z rho % U,V,W velocity profiles -- z height profile 
+	global U V W z rho % U,V,W velocity profiles -- z height profile 
 	global moorele H B ME X Y Z Ti iobj jobj psi  % for in-line and mooring elements
 	global HCO BCO CdCO mooreleCO ZCO Iobj Jobj Pobj % for clamp-on devices
 	global Z0co Zfco Xfco Yfco psifco
 	global Zoo
 	global Ht Bt Cdt MEt moorelet Usp Vsp % for a Towed Body
-    global text_data
-    global anc_info
-    global ifile
+	global text_data
+	global anc_info
+	global ifile
 
-        
+
 
 	%ct = strftime ("%e_%B_%Y", localtime (time ())); %current time
 	%fileOut = ["Mooring_Elements" ct ".pdf"]; %pdf file produced 
-    text_data = "";
-    %velocity_data = getvelocity(40);
-    %text_data = [nthargout(5,@moordyn)];
-    %text_data = [text_data newline velocity_data newline];
+	text_data = "";
+	%velocity_data = getvelocity(40);
+	%text_data = [nthargout(5,@moordyn)];
+	%text_data = [text_data newline velocity_data newline];
 
 	moorele=char(moorele); % reset these matrices as character strings
 	mooreleCO=char(mooreleCO);
@@ -52,49 +52,49 @@ function dismoor(command)
 	if ~isempty(H) & isempty(Ht),
 		hdr1=' # Mooring Element   Length[m] Buoy[kg] Height[m]    dZ[m]   dX[m]   dY[m]   Tension[kg]   Angle[deg]';
 		%     1234567891123456789212345678931234567894123456789512345678961234567897123456789812345678991234567890123
-        text_data = [text_data newline hdr1];
+		text_data = [text_data newline hdr1];
 		if isempty(Z),
 			hdr2='                                         (top)                               Top  Bottom   Top Bottom';
-            text_data = [text_data newline hdr2];
+			text_data = [text_data newline hdr2];
 		else
 			hdr2='                                        (middle)                             Top  Bottom   Top Bottom';
-            text_data = [text_data newline hdr2];
+			text_data = [text_data newline hdr2];
 		end
 	else % then this is a towed body solution
 		hdr1=' # Towed Element     Length[m] Buoy[kg]  Depth[m]    dZ[m]   dX[m]   dY[m]   Tension[kg]   Angle[deg]';
 		%     1234567891123456789212345678931234567894123456789512345678961234567897123456789812345678991234567890123
-        text_data = [text_data newline hdr1];
+		text_data = [text_data newline hdr1];
 		if isempty(Z),
 			hdr2='                                        (bottom)                             Bottom  Top   Bottom Top';
-            text_data = [text_data newline hdr2];
+			text_data = [text_data newline hdr2];
 		else
 			hdr2='                                        (middle)                             Bottom  Top   Bottom Top';
-            text_data = [text_data newline hdr2];
+			text_data = [text_data newline hdr2];
 		end
 	end
 
 	% first display the In-Line mooring components, then do the Clamp-on, then tally up all components
 	%if command==1, % then print to printer
-		%pf=figure(5);clf 
-		%axis off
-		%fs=8;
-		%set(pf,'PaperOrient','Portrait','PaperUnits',...
-		%'Normalized','PaperPosition',[0 0 1 1],'Visible','on');
-		%dates=num2str(fix(clock),'%3.0f');dates(8)='/';dates([14 17])=':';
-		%tit=['Mooring Design and Dynamics  ',dates];
-		%ht=title(tit);
-		%pos=get(ht,'Position');
-		%set(ht,'Position',[pos(1) pos(2)*1.02 pos(3)],'Fontname','Courier New','FontSize',fs*1.2);
-		%orient tall
-		%ypos=1+3/90;
-		%h=text(-0.1,ypos,'   In-Line');
-		%set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
-		%ypos=1+2/90;
-		%h=text(-0.1,ypos,hdr1);
-		%set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
-		%ypos=1+1/90;
-		%h=text(-0.1,ypos,hdr2);
-		%set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
+	%pf=figure(5);clf 
+	%axis off
+	%fs=8;
+	%set(pf,'PaperOrient','Portrait','PaperUnits',...
+	%'Normalized','PaperPosition',[0 0 1 1],'Visible','on');
+	%dates=num2str(fix(clock),'%3.0f');dates(8)='/';dates([14 17])=':';
+	%tit=['Mooring Design and Dynamics  ',dates];
+	%ht=title(tit);
+	%pos=get(ht,'Position');
+	%set(ht,'Position',[pos(1) pos(2)*1.02 pos(3)],'Fontname','Courier New','FontSize',fs*1.2);
+	%orient tall
+	%ypos=1+3/90;
+	%h=text(-0.1,ypos,'   In-Line');
+	%set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
+	%ypos=1+2/90;
+	%h=text(-0.1,ypos,hdr1);
+	%set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
+	%ypos=1+1/90;
+	%h=text(-0.1,ypos,hdr2);
+	%set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
 	%else % display to the command window
 	%	disp(' ');
 	%	disp('   In-Line');
@@ -177,7 +177,7 @@ function dismoor(command)
 			%h=text(-0.1,ypos,line);
 			%set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
 			disp(line);
-            text_data = [text_data newline line];
+			text_data = [text_data newline line];
 		else
 			disp(line);
 		end
@@ -185,21 +185,21 @@ function dismoor(command)
 			ell=1;
 			%figure(5);
 			%orient tall;
-            disp("1HELLLLLLLLO")
-            %disp(mobj.height)
+			disp("1HELLLLLLLLO")
+			%disp(mobj.height)
 
-            tmpfname = tempname ();
-            fid = fopen (tmpfname, "w+");
-            fprintf (fid, "%s", text_data)
-            fclose (fid)
-            edit (tmpfname)
+			tmpfname = tempname ();
+			fid = fopen (tmpfname, "w+");
+			fprintf (fid, "%s", text_data)
+			fclose (fid)
+			edit (tmpfname)
 
-                %print -f5 -dpsc;
-            %print -dpng
-            %print -deps figure5.eps
-            %print -f5 figure5.pdf
-            %open figure5.pdf
-            %print (5, fileOut);
+			%print -f5 -dpsc;
+			%print -dpng
+			%print -deps figure5.eps
+			%print -f5 figure5.pdf
+			%open figure5.pdf
+			%print (5, fileOut);
 			%print -f5 fileOut; 
 			%saveas (5, fileOut);
 			%open (fileOut); 
@@ -298,8 +298,8 @@ function dismoor(command)
 				%ypos=1-ell/90;
 				%h=text(-0.1,ypos,line);
 				%set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
-                disp(line);
-                text_data = [text_data newline line];
+				disp(line);
+				text_data = [text_data newline line];
 			else
 				disp(line);
 			end
@@ -315,25 +315,25 @@ function dismoor(command)
 				%set(gcf,'position',pos);
 				%set(gcf,'units',unis);
 
-                disp("2HELLLLLLLLO")
-                %disp(mobj.height)
+				disp("2HELLLLLLLLO")
+				%disp(mobj.height)
 
-                tmpfname = tempname ();
-                fid = fopen (tmpfname, "w+");
-                %text_data = [text_data line];
-                fprintf (fid, "%s", text_data)
-                fclose (fid)
-                edit (tmpfname)
+				tmpfname = tempname ();
+				fid = fopen (tmpfname, "w+");
+				%text_data = [text_data line];
+				fprintf (fid, "%s", text_data)
+				fclose (fid)
+				edit (tmpfname)
 
-                %saveas (5, fileOut);
-                %print -f5 -dpsc;
+				%saveas (5, fileOut);
+				%print -f5 -dpsc;
 				%print -f5 fileOut; 
-                %print (5, fileOut);
+				%print (5, fileOut);
 				%saveas (5, fileOut);
 				%open (fileOut); 
-                %print -deps figure5.eps
-                %print -f5 figure5.pdf
-                %open figure5.pdf
+				%print -deps figure5.eps
+				%print -f5 figure5.pdf
+				%open figure5.pdf
 
 				%clf ();axis off
 				%orient tall
@@ -414,12 +414,12 @@ function dismoor(command)
 		end
 
 		if command==1,
-		%	ypos=(mt+2)/90-.1;
-		%	h=text(-0.1,ypos,hdr3);
-		%	set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
-		%	ypos=(mt+1)/90-.1;
-		%	h=text(-0.1,ypos,hdr4);
-		%	set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
+			%	ypos=(mt+2)/90-.1;
+			%	h=text(-0.1,ypos,hdr3);
+			%	set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
+			%	ypos=(mt+1)/90-.1;
+			%	h=text(-0.1,ypos,hdr4);
+			%	set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
 		else
 			disp(' ');
 			disp(hdr3);
@@ -461,7 +461,7 @@ function dismoor(command)
 					%ypos=(mt-i)/90-.1;
 					%h=text(-0.1,ypos,line);
 					%set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
-                    text_data = [text_data newline line];
+					text_data = [text_data newline line];
 				else
 					disp(line);
 				end
@@ -479,81 +479,81 @@ function dismoor(command)
 		%pos  = get(gcf,'position');
 		%pos(3:4) = ppos(3:4);
 		%set(gcf,'position',pos);
-        %set(gcf,'units',unis);
+		%set(gcf,'units',unis);
 
 
-        vel_data = ""
+		vel_data = ""
 
-        hdr4 = 'Height[m]    U [m/s]    V [m/s]    W [m/s] Density [kg/m^3]'
-        vel_data = [vel_data hdr4]
-        for i=1:length(z),
-            if z(i)>999.99,
-                vel_data = [vel_data newline [' ',num2str([z(i) U(i) V(i) W(i) rho(i)],'%11.2f')]];
-            elseif z(i)<1000 & z(i)>99.99,
-                vel_data = [vel_data newline ['  ',num2str([z(i) U(i) V(i) W(i) rho(i)],'%11.2f')]];
-            elseif z(i)<100 & z(i)>9.99,
-                vel_data = [vel_data newline ['   ',num2str([z(i) U(i) V(i) W(i) rho(i)],'%11.2f')]];
-            elseif z(i)<10,
-                vel_data = [vel_data newline ['    ',num2str([z(i) U(i) V(i) W(i) rho(i)],'%11.2f')]];
-            endif
-        endfor
+		hdr4 = 'Height[m]    U [m/s]    V [m/s]    W [m/s] Density [kg/m^3]'
+		vel_data = [vel_data hdr4]
+		for i=1:length(z),
+			if z(i)>999.99,
+				vel_data = [vel_data newline [' ',num2str([z(i) U(i) V(i) W(i) rho(i)],'%11.2f')]];
+			elseif z(i)<1000 & z(i)>99.99,
+				vel_data = [vel_data newline ['  ',num2str([z(i) U(i) V(i) W(i) rho(i)],'%11.2f')]];
+			elseif z(i)<100 & z(i)>9.99,
+				vel_data = [vel_data newline ['   ',num2str([z(i) U(i) V(i) W(i) rho(i)],'%11.2f')]];
+			elseif z(i)<10,
+				vel_data = [vel_data newline ['    ',num2str([z(i) U(i) V(i) W(i) rho(i)],'%11.2f')]];
+				endif
+				endfor
 
 
-        %ct = strftime ("%e_%B_%Y", localtime (time ())); %current time
-        ct = strftime ("%Y-%m-%d", localtime (time ())); %current time
+				%ct = strftime ("%e_%B_%Y", localtime (time ())); %current time
+				ct = strftime ("%Y-%m-%d", localtime (time ())); %current time
 
-        tmpfname = tempname ();
-        fid = fopen (tmpfname, "w+");
-        %--------------------------
-        %start writing to temp file
-        
-        %text_data = [text_data line];
-        %if (!isempty(ifile))
-        %    fprintf (fid, " %s      ", ifile)
-        %endif
-        
-        fprintf (fid, "Date: %s     ", ct)
-        fprintf (fid, "Mooring File Name: %s     ", ifile)
-        fprintf (fid, "Mooring Name: %s", ifile)
-        fprintf (fid, "%s", newline)
-        fprintf (fid, "%s", text_data)
-        fprintf (fid, "%s", newline)
-        fprintf (fid, "%s", newline)
-        fprintf (fid, "%s", vel_data)
-        fprintf (fid, "%s", newline)
-        fprintf (fid, "%s", newline)
-        fprintf (fid, "%s", anc_info)
-        fclose (fid)
-        edit (tmpfname)
-        
-        %end writing to temp file
-        %------------------------
+				tmpfname = tempname ();
+				fid = fopen (tmpfname, "w+");
+				%--------------------------
+				%start writing to temp file
 
-        %saveas (5, fileOut);
-        %print -f5 -dpsc;
-        %print -deps figure5.eps
-        %print -f5 figure5.pdf
-        %open figure5.pdf
+				%text_data = [text_data line];
+				%if (!isempty(ifile))
+				%    fprintf (fid, " %s      ", ifile)
+				%endif
 
-		%set(pf,'Visible','off');
-		%print -f5 fileOut; 
-        %print (5, fileOut);
-		%saveas (5, fileOut);
-		%open (fileOut); 
-		%print -dps MDDout.ps   % if you want a postscript file
-		%close(5);
-        clear text_data
-        clear vel_data
-        clear anc_info
-	else
-		disp(' ');
-        clear text_data
-        clear vel_data
-        clear anc_info
-	end
-	if ~isempty(Ht), moorele=[]; H=[]; B=[]; ME=[]; psi=psisave; end
-	drawnow
-	% fini
-    clear text_data
-    clear vel_data
-    clear anc_info
+				fprintf (fid, "Date: %s     ", ct)
+				fprintf (fid, "Mooring File Name: %s     ", ifile)
+				fprintf (fid, "Mooring Name: %s", ifile)
+				fprintf (fid, "%s", newline)
+				fprintf (fid, "%s", text_data)
+				fprintf (fid, "%s", newline)
+				fprintf (fid, "%s", newline)
+				fprintf (fid, "%s", vel_data)
+				fprintf (fid, "%s", newline)
+				fprintf (fid, "%s", newline)
+				fprintf (fid, "%s", anc_info)
+				fclose (fid)
+				edit (tmpfname)
+
+				%end writing to temp file
+				%------------------------
+
+				%saveas (5, fileOut);
+				%print -f5 -dpsc;
+				%print -deps figure5.eps
+				%print -f5 figure5.pdf
+				%open figure5.pdf
+
+				%set(pf,'Visible','off');
+				%print -f5 fileOut; 
+				%print (5, fileOut);
+				%saveas (5, fileOut);
+				%open (fileOut); 
+				%print -dps MDDout.ps   % if you want a postscript file
+				%close(5);
+				clear text_data
+				clear vel_data
+				clear anc_info
+			else
+				disp(' ');
+				clear text_data
+				clear vel_data
+				clear anc_info
+			end
+			if ~isempty(Ht), moorele=[]; H=[]; B=[]; ME=[]; psi=psisave; end
+			drawnow
+			% fini
+			clear text_data
+			clear vel_data
+			clear anc_info
