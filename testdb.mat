@@ -30,7 +30,7 @@
 # type: global sq_string
 # elements: 1
 # length: 64
-1 Railway Wheel                -350.000  15.0 100.0   0.0 1.30 1
+1 Railway Wheel                -350.000  0.15   1.0   0.0 1.30 1
 
 # name: chains
 # type: global sq_string
@@ -64,6 +64,6 @@ Interocean 34                     190.0   0.0   3.0   0.0 1.30 1
 # type: global sq_string
 # elements: 1
 # length: 64
-1/4" Kevlar                      -0.009 100.0   7.0   0.0 1.30 1
+1/4" Kevlar                      -0.009   1.0   7.0   0.0 1.30 1
 
 

@@ -37,7 +37,7 @@ function modmoor(command,parameter)
 		h_menu_list = handle_list(4);
 	end 
 	%
-	if isempty(typelist)|strcmp(typelist,[' ']), load testdb; end 
+	if isempty(typelist)|strcmp(typelist,[' ']), load testdb5.mat; end 
 	%
 	if command == 0,  % then initiale the menus/number
 		if isempty(elenum),
@@ -124,10 +124,10 @@ function modmoor(command,parameter)
 			if ~strcmp(ifile,'*.mat'),
 				load([ipath ifile]);
 			else
-				load testdb  % load default file (should be in path
+				load testdb5.mat  % load default file (should be in path
 			end
 		elseif ifile == 0 & ipath == 0,
-			load testdb
+			load testdb5.mat
 		end
 		clear ifile ipath
 		modmoor(0);
@@ -216,13 +216,16 @@ function modmoor(command,parameter)
 			end
 			moorele(elenum,:)=list(val,format(1,1):format(1,2));
 			B(elenum)=str2num(list(val,format(2,1):format(2,2)));
-			H(1,elenum)=str2num(list(val,format(3,1):format(3,2))); % convert to metres pm
-			H(2,elenum)=str2num(list(val,format(4,1):format(4,2)));
-			H(3,elenum)=str2num(list(val,format(5,1):format(5,2)));
+			H(1,elenum)=str2num(list(val,format(3,1):format(3,2)))/100; % convert to metres pm
+            printf("H(1,elenum): %d line 219\nelenum = %d\n", H(1,elenum), elenum) %pm
+			H(2,elenum)=str2num(list(val,format(4,1):format(4,2)))/100;
+            printf("H(2,elenum): %d line 221\nelenum = %d\n", H(2,elenum), elenum) %pm
+			H(3,elenum)=str2num(list(val,format(5,1):format(5,2)))/100;
+            printf("H(3,elenum): %d line 221\nelenum = %d\n", H(3,elenum), elenum) %pm
 			H(4,elenum)=0;
-            disp(elenum)
 			ME(elenum)=inf;  % by default set modulus of elasticity to infinity (no stretch)
 			if type == 2 || type == 3, % then a wire/chain element, get length
+            printf("Type: %d line 226\nelenum = %d\n", type, elenum) %pm
 				if H(1,elenum)==1,
 					getwirel;waitfor(h_edit_wirel); % wait for this window(4) to close
 					H(1,elenum)=wire_length;

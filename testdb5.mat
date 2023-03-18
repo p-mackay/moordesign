@@ -1,0 +1,85 @@
+# Created by Octave 7.3.0, Sat Mar 18 16:27:18 2023 GMT <unknown@WLBCIOS9082700>
+# name: acrels
+# type: global sq_string
+# elements: 0
+
+
+# name: cms
+# type: global sq_string
+# elements: 0
+
+
+# name: format
+# type: global matrix
+# rows: 7
+# columns: 2
+ 1 30
+ 32 39 
+ 41 45
+ 48 51
+ 53 57
+ 59 62
+ 64 64
+
+# name: miscs
+# type: global sq_string
+# elements: 0
+
+
+# name: anchors
+# type: global sq_string
+# elements: 1
+# length: 64
+1 Railway Wheel                -350.000  15.0 100.0   0.0 1.30 1
+
+# name: chains
+# type: global sq_string
+# elements: 8
+# length: 64
+7/16" Shackle                    -0.194   4.0   3.0   0.0 1.30 1
+# length: 64
+1/2" Shackle                     -0.313   5.0   2.5   0.0 1.30 1
+# length: 64
+5/8" Shackle                     -0.666   6.0   5.0   0.0 1.30 1
+# length: 64
+3/4" Shackle                     -1.079   7.0   2.5   0.0 1.30 1
+# length: 64
+7/8" Shackle                     -1.566   8.0   3.0   0.0 1.30 1
+# length: 64
+1" Shackle                       -2.245  10.0   3.0   0.0 1.30 1
+# length: 64
+1/2" Sling Link                  -0.218   8.0   3.0   0.0 1.30 1
+# length: 64
+5/8" Sling Link                  -0.420  10.0   5.0   0.0 1.30 1
+
+
+# name: floats
+# type: global sq_string
+# elements: 1
+# length: 64
+Interocean 34                   190.000  97.0   0.0  86.0 0.65 1
+
+
+# name: wires
+# type: global sq_string
+# elements: 9
+# length: 64
+3/4" Poly                         0.002 100.0   1.9   0.0 1.30 4
+# length: 64
+1" RP12 UB                        0.032 100.0   2.5   0.0 1.30 4
+# length: 64
+1" RP12 Nylon                    -0.039 100.0   2.5   0.0 1.30 2
+# length: 64
+7/8" RP12 Nylon                  -0.033 100.0   2.2   0.0 1.30 2
+# length: 64
+1" Polysteel                      0.037 100.0   2.5   0.0 1.30 4
+# length: 64
+3/4" Nylon                       -0.027 100.0   1.9   0.0 1.30 2
+# length: 64
+1/4" Amsteel                      0.001 100.0   0.7   0.0 1.30 3
+# length: 64
+5 mm Dynice Dux                   0.001 100.0   0.5   0.0 1.30 8
+# length: 64
+1/4" Tenex                       -0.008 100.0   0.7   0.0 1.30 3
+
+
