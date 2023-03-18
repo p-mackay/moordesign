@@ -14,7 +14,7 @@ function modmoor(command,parameter)
 		if command == -1,
 			H=[];B=[];Cd=[];ME=[];moorele=[];X=[];Y=[];Z=[];Zoo=[];
 			Ht=[];Bt=[];Cdt=[];MEt=[];moorelet=[];
-			moorele='1234567890123456';
+			moorele='112345678901234562345678901234';
 			handle_list=[];
 		elseif command == 0,
 			if ~isempty(B),
@@ -133,8 +133,6 @@ function modmoor(command,parameter)
 		modmoor(0);
 	elseif command == 1, % insert an element
 		insert=str2num(get(h_edit_elenum,'String'));
-		disp("Hello World!")
-		disp(insert)
 		delele=0;
 	elseif command == 2, % delete an element
 		delele=str2num(get(h_edit_delele,'String'));
@@ -171,7 +169,6 @@ function modmoor(command,parameter)
 	elseif command == 44, % execute this update
 		if delele > 0, % then the action is to delete an element
 			Z=[];
-			disp('Hello!');
 			mb=length(B);
 			if delele <= mb,  % then we'll remove element number delele
 				if delele == 1,
@@ -219,12 +216,13 @@ function modmoor(command,parameter)
 			end
 			moorele(elenum,:)=list(val,format(1,1):format(1,2));
 			B(elenum)=str2num(list(val,format(2,1):format(2,2)));
-			H(1,elenum)=str2num(list(val,format(3,1):format(3,2)))/100; % convert to metres
-			H(2,elenum)=str2num(list(val,format(4,1):format(4,2)))/100;
-			H(3,elenum)=str2num(list(val,format(5,1):format(5,2)))/100;
+			H(1,elenum)=str2num(list(val,format(3,1):format(3,2))); % convert to metres pm
+			H(2,elenum)=str2num(list(val,format(4,1):format(4,2)));
+			H(3,elenum)=str2num(list(val,format(5,1):format(5,2)));
 			H(4,elenum)=0;
+            disp(elenum)
 			ME(elenum)=inf;  % by default set modulus of elasticity to infinity (no stretch)
-			if type == 2 | type == 3, % then a wire/chain element, get length
+			if type == 2 || type == 3, % then a wire/chain element, get length
 				if H(1,elenum)==1,
 					getwirel;waitfor(h_edit_wirel); % wait for this window(4) to close
 					H(1,elenum)=wire_length;

@@ -13,7 +13,17 @@ function test_addelement;
 	load updated_Hardware
 	load testdb2 %initialize empty database
 
+    [m,n]=size(floats);
+
+    name = c{i,1};
+    buoy = c{i,2};
+    dim = [c{i,3} c{i,4} c{i, 5}];
+    cd = c{i,6};
+    mat = c{i,7};
+
+
     for i = 3:10
+
 
         [m,n]=size(chains);
 

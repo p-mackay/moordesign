@@ -14,11 +14,11 @@
 # rows: 7
 # columns: 2
  1 30
- 34 41
- 43 47
- 49 53
- 55 58
- 60 62
+ 32 39
+ 42 45
+ 48 51
+ 53 57
+ 59 62
  64 64
 
 # name: miscs
@@ -30,7 +30,7 @@
 # type: global sq_string
 # elements: 1
 # length: 64
-1 Railway Wheel                  -350.000  15.0 100.0   0.0 1.30 1
+1 Railway Wheel                -350.000  15.0 100.0   0.0 1.30 1
 
 # name: chains
 # type: global sq_string

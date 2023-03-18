@@ -110,7 +110,7 @@ function dismoor(command)
 		line=line0;
 		tmp=num2str(el);
 		line(4-length(tmp):3)=tmp;
-		line(5:20)=moorele(el,:);
+		line(5:34)=moorele(el,:);
 		tmp=num2str(H(1,el),'%8.2f');
 		if ~isempty(Z) && H(4,el) == 1, % a wire, consider some stretching
 			jo=jo+1;
@@ -431,7 +431,7 @@ function dismoor(command)
 			line=line0;
 			line(1)=' ';
 			line(4-length(num2str(i)):3)=num2str(i);
-			line(6:21)=moorele(moortally(i,1),:);
+			line(6:35)=moorele(moortally(i,1),:);
 			line(31-length(num2str(moortally(i,2),6)):30)=num2str(moortally(i,2),6);
 			if ii <= mtco,
 				line(57-length(num2str(ii)):56)=num2str(ii);
