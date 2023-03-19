@@ -7,10 +7,10 @@
 global type
 global nlist
 global elenum moorele insert format
-
+global handle_list wire_length h_edit_wirel delele 
 pkg load io
 load testdb5.mat
-[a,b,c]=odsread('Test_Paul1.ods');
+[a,b,c]=odsread('Test_Paul2.ods');
 save odsdata.mat c
 load empty_mooring.mat
 
@@ -20,7 +20,7 @@ load empty_mooring.mat
 %for i = 1:rows(anchors)
 %    mlist(rows(mlist)+1,:)=anchors(i,:);
 %endfor
-for i = 4:rows(c)-7
+for i = 4:rows(c)
     for j = 1:rows(floats)
         if (startsWith(floats(j,:), c(i,1), "IgnoreCase", true) == 1) 
 
@@ -43,7 +43,6 @@ for i = 4:rows(c)-7
             H(4,elenum)=0;
             ME(elenum)=inf;  % by default set modulus of elasticity to infinity (no stretch)
             if type == 2 || type == 3, % then a wire/chain element, get length
-                printf("Type: %d line 226\nelenum = %d\n", type, elenum) %pm
                 if H(1,elenum)==1,
                     getwirel;waitfor(h_edit_wirel); % wait for this window(4) to close
                     H(1,elenum)=wire_length;
@@ -99,11 +98,9 @@ for i = 4:rows(c)-7
             H(3,elenum)=str2num(wires(j,format(5,1):format(5,2)))/100;
             H(4,elenum)=0;
             ME(elenum)=inf;  % by default set modulus of elasticity to infinity (no stretch)
-            if type == 2 || type == 3, % then a wire/chain element, get length
-                printf("Type: %d line 226\nelenum = %d\n", type, elenum) %pm
                 if H(1,elenum)==1,
-                    getwirel;waitfor(h_edit_wirel); % wait for this window(4) to close
-                    H(1,elenum)=wire_length;
+                    %printf("i: %d\n", i)
+                    H(1,elenum)=c{i,4};
                     H(4,elenum)=1; % flag for wire/chain elements, sub-divide later
                     mat=str2num(wires(j,format(7,1):format(7,2)));
                     if mat==1, % steel
@@ -126,7 +123,6 @@ for i = 4:rows(c)-7
                 else
                     H(4,elenum)=2; % flag for shackles and joiners
                 end
-            end
             Cd(elenum)=str2num(wires(j,format(6,1):format(6,2)));
             elenum0=elenum;
             elenum=length(B)+1;
@@ -157,7 +153,6 @@ for i = 4:rows(c)-7
             H(4,elenum)=0;
             ME(elenum)=inf;  % by default set modulus of elasticity to infinity (no stretch)
             if type == 2 || type == 3, % then a wire/chain element, get length
-                printf("Type: %d line 226\nelenum = %d\n", type, elenum) %pm
                 if H(1,elenum)==1,
                     getwirel;waitfor(h_edit_wirel); % wait for this window(4) to close
                     H(1,elenum)=wire_length;
@@ -216,7 +211,6 @@ for i = 4:rows(c)-7
             H(4,elenum)=0;
             ME(elenum)=inf;  % by default set modulus of elasticity to infinity (no stretch)
             if type == 2 || type == 3, % then a wire/chain element, get length
-                printf("Type: %d line 226\nelenum = %d\n", type, elenum) %pm
                 if H(1,elenum)==1,
                     getwirel;waitfor(h_edit_wirel); % wait for this window(4) to close
                     H(1,elenum)=wire_length;
@@ -263,4 +257,8 @@ endfor
 %endfor
 
 save('moor007.mat','U','V','W','z','rho','time','H','B','Cd','ME','moorele');
+load ('moor007.mat');
+moordesign(100);
+
+
 
