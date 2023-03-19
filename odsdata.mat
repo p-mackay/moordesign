@@ -1,0 +1,551 @@
+# Created by Octave 7.3.0, Sun Mar 19 00:21:17 2023 PDT <paul@jaro>
+# name: c
+# type: cell
+# rows: 13
+# columns: 7
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+Interocean 34
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+1/2" Shackle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+1/2" Shackle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+1/2" Shackle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+5/8" Shackle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 9
+AR861 B2S
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+1/2" Shackle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+1" Polysteel
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+7/8" Shackle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+1" Buoy Chain
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 7
+Weight 
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 4
+(kg)
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: scalar
+452
+
+
+# name: <cell-element>
+# type: scalar
+0.37
+
+
+# name: <cell-element>
+# type: scalar
+0.37
+
+
+# name: <cell-element>
+# type: scalar
+0.37
+
+
+# name: <cell-element>
+# type: scalar
+0.763636363636364
+
+
+# name: <cell-element>
+# type: scalar
+30
+
+
+# name: <cell-element>
+# type: scalar
+0.37
+
+
+# name: <cell-element>
+# type: scalar
+1.425
+
+
+# name: <cell-element>
+# type: scalar
+1.8
+
+
+# name: <cell-element>
+# type: scalar
+38.636363636363598
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Wet Weight 
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 4
+(kg)
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: scalar
+-283
+
+
+# name: <cell-element>
+# type: scalar
+0.32280612244897999
+
+
+# name: <cell-element>
+# type: scalar
+0.32280612244897999
+
+
+# name: <cell-element>
+# type: scalar
+0.32280612244897999
+
+
+# name: <cell-element>
+# type: scalar
+0.66623376623376596
+
+
+# name: <cell-element>
+# type: scalar
+22
+
+
+# name: <cell-element>
+# type: scalar
+0.32280612244897999
+
+
+# name: <cell-element>
+# type: scalar
+-0.183214285714286
+
+
+# name: <cell-element>
+# type: scalar
+1.57040816326531
+
+
+# name: <cell-element>
+# type: scalar
+33.708256029684598
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 7
+Length 
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 3
+(m)
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: scalar
+2.1299999999999999
+
+
+# name: <cell-element>
+# type: scalar
+0.050000000000000003
+
+
+# name: <cell-element>
+# type: scalar
+0.050000000000000003
+
+
+# name: <cell-element>
+# type: scalar
+0.050000000000000003
+
+
+# name: <cell-element>
+# type: scalar
+0.059999999999999998
+
+
+# name: <cell-element>
+# type: scalar
+0.82999999999999996
+
+
+# name: <cell-element>
+# type: scalar
+0.050000000000000003
+
+
+# name: <cell-element>
+# type: scalar
+5
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: scalar
+2
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Inst. Height
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+off btm (m)
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: scalar
+9.9199999999999999
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: scalar
+7.8799999999999999
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Net Weight 
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+below float (m)
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Inst. Depth
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 3
+(m)
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+
+
+

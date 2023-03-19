@@ -1,0 +1,79 @@
+# Created by Octave 7.3.0, Sat Mar 18 22:19:29 2023 PDT <paul@jaro>
+# name: U
+# type: global matrix
+# rows: 0
+# columns: 0
+
+
+# name: V
+# type: global matrix
+# rows: 0
+# columns: 0
+
+
+# name: W
+# type: global matrix
+# rows: 0
+# columns: 0
+
+
+# name: z
+# type: global matrix
+# rows: 0
+# columns: 0
+
+
+# name: rho
+# type: global matrix
+# rows: 0
+# columns: 0
+
+
+# name: time
+# type: global matrix
+# rows: 0
+# columns: 0
+
+
+# name: H
+# type: global matrix
+# rows: 4
+# columns: 3
+ 0.96999999999999997 50 0.14999999999999999
+ 0 0.025000000000000001 0
+ 0.85999999999999999 0 0
+ 0 1 0
+
+
+# name: B
+# type: global matrix
+# rows: 1
+# columns: 3
+ 190 -0.039 -350
+
+
+# name: Cd
+# type: global matrix
+# rows: 1
+# columns: 3
+ 0.65000000000000002 1.3 1.3
+
+
+# name: ME
+# type: global matrix
+# rows: 1
+# columns: 3
+ Inf 345000000 Inf
+
+
+# name: moorele
+# type: global sq_string
+# elements: 3
+# length: 30
+Interocean 34                 
+# length: 30
+1" RP12 Nylon                 
+# length: 30
+1 Railway Wheel               
+
+

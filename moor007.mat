@@ -1,0 +1,69 @@
+# Created by Octave 7.3.0, Sun Mar 19 00:21:17 2023 PDT <paul@jaro>
+# name: U
+# type: global matrix
+# rows: 0
+# columns: 0
+
+
+# name: V
+# type: global matrix
+# rows: 0
+# columns: 0
+
+
+# name: W
+# type: global matrix
+# rows: 0
+# columns: 0
+
+
+# name: z
+# type: global matrix
+# rows: 0
+# columns: 0
+
+
+# name: rho
+# type: global matrix
+# rows: 0
+# columns: 0
+
+
+# name: time
+# type: global matrix
+# rows: 0
+# columns: 0
+
+
+# name: H
+# type: global matrix
+# rows: 4
+# columns: 1
+ 1
+ 0.025000000000000001
+ 0
+ 0
+
+
+# name: B
+# type: global scalar
+0.036999999999999998
+
+
+# name: Cd
+# type: global scalar
+1.3
+
+
+# name: ME
+# type: global scalar
+Inf
+
+
+# name: moorele
+# type: global sq_string
+# elements: 1
+# length: 30
+1" Polysteel                  
+
+

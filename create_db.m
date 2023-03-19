@@ -1,4 +1,4 @@
-function test_addelement;
+function create_db;
 	% Program to make a GUI for modifying a mooring element in the database
 
 	global U V W z rho
