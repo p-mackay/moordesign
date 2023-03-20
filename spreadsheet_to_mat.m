@@ -1,3 +1,4 @@
+function spreadsheet_to_mat 
 %TODO 
 %call subroutine that adds the element to the mooring (recycle code from modmoor.m)
 %else
@@ -10,7 +11,10 @@ global elenum moorele insert format
 global handle_list wire_length h_edit_wirel delele 
 pkg load io
 load testdb5.mat
-[a,b,c]=odsread('Test_Paul2.ods');
+global ifile
+
+[ifile,ipath]=uigetfile('*.ods','Load Spread Sheet');
+[a,b,c]=odsread(ifile);
 save odsdata.mat c
 load empty_mooring.mat
 
@@ -261,4 +265,4 @@ load ('moor007.mat');
 moordesign(100);
 
 
-
+endfunction

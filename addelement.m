@@ -30,7 +30,7 @@ function addelement(command);
 		typelist='*';
 		[me,ne]=size(list);
 		for ii=1:me,
-			typelist(((ii-1)*30+1):((ii-1)*30+30))=[list(ii,1:30),'|'];
+			typelist(((ii-1)*31+1):((ii-1)*31+31))=[list(ii,1:30),'|'];
 		end
 		typelist=typelist(1:length(typelist)-1);
 		figure(4);clf;
