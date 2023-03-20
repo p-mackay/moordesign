@@ -18,10 +18,10 @@ function addelement(command);
 				if ~strcmp(ifile,'*.mat'),
 					load([ipath ifile]);
 				else
-					load testdb  % load default file (should be in path
+					load testdb5.mat  % load default file (should be in path
 				end
 			elseif ifile == 0 && ipath == 0,
-				load testdb 
+				load testdb5.mat 
 			end
 			clear ifile ipath
 		end

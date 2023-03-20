@@ -4,19 +4,24 @@ function spreadsheet_to_mat
 %else
 %   ask user to if add element to data base or
 %   add from database
+pkg load io
 
 global type
 global nlist
 global elenum moorele insert format
 global handle_list wire_length h_edit_wirel delele 
-pkg load io
-load testdb5.mat
 global ifile
-
-[ifile,ipath]=uigetfile('*.ods','Load Spread Sheet');
-[a,b,c]=odsread(ifile);
-save odsdata.mat c
+load testdb5.mat
 load empty_mooring.mat
+
+[ifile,ipath]=uigetfile({'*.xlsx';'*.ods'},'Load Spread Sheet');
+[a,b,c]=xlsread(ifile);
+save xlsdata.mat c
+
+%elseif (ext == ".ods") % might add feature for multiple file ext's
+%    [a,b,c]=odsread(ifile);
+%    save odsdata.mat c
+%endif
 
 %for i = 1:rows(wires)
 %    mlist(rows(mlist)+1,:)=wires(i,:);
@@ -25,7 +30,8 @@ load empty_mooring.mat
 %    mlist(rows(mlist)+1,:)=anchors(i,:);
 %endfor
 for i = 4:rows(c)
-    for j = 1:rows(floats)
+    j = 1;
+    while (j <= rows(floats))
         if (startsWith(floats(j,:), c(i,1), "IgnoreCase", true) == 1) 
 
             elenum=length(B)+1;
@@ -77,8 +83,13 @@ for i = 4:rows(c)
             elenum0=elenum;
             elenum=length(B)+1;
             insert=0;
+            j=j+1;
+        else 
+            j=1;
+            disp(c(i,1))
+            addelement
         endif
-    endfor
+    endwhile
 
     for j = 1:rows(wires)
         if (startsWith(wires(j,:), c(i,1), "IgnoreCase", true) == 1) 
