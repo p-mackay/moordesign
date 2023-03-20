@@ -11,10 +11,16 @@ global nlist
 global elenum moorele insert format
 global handle_list wire_length h_edit_wirel delele 
 global ifile
+global h_push_save
 load testdb5.mat
 load empty_mooring.mat
 
-[ifile,ipath]=uigetfile({'*.xlsx';'*.ods'},'Load Spread Sheet');
+%[ifile,ipath]=uigetfile({'*.xlsx'},'Load Spread Sheet');
+%[a,b,c]=xlsread(ifile);
+%save xlsdata.mat c
+%load empty_mooring.mat
+
+[ifile,ipath]=uigetfile({'*.xlsx'},'Load Spread Sheet');
 [a,b,c]=xlsread(ifile);
 save xlsdata.mat c
 
@@ -29,10 +35,17 @@ save xlsdata.mat c
 %for i = 1:rows(anchors)
 %    mlist(rows(mlist)+1,:)=anchors(i,:);
 %endfor
+    %while (j <= rows(floats))
+
+%for j = 1:rows(wires)
+k=1;
+disp(k)
 for i = 4:rows(c)
-    j = 1;
-    while (j <= rows(floats))
-        if (startsWith(floats(j,:), c(i,1), "IgnoreCase", true) == 1) 
+    printf("for")
+    while (k <= rows(floats))
+        %printf("floats(k+1): %s\n%d\nrows(floats): %d",floats(k,:),k, rows(floats))
+        if (startsWith(floats(k,:), c(i,1), "IgnoreCase", true) == 1) 
+            printf("if")
 
             elenum=length(B)+1;
             insert=elenum;
@@ -45,19 +58,20 @@ for i = 4:rows(c)
             ME(bump)=ME(elenum:mb);
 
 
-            moorele(elenum,:)=floats(j,format(1,1):format(1,2));
-            B(elenum)=str2num(floats(j,format(2,1):format(2,2)));
-            H(1,elenum)=str2num(floats(j,format(3,1):format(3,2)))/100; % convert to metres pm
-            H(2,elenum)=str2num(floats(j,format(4,1):format(4,2)))/100;
-            H(3,elenum)=str2num(floats(j,format(5,1):format(5,2)))/100;
+            moorele(elenum,:)=floats(k,format(1,1):format(1,2));
+            B(elenum)=str2num(floats(k,format(2,1):format(2,2)));
+            H(1,elenum)=str2num(floats(k,format(3,1):format(3,2)))/100; % convert to metres pm
+            H(2,elenum)=str2num(floats(k,format(4,1):format(4,2)))/100;
+            H(3,elenum)=str2num(floats(k,format(5,1):format(5,2)))/100;
             H(4,elenum)=0;
             ME(elenum)=inf;  % by default set modulus of elasticity to infinity (no stretch)
+            k=k+1;
             if type == 2 || type == 3, % then a wire/chain element, get length
                 if H(1,elenum)==1,
                     getwirel;waitfor(h_edit_wirel); % wait for this window(4) to close
                     H(1,elenum)=wire_length;
                     H(4,elenum)=1; % flag for wire/chain elements, sub-divide later
-                    mat=str2num(floats(j,format(7,1):format(7,2)));
+                    mat=str2num(floats(k,format(7,1):format(7,2)));
                     if mat==1, % steel
                     ME(elenum)=1.38e11;
                     elseif mat==2, % Nylon
@@ -76,18 +90,20 @@ for i = 4:rows(c)
                         ME(elenum)=1.0e11;
                     end
                 else
-                    H(4,elenum)=2; % flag for shackles and joiners
+                    H(4,elenum)=2; % flag for shackles and koiners
                 end
             end
-            Cd(elenum)=str2num(floats(j,format(6,1):format(6,2)));
+            Cd(elenum)=str2num(floats(k,format(6,1):format(6,2)));
             elenum0=elenum;
             elenum=length(B)+1;
             insert=0;
-            j=j+1;
-        else 
-            j=1;
-            disp(c(i,1))
-            addelement
+        %else 
+        %    disp(c(i,1))
+        %    addelement;waitfor(h_push_save);
+        %    pause
+        %    j=1;
+        else
+            k=k+1;
         endif
     endwhile
 

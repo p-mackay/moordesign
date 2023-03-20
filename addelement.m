@@ -417,7 +417,7 @@ function addelement(command);
 			'Callback','addelement(1)'); 
 	elseif command == 6,
 		disp('Saving a new MDCODES.MAT File! Should go into mooring directory.');
-		[ofile,opath]=uiputfile('mdcodes1.mat','Save A New MDCODES.MAT');
+		[ofile,opath]=uiputfile('testdb5.mat','Save A New MDCODES.MAT');
 		if ~isempty(ofile),
 			save([opath ofile],'acrels','cms','format','miscs','anchors','chains','floats','wires');
 		else
