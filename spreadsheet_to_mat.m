@@ -115,8 +115,8 @@ function spreadsheet_to_mat
                 %printf("%d\n",)
                 %printf("floats(k+1): %s\nk: %d\nc(i,1): %d\n",floats(k,:),k, c{i,1})
                 printf("%d\n",match)
-                addelement;waitfor(h_push_save);
-                set(h_edit_elename,'String',"Hello World!");
+                addelement_xls;waitfor(h_push_save);
+                set(h_edit_elename,'String',c{i,1});
 
                 warning("Please fill in data for the following: %s", c{i,1});
                 save ('testdb5.mat','acrels','cms','format','miscs','anchors','chains','floats','wires');
