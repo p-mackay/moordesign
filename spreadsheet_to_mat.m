@@ -38,14 +38,17 @@ save xlsdata.mat c
     %while (j <= rows(floats))
 
 %for j = 1:rows(wires)
+isele=1;
 k=1;
 disp(k)
 for i = 4:rows(c)
-    printf("for")
+    printf("for... ")
+    isele=rows(floats);
     while (k <= rows(floats))
-        %printf("floats(k+1): %s\n%d\nrows(floats): %d",floats(k,:),k, rows(floats))
+        printf("floats(k+1): %s\nc(i,1): %d",floats(k,:), c{i,1})
         if (startsWith(floats(k,:), c(i,1), "IgnoreCase", true) == 1) 
             printf("if")
+            isele=isele-1;
 
             elenum=length(B)+1;
             insert=elenum;
@@ -97,11 +100,11 @@ for i = 4:rows(c)
             elenum0=elenum;
             elenum=length(B)+1;
             insert=0;
-        %else 
-        %    disp(c(i,1))
-        %    addelement;waitfor(h_push_save);
-        %    pause
-        %    j=1;
+        elseif (isele < rows(floats))
+            %printf("floats(k+1): %s\n%d\nc(i,1): %d",floats(k,:),k, c{i,1})
+            addelement;waitfor(h_push_save);
+            pause;
+            k=1;
         else
             k=k+1;
         endif
