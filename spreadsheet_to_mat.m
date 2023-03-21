@@ -6,6 +6,17 @@ function spreadsheet_to_mat
     %   add from database
     pkg load io
 
+    global U V W z rho
+    global H B Cd ME moorele
+    global Ht Bt Cdt MEt moorelet
+    global BCO ZCO Jobj Pobj
+    global floats wires chains acrels cms anchors miscs format typelist type list
+    global h_menu_type h_menu_list h_menu_addel h_menu_material
+    global h_push_add h_edit_elename h_edit_elebuoy h_edit_eledim h_edit_elecd
+    global handle_list wire_length h_edit_wirel insert elenum delele val
+    global Z Zoo
+    global fs
+
     global type
     global nlist
     global elenum moorele insert format
@@ -105,6 +116,9 @@ function spreadsheet_to_mat
                 %printf("floats(k+1): %s\nk: %d\nc(i,1): %d\n",floats(k,:),k, c{i,1})
                 printf("%d\n",match)
                 addelement;waitfor(h_push_save);
+                set(h_edit_elename,'String',"Hello World!");
+
+                warning("Please fill in data for the following: %s", c{i,1});
                 save ('testdb5.mat','acrels','cms','format','miscs','anchors','chains','floats','wires');
                 pause;
                 k=1;
