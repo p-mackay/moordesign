@@ -8,6 +8,7 @@ function addelement(command);
 	global h_menu_type h_menu_list h_menu_addel h_menu_material
 	global h_push_add h_edit_elename h_edit_elebuoy h_edit_eledim h_edit_elecd
 	global fs
+    fs = 8;
 	%
 	if nargin < 1, command=0; end
 	if isempty(addel), addel=1; end
