@@ -32,17 +32,17 @@ function test_spreadsheet_to_mat
     list = [""];
 
     
-    for i = 1:rows(floats)
-        all_list(rows(all_list)+1,:)=floats(i,:);
+    for m = 1:rows(floats)
+        all_list(rows(all_list)+1,:)=floats(m,:);
     endfor
-    for i = 1:rows(wires)
-        all_list(rows(all_list)+1,:)=wires(i,:);
+    for m = 1:rows(wires)
+        all_list(rows(all_list)+1,:)=wires(m,:);
     endfor
-    for i = 1:rows(chains)
-        all_list(rows(all_list)+1,:)=chains(i,:);
+    for m = 1:rows(chains)
+        all_list(rows(all_list)+1,:)=chains(m,:);
     endfor
-    for i = 1:rows(anchors)
-        all_list(rows(all_list)+1,:)=anchors(i,:);
+    for m = 1:rows(anchors)
+        all_list(rows(all_list)+1,:)=anchors(m,:);
     endfor
 
     k=1;
@@ -52,9 +52,27 @@ function test_spreadsheet_to_mat
     for i = 4:rows(c)
         k=1;
         printf("%s\n",c{i,1});
+        disp(all_list)
         while (k <= rows(all_list))
+            all_list=[""];
+            for m = 1:rows(floats)
+                all_list(rows(all_list)+1,:)=floats(m,:);
+            endfor
+            for m = 1:rows(wires)
+                all_list(rows(all_list)+1,:)=wires(m,:);
+            endfor
+            for m = 1:rows(chains)
+                all_list(rows(all_list)+1,:)=chains(m,:);
+            endfor
+            for m = 1:rows(anchors)
+                all_list(rows(all_list)+1,:)=anchors(m,:);
+            endfor
+            %printf("%d: Hello: %s\n",k,all_list);
+            disp(all_list)
             %printf("floats(k+1): %s\nc(i,1): %d",floats(k,:), c{i,1})
             if (startsWith(all_list(k,:), c(i,1), "IgnoreCase", true) == 1) 
+
+
                 match=match+1;
                 printf("1. k = %d\n",k);
                 %printf(all_list(k,:));
@@ -65,15 +83,31 @@ function test_spreadsheet_to_mat
                 printf("IS NOT IN DATABASE ADD TO DATABASE%d\n",k);
                 printf("2. k = %d\n",k);
                 printf("%s\n",c{i,1});
-
                 printf("%d\n",match)
-                addelement;waitfor(h_push_save);
+
+                addelement;%waitfor(h_push_save);
                 set(h_edit_elename,'String',c{i,1});
+
+                all_list=[""];
+                for m = 1:rows(floats)
+                    all_list(rows(all_list)+1,:)=floats(m,:);
+                endfor
+                for m = 1:rows(wires)
+                    all_list(rows(all_list)+1,:)=wires(m,:);
+                endfor
+                for m = 1:rows(chains)
+                    all_list(rows(all_list)+1,:)=chains(m,:);
+                endfor
+                for m = 1:rows(anchors)
+                    all_list(rows(all_list)+1,:)=anchors(m,:);
+                endfor
+
+                disp(all_list)
                 warning("Please fill in data for the following: %s", c{i,1});
                 save ('testdb5.mat','acrels','cms','format','miscs','anchors','chains','floats','wires','all_list');
                 load('testdb5.mat');
-            
                 pause;
+
 
                 k=1;
             else
