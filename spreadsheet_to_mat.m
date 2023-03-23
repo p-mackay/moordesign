@@ -70,11 +70,24 @@ function spreadsheet_to_mat
     match = 0;
     flag1=0;
     for i = 4:rows(c)
+        match=0;
         k=1;
         while (k <= rows(all_list))
+            all_list = [""];
+            for m = 1:rows(floats)
+                all_list(rows(all_list)+1,:)=floats(m,:);
+            endfor
+            for m = 1:rows(wires)
+                all_list(rows(all_list)+1,:)=wires(m,:);
+            endfor
+            for m = 1:rows(chains)
+                all_list(rows(all_list)+1,:)=chains(m,:);
+            endfor
+            for m = 1:rows(anchors)
+                all_list(rows(all_list)+1,:)=anchors(m,:);
+            endfor
             if (startsWith(all_list(k,:), c(i,1), "IgnoreCase", true) == 1) 
-                match=match+1;
-
+                match=1;
                 elenum=length(B)+1;
                 insert=elenum;
                 mb=length(B);
@@ -148,6 +161,7 @@ function spreadsheet_to_mat
                 save ('testdb5.mat','acrels','cms','format','miscs','anchors','chains','floats','wires','all_list');
                 pause;
                 k=1;
+                match=0;
             else
                 k=k+1;
             endif

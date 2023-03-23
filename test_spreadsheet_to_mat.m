@@ -31,7 +31,7 @@ function test_spreadsheet_to_mat
     all_list = [""];
     list = [""];
 
-    
+
     for m = 1:rows(floats)
         all_list(rows(all_list)+1,:)=floats(m,:);
     endfor
@@ -50,9 +50,11 @@ function test_spreadsheet_to_mat
     flag1=0;
 
     for i = 4:rows(c)
+        match=0;
         k=1;
-        printf("%s\n",c{i,1});
+        %printf("%s\n",c{i,1});
         while (k <= rows(all_list))
+            printf("MATCH: %d\n",match);
             all_list=[""];
             for m = 1:rows(floats)
                 all_list(rows(all_list)+1,:)=floats(m,:);
@@ -72,9 +74,9 @@ function test_spreadsheet_to_mat
             if (startsWith(all_list(k,:), c(i,1), "IgnoreCase", true) == 1) 
 
 
-                match=match+1;
+                match=1;
                 %printf("1. k = %d\n",k);
-                printf("%s --- %s\n",all_list(k,:),c{i,1});
+                %printf("%s --- %s\n",all_list(k,:),c{i,1});
                 %printf("%s\n",c{i,1});
                 k=k+1;
 
