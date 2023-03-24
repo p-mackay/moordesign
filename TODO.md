@@ -1,3 +1,17 @@
+#### 2023/03/23
+- When prompting user Add:
+    - Header with instructions.
+    - Prompt: 
+        - Option to either add to database.(addelement)
+        - Or add existing element from data base.(modmoor)
+    - Get Add function to work.
+- Make spreadsheettoxls more robust by reading empty cells as start end blocks.
+- Add feature: Import Database from xls
+    - Make it read dinamically by reading headers and blank cells (to know the range).
+- Add feature: Export Database to xls
+
+
+
 Summary:
 #1
 ### Added features:

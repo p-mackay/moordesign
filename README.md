@@ -5,6 +5,7 @@ This is a GNU Octave adaptation of Richard Dewey's Mooring Design and Dynamics.
 # Credit
 
 [Mooring Design & Dynamics(Website)](http://web.uvic.ca/~rdewey/mooring/moordyn.php)
+
 [Mooring Design & Dynamics(MathWorks Exchange)](http://web.uvic.ca/~rdewey/mooring/moordyn.php)
 
 

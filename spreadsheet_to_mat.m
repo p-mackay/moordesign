@@ -22,9 +22,11 @@ function spreadsheet_to_mat
     global elenum moorele insert format
     global handle_list wire_length h_edit_wirel delele 
     global ifile
+    global toadd
     global h_push_save
     load testdb5.mat
     load empty_mooring.mat
+    
 
     %[ifile,ipath]=uigetfile({'*.xlsx'},'Load Spread Sheet');
     %[a,b,c]=xlsread(ifile);
@@ -50,6 +52,7 @@ function spreadsheet_to_mat
     global all_list
 
     list = [""];
+    toadd = "";
 
     
     all_list = [""];
@@ -140,8 +143,9 @@ function spreadsheet_to_mat
                 %printf("list(k+1): %s\nk: %d\nc(i,1): %d\n",list(k,:),k, c{i,1})
                 printf("%d\n",match)
                 %addelement_xls;waitfor(h_push_save);
-                addelement;waitfor(h_push_save);
+                addelement_xls;waitfor(h_push_save);
                 set(h_edit_elename,'String',c{i,1});
+                toadd=get(h_edit_elename, 'String');
 
                 all_list = [""];
                 for m = 1:rows(floats)
