@@ -14,8 +14,24 @@ function rangetest;
     ca = cellfun(@isempty,c);
     [m,n]=size(c);
     count=0;
-    start=1;
-    stop=1;
+
+    %Make this a switch statment switch on element type
+    for i = 1:m
+        if(strcmp(c{i,1}, "Hardware")==1)
+            break;
+        else
+        endif
+    endfor
+    start=i+1;
+    printf("start: %d\n", start);
+    for i = start:m
+        if(ca(i,1)==1)
+            break;
+        else
+        endif
+    endfor
+    stop=i-1;
+    printf("stop: %d\n", stop);
     
     %for i = 1:m
     %    if(ca(i,1) == 0)
@@ -24,25 +40,39 @@ function rangetest;
     %    endif
     %endfor
 
+    %for i = 1:m
+    %    count=count+1;
+    %    if(strcmp(c{i,1}, "Hardware")==1)
+    %        break;
+    %    else
+    %    endif
+    %endfor
+    %start = start+count;%start of Hardware range
+    %count=0;
+    %for i = start:m
+    %    count=count+1;
+    %    if(ca(i,1)==1)
+    %        break;
+    %    else
+    %    endif
+    %endfor
+    %stop = stop+count; %end of Hardware range
     for i = 1:m
-        count=count+1;
-        if(strcmp(c{i,1}, "Hardware")==1)
+        if(strcmp(c{i,1}, "Flotation")==1)
             break;
         else
         endif
     endfor
-    start = start+count;
-    disp(start)
-    count=0;
+    start=i+1;
+    printf("start: %d\n", start);
     for i = start:m
-        count=count+1;
         if(ca(i,1)==1)
             break;
         else
         endif
     endfor
-    stop = stop+count;
-    disp(stop)
+    stop=i-1;
+    printf("stop: %d\n", stop);
 
 
 
