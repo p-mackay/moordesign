@@ -37,7 +37,7 @@ function modmoor(command,parameter)
 		h_menu_list = handle_list(4);
 	end 
 	%
-	if isempty(typelist)|strcmp(typelist,[' ']), load testdb5.mat; end 
+	if isempty(typelist)||strcmp(typelist,[' ']), load testdb5.mat; end 
 	%
 	if command == 0,  % then initiale the menus/number
 		if isempty(elenum),

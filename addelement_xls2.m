@@ -43,7 +43,7 @@ function addelement_xls2(command);
                 'tag','modmoor');
                 h_menu_type=uicontrol('Style','popupmenu',...
                 'Callback','addelement_xls2(1)','FontSize',fs,...
-                'String',['Floatation|Wire|Chain+Shackles|Current Meter|Acoustic Release|Anchor|Misc Instrument'],...
+                'String',['Select Element Type|Floatation|Wire|Chain+Shackles|Current Meter|Acoustic Release|Anchor|Misc Instrument'],...
                 'Units','Normalized',...
                 'Position',[.1 .875 .8 .1]);
                 %set(h_menu_type,'String','Floatation');
@@ -58,7 +58,7 @@ function addelement_xls2(command);
                 addelement_xls2(2);
                 h_menu_addel=uicontrol('Style','popupmenu',...
                 'Callback','addelement_xls2(2)','FontSize',fs,...
-                'String','Add Element|',...
+                'String','Select|Add Element|',...
                 'Units','Normalized',...
                 'Position',[.3 .695 .4 .1]);
                 h_text_ele=uicontrol('Style','text',...
@@ -99,7 +99,7 @@ function addelement_xls2(command);
                 'Position',[.05 .22 .3 .08]);
                 h_menu_material=uicontrol('Style','popupmenu',...
                 'Callback','addelement_xls2(3)','FontSize',fs,...
-                'String',['Steel|Nylon|Dacron|Polypropylene|Polyethylene|Kevlar|Aluminum|Dyneema'],...
+                'String',['Select Material|Steel|Nylon|Dacron|Polypropylene|Polyethylene|Kevlar|Aluminum|Dyneema'],...
                 'Units','Normalized',...
                 'Position',[.45 .22 .4 .08]);
                 h_push_help=uicontrol('Style','Pushbutton',...
@@ -128,12 +128,14 @@ function addelement_xls2(command);
                     'Units','normalized',...
                     'Position',[.05 .1 .2 .08],...
                     'Callback','addelement_xls2(1)'); 
+                    set(h_edit_elename,'String',toadd);
                 elseif addel == 2,
                     h_push_add=uicontrol('Style','Pushbutton',...
                     'String','Add','FontSize',fs,...
                     'Units','normalized',...
                     'Position',[.05 .1 .2 .08],...
                     'Callback','addelement_xls2(4)');
+                    set(h_edit_elename,'String',toadd);
                 elseif addel == 3,
                     h_push_add=uicontrol('Style','Pushbutton',...
                     'String','Delete','FontSize',fs,...
@@ -149,8 +151,9 @@ function addelement_xls2(command);
                 end
             end
             if command == 1, % Update the type of element
+                set(h_edit_elename,'String',toadd);
                 clear typelist
-                type=get(h_menu_type,'Value');
+                type=get(h_menu_type,'Value')-1;
                 if type == 1,
                     list=floats;
                 elseif type == 2,
@@ -170,11 +173,12 @@ function addelement_xls2(command);
                 for ii=1:me,
                     typelist(((ii-1)*31+1):((ii-1)*31+31))=[list(ii,1:30),'|'];
                 end
+                set(h_edit_elename,'String',toadd);
                 typelist=typelist(1:length(typelist)-1);
                 set(h_menu_list,'Value',1);
                 set(h_menu_list,'String',typelist);
             elseif command == 3,
-                mat=get(h_menu_material,'Value');
+                mat=get(h_menu_material,'Value')-1;
             elseif command == 4,
                 if addel == 2, % just an additional check/confirmation
                     name=get(h_edit_elename,'String');
@@ -218,7 +222,7 @@ function addelement_xls2(command);
                                 mat=num2str(mat,'%1.0f');
                                 tmat(2)=mat;
                                 newele=[text tbuoy tdim tcd tmat];
-                                type=get(h_menu_type,'Value');
+                                type=get(h_menu_type,'Value')-1;
                                 already=0;
                                 if type == 1,
                                     [m,n]=size(floats);
@@ -598,7 +602,8 @@ function addelement_xls2(command);
                     dim=list(val,format(3,1):format(5,2));
                     cd=list(val,format(6,1):format(6,2));
                     mat=str2num(list(val,format(7,1):format(7,2)));
-                    set(h_edit_elename,'String',ele);
+                    set(h_edit_elename,'String',toadd);
+                    %set(h_edit_elename,'String',ele);
                     set(h_edit_elebuoy,'String',buoy);
                     set(h_edit_eledim,'String',dim);
                     set(h_edit_elecd,'String',cd);

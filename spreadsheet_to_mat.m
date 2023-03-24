@@ -12,18 +12,16 @@ function spreadsheet_to_mat
     global BCO ZCO Jobj Pobj
     global floats wires chains acrels cms anchors miscs format typelist type list
     global h_menu_type h_menu_list h_menu_addel h_menu_material
-    global h_push_add h_edit_elename h_edit_elebuoy h_edit_eledim h_edit_elecd
-    global handle_list wire_length h_edit_wirel insert elenum delele val
+    global h_push_add h_edit_elename h_edit_elebuoy h_edit_eledim h_edit_elecd hmaincls
+    global handle_list wire_length  insert elenum delele val
     global Z Zoo
     global fs
 
     global type
     global nlist
-    global elenum moorele insert format
-    global handle_list wire_length h_edit_wirel delele 
     global ifile
     global toadd
-    global h_push_save
+    #global h_push_save
     load testdb5.mat
     load empty_mooring.mat
     
@@ -142,8 +140,9 @@ function spreadsheet_to_mat
                 %printf("%d\n",)
                 %printf("list(k+1): %s\nk: %d\nc(i,1): %d\n",list(k,:),k, c{i,1})
                 printf("%d\n",match)
-                %addelement_xls;waitfor(h_push_save);
-                addelement_xls2;waitfor(h_push_save);
+                %addelement_xls2;waitfor(h_push_save);
+                addelement_xls2;
+
                 set(h_edit_elename,'String',c{i,1});
                 toadd=get(h_edit_elename, 'String');
 
@@ -163,9 +162,11 @@ function spreadsheet_to_mat
 
                 warning("Please fill in data for the following: %s", c{i,1});
                 save ('testdb5.mat','acrels','cms','format','miscs','anchors','chains','floats','wires','all_list');
-                pause;
+                %pause;
                 k=1;
                 match=0;
+                waitfor(h_push_add);
+                waitfor(h_edit_elename);
             else
                 k=k+1;
             endif
