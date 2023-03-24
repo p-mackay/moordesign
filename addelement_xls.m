@@ -35,7 +35,6 @@ function addelement_xls(command);
                 for ii=1:me,
                     typelist(((ii-1)*31+1):((ii-1)*31+31))=[list(ii,1:30),'|'];
                 end
-                disp(toadd)
                 typelist=typelist(1:length(typelist)-1);
                 figure(4);clf;
                 set(gcf,'Units', 'Normalized',...
@@ -116,33 +115,25 @@ function addelement_xls(command);
                 'Units','normalized',...
                 'Position',[.3 .01 .4 .08],...
                 'Callback','close');
-                add1=uicontrol('Style','text',...
-                'String','Add','FontSize',fs,...
-                'Units','normalized',...
-                'Position',[.05 .1 .2 .08])
-                set(add1,'backgroundcolor','#909090');
+                %add1=uicontrol('Style','text',...
+                %'String','Add','FontSize',fs,...
+                %'Units','normalized',...
+                %'Position',[.05 .1 .2 .08])
+                %set(add1,'backgroundcolor','#909090');
                 %set(h_edit_elename,'String',toadd);
             end
             if command == 2,
-                disp(toadd)
-                set(h_edit_elename,'String',toadd);
-                addel=get(h_menu_addel,'Value'); % either 1 (add), 2 (delete) or 3 (modify)
+                %addel=get(h_menu_addel,'Value'); % either 1 (add), 2 (delete) or 3 (modify)
+                addel=1;
             end
             if command==1 || command==2,
-                disp(toadd)
-                if addel == 1,
-                    %h_push_add=uicontrol('Style','Pushbutton',...
-                    %'String','No Action','FontSize',fs,...
-                    %'Units','normalized',...
-                    %'Position',[.05 .1 .2 .08],...
-                    %'Callback','addelement_xls(1)'); 
-                    %set(h_edit_elename,'String',toadd);
 
                     h_push_add=uicontrol('Style','Pushbutton',...
                     'String','Add','FontSize',fs,...
                     'Units','normalized',...
                     'Position',[.05 .1 .2 .08],...
                     'Callback','addelement_xls(4)');
+                    set(h_edit_elename,'String',toadd);
                     %elseif addel == 3,
                     %	h_push_add=uicontrol('Style','Pushbutton',...
                     %		'String','Delete','FontSize',fs,...
@@ -158,7 +149,6 @@ function addelement_xls(command);
                 endif
             end
             if command == 1, % Update the type of element
-                disp(toadd)
                 set(h_edit_elename,'String',toadd);
                 clear typelist
                 type=get(h_menu_type,'Value');
@@ -184,13 +174,13 @@ function addelement_xls(command);
                 set(h_edit_elename,'String',toadd);
                 typelist=typelist(1:length(typelist)-1);
                 %set(h_menu_list,'Value',1);
-                set(h_menu_list,'String', "Select Element Type");
+                %set(h_menu_list,'String', "Select Element Type");
                 %set(h_menu_list,'String',typelist);
                 set(h_edit_elename,'String',toadd);
             elseif command == 3,
                 mat=get(h_menu_material,'Value');
             elseif command == 4,
-                if addel == 2, % just an additional check/confirmation
+                %if addel == 2, % just an additional check/confirmation
                     name=get(h_edit_elename,'String');
                     %toadd=name;
                     buoy=str2num(get(h_edit_elebuoy,'String'));
@@ -337,7 +327,7 @@ function addelement_xls(command);
                             disp('Didn''t get all the necessary information/within bounds...');
                             name,buoy,dim,cd
                         end
-                    end
+                    %end
                     addel=1;
                     set(h_menu_addel,'Value',1);
                     %h_push_add=uicontrol('Style','Pushbutton',...
@@ -345,267 +335,13 @@ function addelement_xls(command);
                     %'Units','normalized',...
                     %'Position',[.05 .1 .2 .08],...
                     %'Callback','addelement_xls(1)'); 
-                elseif command == 5, % delete an element
-                    if addel == 3, % just an additional check before deleting an element
-                        val=get(h_menu_list,'Value');
-                        type=get(h_menu_type,'Value');
-                        if type == 1,
-                            [m,n]=size(floats);
-                            if val == 1,
-                                id=(2:m);
-                            elseif val >1 & val < m,
-                                id=[(1:val-1) (val+1:m)];
-                            elseif val == m,
-                                id=(1:m-1);
-                            end
-                            disp(['!! I am deleting: ',floats(val,:)]);
-                            floats=floats(id,:);
-                        elseif type == 2,
-                            [m,n]=size(wires);
-                            if val == 1,
-                                id=(2:m);
-                            elseif val >1 & val < m,
-                                id=[(1:val-1) (val+1:m)];
-                            elseif val == m,
-                                id=(1:m-1);
-                            end
-                            disp(['!! I am deleting: ',wires(val,:)]);
-                            wires=wires(id,:);
-                        elseif type == 3,
-                            [m,n]=size(chains);
-                            if val == 1,
-                                id=(2:m);
-                            elseif val >1 & val < m,
-                                id=[(1:val-1) (val+1:m)];
-                            elseif val == m,
-                                id=(1:m-1);
-                            end
-                            disp(['!! I am deleting: ',chains(val,:)]);
-                            chains=chains(id,:);
-                        elseif type == 4,
-                            [m,n]=size(cms);
-                            if val == 1,
-                                id=(2:m);
-                            elseif val >1 & val < m,
-                                id=[(1:val-1) (val+1:m)];
-                            elseif val == m,
-                                id=(1:m-1);
-                            end
-                            disp(['!! I am deleting: ',cms(val,:)]);
-                            cms=cms(id,:);
-                        elseif type == 5,
-                            [m,n]=size(acrels);
-                            if val == 1,
-                                id=(2:m);
-                            elseif val >1 & val < m,
-                                id=[(1:val-1) (val+1:m)];
-                            elseif val == m,
-                                id=(1:m-1);
-                            end
-                            disp(['!! I am deleting: ',acrels(val,:)]);
-                            acrels=acrels(id,:);
-                        elseif type == 6,
-                            [m,n]=size(anchors);
-                            if val == 1,
-                                id=(2:m);
-                            elseif val >1 & val < m,
-                                id=[(1:val-1) (val+1:m)];
-                            elseif val == m,
-                                id=(1:m-1);
-                            end
-                            disp(['!! I am deleting: ',anchors(val,:)]);
-                            anchors=anchors(id,:);
-                        elseif type == 7
-                            [m,n]=size(miscs);
-                            if val == 1,
-                                id=(2:m);
-                            elseif val >1 & val < m,
-                                id=[(1:val-1) (val+1:m)];
-                            elseif val == m,
-                                id=(1:m-1);
-                            end
-                            disp(['!! I am deleting: ',miscs(val,:)]);
-                            miscs=miscs(id,:);
-                        end
-                        disp('!! Don''t SAVE unless you''re sure of this deletion !!');
-                        addelement_xls(1);
-                    end
                     addel=1;
                     set(h_menu_addel,'Value',1);
-                    h_push_add=uicontrol('Style','Pushbutton',...
-                    'String','No Action','FontSize',fs,...
-                    'Units','normalized',...
-                    'Position',[.05 .1 .2 .08],...
-                    'Callback','addelement_xls(1)'); 
-                elseif command == 6,
-                    disp('Saving a new MDCODES.MAT File! Should go into mooring directory.');
-                    [ofile,opath]=uiputfile('testdb5.mat','Save A New MDCODES.MAT');
-                    if ~isempty(ofile),
-                        save([opath ofile],'acrels','cms','format','miscs','anchors','chains','floats','wires');
-                    else
-                        disp('No Database file saved. Check file name.');
-                    end
-                    clear ofile opath
-                    addelement_xls(1);
-                elseif command == 7,
-                    load addelehelp
-                    h_help=msgbox(addhelp);
-                    set(h_help,'Units','Normalized','Position',[0.35 0.01 0.6 0.95]);
-                    clear addhelp
-                elseif command == 8,
-                    if addel == 4, % just an additional check/confirmation to MODIFY
-                        name=get(h_edit_elename,'String');
-                        buoy=str2num(get(h_edit_elebuoy,'String'));
-                        dim=str2num(get(h_edit_eledim,'String'));
-                        cd=str2num(get(h_edit_elecd,'String'));
-                        mat=get(h_menu_material,'Value');
-                        if ~strcmp(name,' ') & ~isempty(buoy) & length(dim)== 3 & ~isempty(cd), % OK to modify
-                            if (buoy > -10000 & buoy < 10000 ) & ... % check range of enteries
-                                (dim(1) <= 9999 & dim(1) >= 0) & ...
-                                (dim(2) <= 9999 & dim(2) >= 0) & ...
-                                (dim(3) <= 9999 & dim(3) >= 0) & ...
-                                (cd >= 0 & cd <= 10),
-                                text='*                              '; % initialize empty array
-                                %12345678901234567
-                                text(1:length(name))=name;
-                                tbuoy='        ';
-                                if abs(buoy) < 999, 
-                                    buoy=num2str(buoy,'%8.3f');
-                                else
-                                    buoy=num2str(buoy,'%8.2f');
-                                end
-                                tbuoy((9-length(buoy)):8)=buoy;  % must pad front with blanks
-                                tdim='                  ';
-                                if dim(1) < 1000,
-                                    dim1=num2str(dim(1),'%5.1f');
-                                else
-                                    dim1=num2str(dim(1),'%5.0f');
-                                end
-                                tdim((7-length(dim1)):6)=dim1;
-                                dim2=num2str(dim(2),'%5.1f');
-                                tdim((13-length(dim2)):12)=dim2;
-                                dim3=num2str(dim(3),'%5.1f');
-                                tdim((19-length(dim3)):18)=dim3;
-                                tcd='     ';
-                                cd=num2str(cd,'%4.2f');
-                                tcd((6-length(cd)):5)=cd;
-                                tmat='  ';
-                                mat=num2str(mat,'%1.0f');
-                                tmat(2)=mat;
-                                newele=[text tbuoy tdim tcd tmat];
-                                type=get(h_menu_type,'Value');
-                                already=0;
-                                if type == 1,
-                                    [m,n]=size(floats);
-                                    for ii=1:m,
-                                        if sum(strcmp(text,floats(ii,1:31))) ~= 0,
-                                            already=1;
-                                            imod=ii;
-                                        end
-                                    end
-                                    if already ==1,
-                                        disp('Modifying float element characteristics ! ');
-                                        floats(imod,:)=newele;
-                                        floats
-                                    end
-                                elseif type == 2,
-                                    [m,n]=size(wires);
-                                    for ii=1:m,
-                                        if sum(strcmp(text,wires(ii,1:31))) ~= 0,
-                                            already=1;
-                                            imod=ii
-                                        end
-                                    end
-                                    if already ==1,
-                                        disp('Modifying wire/rope element characteristics ! ');
-                                        wires(imod,:)=newele;
-                                        wires
-                                    end
-                                elseif type == 3,
-                                    [m,n]=size(chains);
-                                    for ii=1:m,
-                                        if sum(strcmp(text,chains(ii,1:31))) ~= 0,
-                                            already=1;
-                                            imod=ii;
-                                        end
-                                    end
-                                    if already ==1,
-                                        disp('Modifying chain/shackle element characteristics ! ');
-                                        chains(imod,:)=newele;
-                                        chains
-                                    end
-                                elseif type == 4,
-                                    [m,n]=size(cms);
-                                    for ii=1:m,
-                                        if sum(strcmp(text,cms(ii,1:31))) ~= 0,
-                                            already=1;
-                                            imod=ii;
-                                        end
-                                    end
-                                    if already ==1,
-                                        disp('Modifying current meter element characteristics ! ');
-                                        cms(imod,:)=newele;
-                                        cms
-                                    end
-                                elseif type == 5,
-                                    [m,n]=size(acrels);
-                                    for ii=1:m,
-                                        if sum(strcmp(text,acrels(ii,1:31))) ~= 0,
-                                            already=1;
-                                            imod=ii;
-                                        end
-                                    end
-                                    if already ==1,
-                                        disp('Modifying acoustic release element characteristics ! ');
-                                        acrels(imod,:)=newele;
-                                        acrels
-                                    end
-                                elseif type == 6,
-                                    [m,n]=size(anchors);
-                                    for ii=1:m,
-                                        if sum(strcmp(text,anchors(ii,1:31))) ~= 0,
-                                            already=1;
-                                            imod=ii;
-                                        end
-                                    end
-                                    if already ==1,
-                                        disp('Modifying anchor element characteristics ! ');
-                                        anchors(imod,:)=newele;
-                                        anchors
-                                    end
-                                elseif type == 7
-                                    [m,n]=size(miscs);
-                                    for ii=1:m,
-                                        if sum(strcmp(text,miscs(ii,1:31))) ~= 0,
-                                            already=1;
-                                            imod=ii;
-                                        end
-                                    end
-                                    if already ==1,
-                                        disp('Modifying miscellaneous element characteristics ! ');
-                                        miscs(imod,:)=newele;
-                                        miscs
-                                    end
-                                end
-                                addelement_xls(1);
-                            else
-                                disp('Check format and range of allowable values.');
-                                name,buoy,dim,cd
-                            end
-                        else
-                            disp('Didn''t get all the necessary information...');
-                            name,buoy,dim,cd
-                        end
-                    end
-                    addel=1;
-                    set(h_menu_addel,'Value',1);
-                    h_push_add=uicontrol('Style','Pushbutton',...
-                    'String','No Action','FontSize',fs,...
-                    'Units','normalized',...
-                    'Position',[.05 .1 .2 .08],...
-                    'Callback','addelement_xls(1)'); 
-                end
-
+                    %h_push_add=uicontrol('Style','Pushbutton',...
+                    %'String','No Action','FontSize',fs,...
+                    %'Units','normalized',...
+                    %'Position',[.05 .1 .2 .08],...
+                    addelement_xls(1); 
                 if command == 1 | command == 2,
                     val=get(h_menu_list,'Value');
                     ele=list(val,format(1,1):format(1,2));
@@ -622,5 +358,3 @@ function addelement_xls(command);
                     set(h_menu_material,'Value',mat);
                 end
                 % fini
-                disp(toadd)
-                disp("Hello")

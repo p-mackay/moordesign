@@ -143,7 +143,7 @@ function spreadsheet_to_mat
                 %printf("list(k+1): %s\nk: %d\nc(i,1): %d\n",list(k,:),k, c{i,1})
                 printf("%d\n",match)
                 %addelement_xls;waitfor(h_push_save);
-                addelement_xls;waitfor(h_push_save);
+                addelement_xls2;waitfor(h_push_save);
                 set(h_edit_elename,'String',c{i,1});
                 toadd=get(h_edit_elename, 'String');
 
