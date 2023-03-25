@@ -25,7 +25,7 @@ function addelement(command);
 				load testdb5.mat 
 			end
 			clear ifile ipath
-		end
+	end
 		list=floats;
 		type=1;
 		typelist='*';
