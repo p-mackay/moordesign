@@ -43,3 +43,8 @@ for i in ./*.{php,js,cpp,sh}; do
     vim -c "normal gg=G" -c "x" $i
 done
 ```
+Add text to the start and/or end of line
+
+```
+:%s/^\(.*\)/"\1"/
+``

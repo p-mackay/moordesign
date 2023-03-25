@@ -1,4 +1,4 @@
-# Created by Octave 7.3.0, Fri Mar 24 14:26:05 2023 GMT <unknown@WLBCIOS9082700>
+# Created by Octave 7.3.0, Fri Mar 24 23:43:00 2023 PDT <paul@jaro>
 # name: acrels
 # type: global sq_string
 # elements: 5
@@ -106,7 +106,7 @@ SBE37-SMP with frame            -13.073 100.0   6.2   0.0 1.30 1
 
 # name: chains
 # type: global sq_string
-# elements: 8
+# elements: 12
 # length: 64
 7/16" Shackle                    -0.194   4.0   3.0   0.0 1.30 1
 # length: 64
@@ -123,6 +123,14 @@ SBE37-SMP with frame            -13.073 100.0   6.2   0.0 1.30 1
 1/2" Sling Link                  -0.218   8.0   3.0   0.0 1.30 1
 # length: 64
 5/8" Sling Link                  -0.420  10.0   5.0   0.0 1.30 1
+# length: 64
+3/4" Sling Link                  -0.746  11.0   2.5   0.0 1.30 1
+# length: 64
+7/8" Sling Link                  -1.091  13.0   3.0   0.0 1.30 1
+# length: 64
+Miller B212                      -0.668  10.0   3.0   0.0 1.30 1
+# length: 64
+Miller C212                      -1.073  15.0   5.0   0.0 1.30 1
 
 
 # name: floats

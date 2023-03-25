@@ -17,9 +17,10 @@ function create_db;
     [ifile,ipath]=uigetfile({'*.xlsx'},'Load Spread Sheet');
     [a,b,c]=xlsread(ifile);
     save xlsdbdata.mat c
+    [start,stop] = rangetest(c);
     
     %hardware
-    for i = 3:10
+    for i = start(1,1):stop(1,1)
         [m,n]=size(chains);
         name = c{i,1};
         buoy = c{i,2};
@@ -64,15 +65,14 @@ function create_db;
         % Material of element --------------------------------
         newele=[text tbuoy tdim tcd tmat];
         newele=[text tbuoy tdim tcd tmat];
-        disp(newele)
+%        disp(newele)
         chains(m+1,:)=newele;
-        chains
     endfor
 
     %--------------------------------
 
     %floatation
-    for i = 18:27
+    for i = start(1,2):stop(1,2)
         [m,n]=size(floats);
         name = c{i,1};
         buoy = c{i,2};
@@ -107,13 +107,12 @@ function create_db;
         tmat(2)=mat;
         newele=[text tbuoy tdim tcd tmat];
         newele=[text tbuoy tdim tcd tmat];
-        disp(newele)
+%        disp(newele)
         floats(m+1,:)=newele;
-        floats
     endfor
 
     %current meters
-    for i = 31:52
+    for i = start(1,3):stop(1,3)
         [m,n]=size(cms);
         name = c{i,1};
         buoy = c{i,2};
@@ -148,12 +147,11 @@ function create_db;
         tmat(2)=mat;
         newele=[text tbuoy tdim tcd tmat];
         newele=[text tbuoy tdim tcd tmat];
-        disp(newele)
+%        disp(newele)
         cms(m+1,:)=newele;
-        cms
     endfor
     %releases
-    for i = 56:60
+    for i = start(1,4):stop(1,4)
         [m,n]=size(acrels);
         name = c{i,1};
         buoy = c{i,2};
@@ -188,12 +186,11 @@ function create_db;
         tmat(2)=mat;
         newele=[text tbuoy tdim tcd tmat];
         newele=[text tbuoy tdim tcd tmat];
-        disp(newele)
+%        disp(newele)
         acrels(m+1,:)=newele;
-        acrels
     endfor
     %miscellaneous instruments
-    for i = 64:72
+    for i = start(1,5):stop(1,5)
         [m,n]=size(miscs);
         name = c{i,1};
         buoy = c{i,2};
@@ -228,12 +225,11 @@ function create_db;
         tmat(2)=mat;
         newele=[text tbuoy tdim tcd tmat];
         newele=[text tbuoy tdim tcd tmat];
-        disp(newele)
+%        disp(newele)
         miscs(m+1,:)=newele;
-        miscs
     endfor
     %mooring lines
-    for i = 78:96
+    for i = start(1,6):stop(1,6)
         [m,n]=size(wires);
         name = c{i,1};
         buoy = c{i,2};
@@ -268,19 +264,11 @@ function create_db;
         tmat(2)=mat;
         newele=[text tbuoy tdim tcd tmat];
         newele=[text tbuoy tdim tcd tmat];
-        disp(newele)
+%        disp(newele)
         wires(m+1,:)=newele;
-        wires
     endfor
     %--------------------------------
 
-
-
-
-
-
-
-
-    [ofile,opath]=uiputfile('testdb5.mat','Save A New MDCODES.MAT');
+    [ofile,opath]=uiputfile('testdb6.mat','Save A New MDCODES.MAT');
     save ([opath ofile],'acrels','cms','format','miscs','anchors','chains','floats','wires');
 

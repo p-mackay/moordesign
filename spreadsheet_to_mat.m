@@ -34,6 +34,7 @@ function spreadsheet_to_mat
     [ifile,ipath]=uigetfile({'*.xlsx'},'Load Spread Sheet');
     [a,b,c]=xlsread(ifile);
     save xlsdata.mat c
+    
 
     %elseif (ext == ".ods") % might add feature for multiple file ext's
     %    [a,b,c]=odsread(ifile);
@@ -51,6 +52,8 @@ function spreadsheet_to_mat
 
     list = [""];
     toadd = "";
+    ca = cellfun(@isempty,c);
+    [ma,na]=size(c);
 
     
     all_list = [""];
