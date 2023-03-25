@@ -54,15 +54,14 @@ function spreadsheet_to_mat
     list = [""];
     toadd = "";
     ca = cellfun(@isempty,c);
-    start=7;
 
-    %for i = 4:rows(c)
-    %    if(ca(i,1)==1)
-    %        break;
-    %    else
-    %    endif
-    %endfor
-    %start=i;
+    for i = 3:rows(c)
+        if(ca(i,1)==0)
+            break;
+        else
+        endif
+    endfor
+    start=i;
     printf("start: %d\n", start);
     
     all_list = [""];
@@ -172,10 +171,14 @@ function spreadsheet_to_mat
                 printf("%d\n",match)
                 %addelement_xls2;waitfor(h_push_save);
                 addelement_xls2;
-
                 set(h_edit_elename,'String',c{i,1});
                 toadd=get(h_edit_elename, 'String');
-
+                warning("Please fill in data for the following: %s", c{i,1});
+                %pause;
+                k=1;
+                match=0;
+                %waitfor(h_push_add);
+                save ('testdb6.mat','acrels','cms','format','miscs','anchors','chains','floats','wires','all_list');
                 all_list = [""];
                 for m = 1:rows(floats)
                     all_list(rows(all_list)+1,:)=floats(m,:);
@@ -198,14 +201,8 @@ function spreadsheet_to_mat
                 for m = 1:rows(miscs)
                     all_list(rows(all_list)+1,:)=miscs(m,:);
                 endfor
-
-                warning("Please fill in data for the following: %s", c{i,1});
-                save ('testdb6.mat','acrels','cms','format','miscs','anchors','chains','floats','wires','all_list');
-                %pause;
-                k=1;
-                match=0;
-                waitfor(h_push_add);
                 waitfor(h_edit_elename);
+                %waitfor(hmaincls);figure(4);clf;close;
             else
                 k=k+1;
             endif

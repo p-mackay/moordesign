@@ -5,11 +5,11 @@ function addelement_xls2(command);
     global H B Cd ME moorele
     global floats wires chains acrels cms anchors miscs format
     global typelist type list addel mat
-    global h_menu_type h_menu_list h_menu_addel h_menu_material
+    global h_menu_type h_menu_list h_menu_addel h_menu_material hmaincls
     global h_push_add h_edit_elename h_edit_elebuoy h_edit_eledim h_edit_elecd
     global fs
     global toadd
-    fs = 8;
+    fs = 10;
     %
     if nargin < 1, command=0; end
         if isempty(addel), addel=1; end
@@ -19,11 +19,11 @@ function addelement_xls2(command);
                     if ischar(ifile) & ischar(ipath),
                         if ~strcmp(ifile,'*.mat'),
                             load([ipath ifile]);
-                        else
-                            load testdb5.mat  % load default file (should be in path
+                            else
+                            load testdb6.mat  % load default file (should be in path
                         end
                     elseif ifile == 0 && ipath == 0,
-                        load testdb5.mat 
+                        load testdb6.mat 
                     end
                     clear ifile ipath
                 end
@@ -55,7 +55,7 @@ function addelement_xls2(command);
                 %'Units','Normalized',...
                 %'Position',[.1 .785 .8 .1]);
                 set(h_menu_list,'String',typelist);
-                addelement_xls2(2);
+                %addelement_xls2(2);
                 h_menu_addel=uicontrol('Style','popupmenu',...
                 'Callback','addelement_xls2(2)','FontSize',fs,...
                 'String','Select|Add Element|',...
@@ -118,9 +118,7 @@ function addelement_xls2(command);
                 'Position',[.3 .01 .4 .08],...
                 'Callback','close');
             end
-            if command == 2,
-                addel=get(h_menu_addel,'Value'); % either 1 (add), 2 (delete) or 3 (modify)
-            end
+            addel=2;
             if command==1 || command==2,
                 if addel == 1,
                     h_push_add=uicontrol('Style','Pushbutton',...
@@ -135,7 +133,7 @@ function addelement_xls2(command);
                     'Units','normalized',...
                     'Position',[.05 .1 .2 .08],...
                     'Callback','addelement_xls2(4)');
-                    set(h_edit_elename,'String',toadd);
+                    %set(h_edit_elename,'String',toadd);
                 elseif addel == 3,
                     h_push_add=uicontrol('Style','Pushbutton',...
                     'String','Delete','FontSize',fs,...
@@ -428,7 +426,7 @@ function addelement_xls2(command);
                     'Callback','addelement_xls2(1)'); 
                 elseif command == 6,
                     disp('Saving a new MDCODES.MAT File! Should go into mooring directory.');
-                    [ofile,opath]=uiputfile('testdb5.mat','Save A New MDCODES.MAT');
+                    [ofile,opath]=uiputfile('testdb6.mat','Save A New MDCODES.MAT');
                     if ~isempty(ofile),
                         save([opath ofile],'acrels','cms','format','miscs','anchors','chains','floats','wires');
                     else

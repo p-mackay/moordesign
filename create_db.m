@@ -268,6 +268,7 @@ function create_db;
         wires(m+1,:)=newele;
     endfor
     %--------------------------------
+    format=[1,30;32,39;41,45;48,51;53,57;59,62;64,64]
 
     [ofile,opath]=uiputfile('testdb6.mat','Save A New MDCODES.MAT');
     save ([opath ofile],'acrels','cms','format','miscs','anchors','chains','floats','wires');
