@@ -22,7 +22,7 @@ function spreadsheet_to_mat
     global ifile
     global toadd
     #global h_push_save
-    load testdb5.mat
+    load testdb6.mat
     load empty_mooring.mat
     
 
@@ -33,7 +33,8 @@ function spreadsheet_to_mat
 
     [ifile,ipath]=uigetfile({'*.xlsx'},'Load Spread Sheet');
     [a,b,c]=xlsread(ifile);
-    save xlsdata.mat c
+    save xlsdata1.mat c
+    load xlsdata1.mat
     
 
     %elseif (ext == ".ods") % might add feature for multiple file ext's
@@ -53,8 +54,16 @@ function spreadsheet_to_mat
     list = [""];
     toadd = "";
     ca = cellfun(@isempty,c);
-    [ma,na]=size(c);
+    start=7;
 
+    %for i = 4:rows(c)
+    %    if(ca(i,1)==1)
+    %        break;
+    %    else
+    %    endif
+    %endfor
+    %start=i;
+    printf("start: %d\n", start);
     
     all_list = [""];
     for m = 1:rows(floats)
@@ -66,14 +75,23 @@ function spreadsheet_to_mat
     for m = 1:rows(chains)
         all_list(rows(all_list)+1,:)=chains(m,:);
     endfor
+    for m = 1:rows(acrels)
+        all_list(rows(all_list)+1,:)=acrels(m,:);
+    endfor
+    for m = 1:rows(cms)
+        all_list(rows(all_list)+1,:)=cms(m,:);
+    endfor
     for m = 1:rows(anchors)
         all_list(rows(all_list)+1,:)=anchors(m,:);
+    endfor
+    for m = 1:rows(miscs)
+        all_list(rows(all_list)+1,:)=miscs(m,:);
     endfor
 
     k=1;
     match = 0;
     flag1=0;
-    for i = 4:rows(c)
+    for i = start:rows(c)
         match=0;
         k=1;
         while (k <= rows(all_list))
@@ -87,8 +105,17 @@ function spreadsheet_to_mat
             for m = 1:rows(chains)
                 all_list(rows(all_list)+1,:)=chains(m,:);
             endfor
+            for m = 1:rows(acrels)
+                all_list(rows(all_list)+1,:)=acrels(m,:);
+            endfor
+            for m = 1:rows(cms)
+                all_list(rows(all_list)+1,:)=cms(m,:);
+            endfor
             for m = 1:rows(anchors)
                 all_list(rows(all_list)+1,:)=anchors(m,:);
+            endfor
+            for m = 1:rows(miscs)
+                all_list(rows(all_list)+1,:)=miscs(m,:);
             endfor
             if (startsWith(all_list(k,:), c(i,1), "IgnoreCase", true) == 1) 
                 match=1;
@@ -159,12 +186,21 @@ function spreadsheet_to_mat
                 for m = 1:rows(chains)
                     all_list(rows(all_list)+1,:)=chains(m,:);
                 endfor
+                for m = 1:rows(acrels)
+                    all_list(rows(all_list)+1,:)=acrels(m,:);
+                endfor
+                for m = 1:rows(cms)
+                    all_list(rows(all_list)+1,:)=cms(m,:);
+                endfor
                 for m = 1:rows(anchors)
                     all_list(rows(all_list)+1,:)=anchors(m,:);
                 endfor
+                for m = 1:rows(miscs)
+                    all_list(rows(all_list)+1,:)=miscs(m,:);
+                endfor
 
                 warning("Please fill in data for the following: %s", c{i,1});
-                save ('testdb5.mat','acrels','cms','format','miscs','anchors','chains','floats','wires','all_list');
+                save ('testdb6.mat','acrels','cms','format','miscs','anchors','chains','floats','wires','all_list');
                 %pause;
                 k=1;
                 match=0;

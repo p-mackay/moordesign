@@ -1,4 +1,4 @@
-# Created by Octave 7.3.0, Fri Mar 24 23:43:00 2023 PDT <paul@jaro>
+# Created by Octave 7.3.0, Sat Mar 25 00:55:46 2023 PDT <paul@jaro>
 # name: acrels
 # type: global sq_string
 # elements: 5
@@ -78,7 +78,7 @@ WH300 in Frame                  -16.280 130.0  50.0   0.0 1.30 1
 
 # name: miscs
 # type: global sq_string
-# elements: 9
+# elements: 10
 # length: 64
 SM2M+ in Frame                  -11.780 130.0  20.0   0.0 1.30 1
 # length: 64
@@ -97,6 +97,8 @@ SBE19+ with frame               -12.246 115.0  10.0   0.0 1.30 1
 SBE37                            -2.800  63.0   6.2   0.0 1.30 1
 # length: 64
 SBE37-SMP with frame            -13.073 100.0   6.2   0.0 1.30 1
+# length: 64
+SeapHox in Frame                 10.000   1.0   1.0   1.0 1.00 2
 
 
 # name: anchors
@@ -106,7 +108,7 @@ SBE37-SMP with frame            -13.073 100.0   6.2   0.0 1.30 1
 
 # name: chains
 # type: global sq_string
-# elements: 12
+# elements: 15
 # length: 64
 7/16" Shackle                    -0.194   4.0   3.0   0.0 1.30 1
 # length: 64
@@ -131,11 +133,17 @@ SBE37-SMP with frame            -13.073 100.0   6.2   0.0 1.30 1
 Miller B212                      -0.668  10.0   3.0   0.0 1.30 1
 # length: 64
 Miller C212                      -1.073  15.0   5.0   0.0 1.30 1
+# length: 64
+MillerC3                         -1.000   1.0   1.0   1.0 1.00 2
+# length: 64
+Drop Link                        -4.000   1.0   1.0   1.0 1.00 2
+# length: 64
+1" Chain                        -24.879   0.0   5.0   0.0 1.30 2
 
 
 # name: floats
 # type: global sq_string
-# elements: 10
+# elements: 15
 # length: 64
 WB-17                            18.000  60.0   0.0  43.2 1.00 1
 # length: 64
@@ -156,6 +164,16 @@ SS-37                           300.000 129.0   0.0  92.5 0.65 1
 SS-41                           435.000 135.0   0.0 102.5 0.65 1
 # length: 64
 Viny on 1 m of 5/16 wire         20.300 100.0   0.0  32.5 0.65 1
+# length: 64
+4 Vinies on 3/4" Polysteel       80.000   1.5   1.5   0.0 1.20 2
+# length: 64
+AF36↑ w WH600+SBE37 ODO       150.000 150.0   0.0  91.0 0.50 2
+# length: 64
+AF44↑ w WH150+SBE37 ODO       200.000  10.0   0.0   1.0 1.00 2
+# length: 64
+AR861 B2S                        30.000  10.0   1.0   1.0 1.00 2
+# length: 64
+estimated Amsteel II+ stretch     1.000   1.0   1.0   1.0 1.00 2
 
 
 # name: wires
