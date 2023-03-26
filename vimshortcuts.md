@@ -33,7 +33,7 @@ The next example shows use of \| ("or") to delete all lines except those that co
 Vim regex: matching a literal word, excluding sub-strings
 
 ```
-:%s/\(word\)/replace/g 
+gd :%s//string/g
 ```
 
 Format multiple files from command line:
