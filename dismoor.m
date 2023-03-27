@@ -484,8 +484,8 @@ function dismoor(command)
                         hdr5=' Tally of all In-Line mooring/tow components by type.';
                         hdr6=' #    Element Name        Total Number/Length';
 
-                        ele_data = "";
-                        vel_data = "";
+                        ele_data = ""; %tally of mooring elements
+                        vel_data = ""; %velocity data
 
                         hdr4 = 'Height[m]    U [m/s]    V [m/s]    W [m/s] Density [kg/m^3]'
                         vel_data = [vel_data hdr4]
@@ -500,6 +500,9 @@ function dismoor(command)
                                 vel_data = [vel_data newline ['    ',num2str([z(i) U(i) V(i) W(i) rho(i)],'%11.2f')]];
                             endif
                         endfor
+                        %[mm,nm]=size(moorele);  % start with the in-line components
+                        %moortally=zeros(mm,2);
+                        %mt=0;mtco=0;
 
                         ele_data=[ele_data hdr5 newline hdr6 newline];
                         ii=0;
@@ -511,11 +514,23 @@ function dismoor(command)
                             line(4-length(num2str(i)):3)=num2str(i);
                             line(6:35)=moorele(moortally(i,1),:);
                             line(31-length(num2str(moortally(i,2),6)):30)=num2str(moortally(i,2),6);
-                            line1 = line(4-length(num2str(i)):3);
-                            line2 = line(6:35);
+                            %line1 = line(4-length(num2str(i)):3);
+                            if (i < 10)
+                                line1 = [" " num2str(i)];
+                            else
+                                line1 = num2str(i);
+                            endif
+                            %line2(! isascii(line2)) = [];
+                            this2 = moorele(moortally(i,1),:); 
+                            if (this2(! isascii(this2)))
+                                line2 = [moorele(moortally(i,1),:) "  "];
+                            else
+                                line2 = moorele(moortally(i,1),:); 
+                            endif
                             line3 = line(31-length(num2str(moortally(i,2),6)):30);
-                            %printf("line1: %s\nline2: %s\nline3: %s\n",line1,line2,line3);
-                            ele_data = [ele_data line(1) num2str(i) " " line2 newline];
+                            printf("%s %s %s\n",line1,line2,line3);
+                            %disp(size(line))
+                            %ele_data = [ele_data line(1) num2str(i) " " line2 newline];
                             %ele_data = [line(4-length(num2str(i)):3) " " line(6:35) newline];
 
 
@@ -539,6 +554,12 @@ function dismoor(command)
                         %if (!isempty(ifile))
                         %    fprintf (fid, " %s      ", ifile)
                         %endif
+                        this2 = moorele(moortally(i,1),:); 
+                        if (this2(! isascii(this2)))
+                            line2 = [moorele(moortally(i,1),:) "  "];
+                        else
+                            line2 = moorele(moortally(i,1),:); 
+                        endif
 
                         fprintf (fid, "Date: %s     ", ct)
                         fprintf (fid, "Mooring File Name: %s     ", ifile)
