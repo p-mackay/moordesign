@@ -2,6 +2,21 @@
 
 This is a GNU Octave adaptation of Richard Dewey's Mooring Design and Dynamics. 
 
+# Installation
+#### Option 1: using git
+Installing git on Windows
+- Open a Powershell
+- Enter the command `winget install --id Git.Git -e --source winget`
+- Or
+- Go to [](https://git-scm.com/download/win) and download the latest version.
+- Now from a powershell enter the following:
+- `cd ~`
+- `git clone https://github.com/p-mackay/moordesign`
+#### Option 2: 
+- Download from Github using zip.
+- Click on *Code* -> *Download ZIP* 
+
+
 # Credit
 
 [Mooring Design & Dynamics(Website)](http://web.uvic.ca/~rdewey/mooring/moordyn.php)
