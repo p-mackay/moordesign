@@ -10,6 +10,9 @@ function dismoor(command)
     global text_data
     global anc_info ele_data
     global ifile
+    global testvar
+    global thisele
+    global thisele1 elesize
 
 
 
@@ -109,8 +112,20 @@ function dismoor(command)
         ell=ell+1;
         line=line0;
         tmp=num2str(el);
-        line(4-length(tmp):3)=tmp;
-        line(5:34)=moorele(el,:);
+        line(4-length(tmp):3)=tmp; %element number
+        thisele = moorele(el,:);
+        sz = columns(strtrim(thisele)); 
+
+        if (thisele(! isascii(thisele)))
+            line(sz)=[line "  "];
+
+            thisele1 = line(5:36);
+            break;
+        else
+            line(5:34)=moorele(el,:); %element name
+        endif
+        thisele1 = line(5:34);
+        %testvar = line(5:34);
         tmp=num2str(H(1,el),'%8.2f');
         if ~isempty(Z) && H(4,el) == 1, % a wire, consider some stretching
             jo=jo+1;
@@ -176,6 +191,7 @@ function dismoor(command)
             %ypos=1-ell/90;
             %h=text(-0.1,ypos,line);
             %set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
+            %disp("Hello 1")
             disp(line);
             text_data = [text_data newline line];
         else
@@ -298,6 +314,7 @@ function dismoor(command)
                             %ypos=1-ell/90;
                             %h=text(-0.1,ypos,line);
                             %set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
+            disp("Hello 2")
                             disp(line);
                             text_data = [text_data newline line];
                         else
@@ -463,6 +480,7 @@ function dismoor(command)
                                     %h=text(-0.1,ypos,line);
                                     %set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
                                     text_data = [text_data newline line];
+            disp("Hello 3")
                                 else
                                     disp(line);
                                 end
