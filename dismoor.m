@@ -114,13 +114,15 @@ function dismoor(command)
         tmp=num2str(el);
         line(4-length(tmp):3)=tmp; %element number
         thisele = moorele(el,:);
-        sz = columns(strtrim(thisele)); 
+        %sz = columns(strtrim(thisele)); 
 
         if (thisele(! isascii(thisele)))
-            line(sz)=[line "  "];
-
-            thisele1 = line(5:36);
-            break;
+            thisele(! isascii(thisele))=[];
+            thisele=[thisele "   "];
+            %line(sz)=[line "  "];
+            %thisele1 = line(5:36);
+            line(5:34)=thisele(1,:);
+            %break;
         else
             line(5:34)=moorele(el,:); %element name
         endif
@@ -136,6 +138,7 @@ function dismoor(command)
             end      
         end
         line(31-length(tmp):30)=tmp;
+        printf("Hello World! tmp: %s\n", tmp);
         tmp=num2str(B(el),'%8.2f');
         line(40-length(tmp):39)=tmp;
         if isempty(Z),
@@ -192,10 +195,10 @@ function dismoor(command)
             %h=text(-0.1,ypos,line);
             %set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
             %disp("Hello 1")
-            disp(line);
+            %disp(line);
             text_data = [text_data newline line];
         else
-            disp(line);
+            %disp(line);
         end
         if command==1 && ell==80, % for printer output, go to next page
             ell=1;
