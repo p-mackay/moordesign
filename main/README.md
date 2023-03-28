@@ -20,10 +20,15 @@ Installing git on Windows
 - Or
 - Go to [https://git-scm.com/download/win](https://git-scm.com/download/win) and download the latest version.
 - Now from a powershell enter the following:
-
 ```
 cd ~\Desktop\
 git clone https://github.com/p-mackay/moordesign
+```
+Once you have Octave and the files installed. Open Octave then navigate to then enter the
+command `moordesign` to run the program
+```
+moordesign/main 
+moordesign
 ```
 
 # Credit
