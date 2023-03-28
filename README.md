@@ -9,25 +9,18 @@ This is a GNU Octave adaptation of Richard Dewey's Mooring Design and Dynamics.
 If you haven't already [download](https://octave.org/download) the latest version of 
 GNU Octave.
 #### Option 1: 
-- Download from Github using zip.
+- Download from Github.
 - Click on *Code* -> *Download ZIP* 
 
 #### Option 2: 
-Installing git on Windows
-- Open a Powershell
-- Enter the command 
-`winget install --id Git.Git -e --source winget`
-- Or
-- Go to [https://git-scm.com/download/win](https://git-scm.com/download/win) and download the latest version.
-- Now from a powershell enter the following:
-```
-cd ~\Desktop\
-git clone https://github.com/p-mackay/moordesign
-```
-Once you have Octave and the files installed. Open Octave then navigate to then enter the
+Download using git. 
+`git clone https://github.com/p-mackay/moordesign`
+
+## Running the program
+Once you have Octave and the files installed. Open Octave then navigate to `moordesign/main` then enter the
 command `moordesign` to run the program
 ```
-moordesign/main 
+cd moordesign/main 
 moordesign
 ```
 
