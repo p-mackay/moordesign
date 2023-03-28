@@ -138,17 +138,18 @@ function dismoor(command)
             end      
         end
         line(31-length(tmp):30)=tmp;
-        printf("Hello World! tmp: %s\n", tmp);
         tmp=num2str(B(el),'%8.2f');
         line(40-length(tmp):39)=tmp;
         if isempty(Z),
             hght=sum(H(1,el:mm));  % Height at the top of this element
             tmp=num2str(hght,'%8.2f');
             line(50-length(tmp):49)=tmp;
+            %printf("%d Hello World! tmp = %s length(tmp): %d\n",el,tmp, length(tmp));
         elseif ~isempty(Z) & H(4,el) ~=1 & el ~= mm, % this is an instrument/buoy...
             io=io+1;
             tmp=num2str(Z(iobj(io)),'%8.2f');
             line(50-length(tmp):49)=tmp;
+            %%d printf("%d: Hello World! tmp = %s length(tmp): %d\n",el,tmp, length(tmp));
             tmp=num2str(dZ(iobj(io)),'%5.1f');
             line(59-length(tmp):58)=tmp;
             tmp=num2str(X(iobj(io)),'%5.1f');
@@ -166,6 +167,7 @@ function dismoor(command)
         elseif ~isempty(Z) & H(4,el) == 1, % this is a wire/rope/chain section
             tmp=num2str(Ti(jobj(jo))/9.81,'%6.1f');
             line(82-length(tmp):81)=tmp;
+            %printf("%d: Hello World! tmp = %s length(tmp): %d\n",el,tmp, length(tmp));
             tmp=num2str(psi(jobj(jo))*180/pi,'%4.1f');
             line(95-length(tmp):94)=tmp;
             jo=jo+1;
@@ -178,6 +180,7 @@ function dismoor(command)
             io=io+1;
             tmp=num2str(Z(iobj(io))/2,'%8.2f');
             line(50-length(tmp):49)=tmp;
+            %printf("%d: Hello World! tmp = %s length(tmp): %d\n",el,tmp, length(tmp));
             tmp=num2str(dZ(iobj(io)),'%5.1f');
             line(59-length(tmp):58)=tmp;
             tmp=num2str(X(iobj(io)),'%5.1f');
@@ -194,7 +197,7 @@ function dismoor(command)
             %ypos=1-ell/90;
             %h=text(-0.1,ypos,line);
             %set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
-            %disp("Hello 1")
+            %disp("%d: Hello 1")
             %disp(line);
             text_data = [text_data newline line];
         else
@@ -317,7 +320,7 @@ function dismoor(command)
                             %ypos=1-ell/90;
                             %h=text(-0.1,ypos,line);
                             %set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
-            disp("Hello 2")
+            disp("%d: Hello 2")
                             disp(line);
                             text_data = [text_data newline line];
                         else
@@ -447,7 +450,7 @@ function dismoor(command)
                     end
                     ii=0;
                     for i=1:mt,
-                        %printf("Hello");
+                        %%printf("%d: Hello");
                         ii=ii+1; % count for clamp-on devices
                         line=line0;
                         line(1)=' ';
@@ -483,7 +486,7 @@ function dismoor(command)
                                     %h=text(-0.1,ypos,line);
                                     %set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
                                     text_data = [text_data newline line];
-            disp("Hello 3")
+            disp("%d: Hello 3")
                                 else
                                     disp(line);
                                 end
@@ -528,7 +531,7 @@ function dismoor(command)
                         ele_data=[ele_data hdr5 newline hdr6 newline];
                         ii=0;
                         for i=1:mt,
-                            %printf("Hello");
+                            %%printf("%d: Hello");
                             ii=ii+1; % count for clamp-on devices
                             line=line0;
                             line(1)=' ';
@@ -549,7 +552,7 @@ function dismoor(command)
                                 line2 = moorele(moortally(i,1),:); 
                             endif
                             line3 = line(31-length(num2str(moortally(i,2),6)):30);
-                            printf("%s %s %s\n",line1,line2,line3);
+                            %printf("%s %s %s\n",line1,line2,line3);
                             %disp(size(line))
                             %ele_data = [ele_data line(1) num2str(i) " " line2 newline];
                             %ele_data = [line(4-length(num2str(i)):3) " " line(6:35) newline];

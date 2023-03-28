@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-# Created by Octave 8.1.0, Mon Mar 27 12:27:54 2023 GMT <unknown@WLBCIOS9082700>
-=======
-# Created by Octave 7.3.0, Sat Mar 25 22:52:01 2023 PDT <paul@jaro>
->>>>>>> fd9a9996ac71e958e465661b1614d89fa52a93fc
+# Created by Octave 8.1.0, Tue Mar 28 13:46:15 2023 GMT <unknown@WLBCIOS9082700>
 # name: acrels
 # type: global sq_string
-# elements: 6
+# elements: 5
 # length: 64
 AR861                           -22.000  75.0  13.0   0.0 1.30 1
 # length: 64
@@ -16,8 +12,6 @@ PORT                             -8.000  63.3  12.6   0.0 1.30 1
 Paired PORTs                    -16.000  63.3  25.2   0.0 1.30 1
 # length: 64
 IO 1090                          -7.300  81.0  15.0   0.0 1.30 1
-# length: 64
-AR861 B2S                        15.000   1.0   1.0   1.0 1.00 2
 
 
 # name: cms
@@ -107,14 +101,12 @@ SBE37-SMP with frame            -13.073 100.0   6.2   0.0 1.30 1
 
 # name: anchors
 # type: global sq_string
-# elements: 1
-# length: 64
-Anchor                         -1500.00   1.0   1.0   1.0 1.00 2
+# elements: 0
 
 
 # name: chains
 # type: global sq_string
-# elements: 15
+# elements: 12
 # length: 64
 7/16" Shackle                    -0.194   4.0   3.0   0.0 1.30 1
 # length: 64
@@ -139,17 +131,11 @@ Anchor                         -1500.00   1.0   1.0   1.0 1.00 2
 Miller B212                      -0.668  10.0   3.0   0.0 1.30 1
 # length: 64
 Miller C212                      -1.073  15.0   5.0   0.0 1.30 1
-# length: 64
-MillerC3                         -1.000   1.0   1.0   1.0 1.00 2
-# length: 64
-Drop Link                        -1.000   1.0   1.0   1.0 1.00 2
-# length: 64
-1" Chain                         -1.000   1.0   1.0   1.0 1.00 2
 
 
 # name: floats
 # type: global sq_string
-# elements: 13
+# elements: 10
 # length: 64
 WB-17                            18.000  60.0   0.0  43.2 1.00 1
 # length: 64
@@ -170,12 +156,6 @@ SS-37                           300.000 129.0   0.0  92.5 0.65 1
 SS-41                           435.000 135.0   0.0 102.5 0.65 1
 # length: 64
 Viny on 1 m of 5/16 wire         20.300 100.0   0.0  32.5 0.65 1
-# length: 64
-4 Vinies on 3/4" Polysteel      100.000   1.0   1.0   1.0 1.00 2
-# length: 64
-AF36↑ w WH600+SBE37 ODO       100.000   1.0   1.0   1.0 1.00 2
-# length: 64
-SeapHox in Frame                100.000   1.0   1.0   1.0 1.00 2
 
 
 # name: wires
@@ -223,7 +203,7 @@ SeapHox in Frame                100.000   1.0   1.0   1.0 1.00 2
 
 # name: all_list
 # type: global string
-# elements: 85
+# elements: 77
 # length: 64
 WB-17                            18.000  60.0   0.0  43.2 1.00 1
 # length: 64
@@ -244,12 +224,6 @@ SS-37                           300.000 129.0   0.0  92.5 0.65 1
 SS-41                           435.000 135.0   0.0 102.5 0.65 1
 # length: 64
 Viny on 1 m of 5/16 wire         20.300 100.0   0.0  32.5 0.65 1
-# length: 64
-4 Vinies on 3/4" Polysteel      100.000   1.0   1.0   1.0 1.00 2
-# length: 64
-AF36↑ w WH600+SBE37 ODO       100.000   1.0   1.0   1.0 1.00 2
-# length: 64
-SeapHox in Frame                100.000   1.0   1.0   1.0 1.00 2
 # length: 64
 5/16" Amsteel II+                -0.009 100.0   0.8   0.0 1.30 6
 # length: 64
@@ -313,12 +287,6 @@ Miller B212                      -0.668  10.0   3.0   0.0 1.30 1
 # length: 64
 Miller C212                      -1.073  15.0   5.0   0.0 1.30 1
 # length: 64
-MillerC3                         -1.000   1.0   1.0   1.0 1.00 2
-# length: 64
-Drop Link                        -1.000   1.0   1.0   1.0 1.00 2
-# length: 64
-1" Chain                         -1.000   1.0   1.0   1.0 1.00 2
-# length: 64
 AR861                           -22.000  75.0  13.0   0.0 1.30 1
 # length: 64
 Paired AR861                    -45.000  75.0  26.0   0.0 1.30 1
@@ -328,8 +296,6 @@ PORT                             -8.000  63.3  12.6   0.0 1.30 1
 Paired PORTs                    -16.000  63.3  25.2   0.0 1.30 1
 # length: 64
 IO 1090                          -7.300  81.0  15.0   0.0 1.30 1
-# length: 64
-AR861 B2S                        15.000   1.0   1.0   1.0 1.00 2
 # length: 64
 ADP in Frame                    -31.037 175.0  15.0   0.0 1.35 1
 # length: 64
@@ -374,8 +340,6 @@ WH300 w 4 Vinies                 67.720 130.0 100.0   0.0 1.30 1
 WH300 w 8 Vinies                151.720 130.0 100.0   0.0 1.30 1
 # length: 64
 WH300 in Frame                  -16.280 130.0  50.0   0.0 1.30 1
-# length: 64
-Anchor                         -1500.00   1.0   1.0   1.0 1.00 2
 # length: 64
 SM2M+ in Frame                  -11.780 130.0  20.0   0.0 1.30 1
 # length: 64
