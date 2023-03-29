@@ -47,4 +47,10 @@ Add text to the start and/or end of line
 
 ```
 :%s/^\(.*\)/"\1"/
-``
+```
+
+Temporarily switch to a different commit
+This will detach your HEAD, that is, leave you with no branch checked out:
+`git checkout 0d1d7fc32`
+
+

@@ -13,6 +13,7 @@ function dismoor(command)
     global testvar
     global thisele
     global thisele1 elesize
+    global dpth hght
 
 
 
@@ -142,6 +143,8 @@ function dismoor(command)
         line(40-length(tmp):39)=tmp;
         if isempty(Z),
             hght=sum(H(1,el:mm));  % Height at the top of this element
+            %dpth=hght-z(1);
+            printf("%d\n",dpth);
             tmp=num2str(hght,'%8.2f');
             line(50-length(tmp):49)=tmp;
             %printf("%d Hello World! tmp = %s length(tmp): %d\n",el,tmp, length(tmp));

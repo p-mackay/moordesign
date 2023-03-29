@@ -8,12 +8,11 @@ This is a GNU Octave adaptation of Richard Dewey's Mooring Design and Dynamics.
 ### 2. files from github 
 If you haven't already [download](https://octave.org/download) the latest version of 
 GNU Octave.
+#### Download the files:
 #### Option 1: 
-- Download from Github.
 - Click on *Code* -> *Download ZIP* 
 
 #### Option 2: 
-Download using git. 
 `git clone https://github.com/p-mackay/moordesign`
 
 ## Running the program
