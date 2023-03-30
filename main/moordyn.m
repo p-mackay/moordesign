@@ -36,12 +36,13 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 	global Iobj
 	global nomovie
 	global Zoo
-	global Zi
+	global Zi ztest
 	global anc_info
 	anc_info = "";
 
 	iprt=100; % If solution isn't converging, set this to 50-100 and watch to see what's happening.
 	%pm
+    ztest=z;
 
 	X=[];Y=[];Z=[];Ti=[];iobj=[];jobj=[];psi=[];
 	if isempty(iss), Hs=H;Bs=B;Cds=Cd;MEs=ME; end % save the original mooring design.

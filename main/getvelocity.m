@@ -5,6 +5,8 @@ function getvelocity(command)
 	global h_edit_velocity h_edit_depths h_edit_density h_edit_windspd h_edit_winddir h_edit_shipsp
 	global windspd winddir Usp Vsp uvsp
 	global fs
+    global moordepth
+    global zdis
 
 	if nargin==0, command=0; end
 	if command<40 & (uw^2+vw^2)==0,
@@ -19,6 +21,9 @@ function getvelocity(command)
 	if ~isempty(Usp),
 		uvsp=num2str([Usp Vsp]);
 	end
+    if isempty(moordepth)
+        moordepth='120';
+    endif
 	if isempty(DD), DD=0; end
 	if command == 0,
 		figure(4);clf
@@ -95,9 +100,9 @@ function getvelocity(command)
 			'Callback','getvelocity(50)');
 		h_edit_velocity=[];
 		h_edit_depths=[];
-		if isempty(vel) | isempty(dep),
+		if isempty(vel) || isempty(dep)
 			vel='0 0 0';
-			dep='120 10 0';
+			dep=[moordepth ' 10 0'];
 		end
 		if isempty(den),
 			den='1024 1025 1026';
@@ -397,9 +402,9 @@ function getvelocity(command)
 		set(h_velhelp,'Position',[hpos(1) 10 hpos(3) hpos(4)]);
 		clear velhelp
 	elseif command==40,
-		if isempty(vel) | isempty(dep),
+		if isempty(vel) || isempty(dep)
 			vel='0 0 0';
-			dep='120 10 0';
+			dep=[moordepth ' 10 0'];
 		end
 		if length(time)>1, % then we've loaded a time series
 			Udis=U(:,1);

@@ -8,7 +8,7 @@ function addelement_xls2(command);
     global h_menu_type h_menu_list h_menu_addel h_menu_material hmaincls
     global h_push_add h_edit_elename h_edit_elebuoy h_edit_eledim h_edit_elecd
     global fs
-    global toadd
+    global add_name add_buoy add_length
     fs = 10;
     %
     if nargin < 1, command=0; end
@@ -79,7 +79,7 @@ function addelement_xls2(command);
                 'Units','Normalized',...
                 'Position',[.45 .51 .5 .08]);
                 h_text_eledim=uicontrol('Style','text',...
-                'String','Dimensions [cm]','FontSize',fs,...
+                'String','Dimensions [cm] <L W D>','FontSize',fs,...
                 'Units','Normalized',...
                 'Position',[.05 .42 .3 .08]);
                 h_edit_eledim=uicontrol('Style','edit',...
@@ -127,14 +127,14 @@ function addelement_xls2(command);
                     'Units','normalized',...
                     'Position',[.05 .1 .2 .08],...
                     'Callback','addelement_xls2(1)'); 
-                    set(h_edit_elename,'String',toadd);
+                    set(h_edit_elename,'String',add_name);
                 elseif addel == 2,
                     h_push_add=uicontrol('Style','Pushbutton',...
                     'String','Add','FontSize',fs,...
                     'Units','normalized',...
                     'Position',[.05 .1 .2 .08],...
                     'Callback','addelement_xls2(4)');
-                    %set(h_edit_elename,'String',toadd);
+                    %set(h_edit_elename,'String',add_name);
                 elseif addel == 3,
                     h_push_add=uicontrol('Style','Pushbutton',...
                     'String','Delete','FontSize',fs,...
@@ -150,7 +150,7 @@ function addelement_xls2(command);
                 end
             end
             if command == 1, % Update the type of element
-                set(h_edit_elename,'String',toadd);
+                set(h_edit_elename,'String',add_name);
                 clear typelist
                 type=get(h_menu_type,'Value')-1;
                 if type == 1,
@@ -172,7 +172,7 @@ function addelement_xls2(command);
                 for ii=1:me,
                     typelist(((ii-1)*31+1):((ii-1)*31+31))=[list(ii,1:30),'|'];
                 end
-                set(h_edit_elename,'String',toadd);
+                set(h_edit_elename,'String',add_name);
                 typelist=typelist(1:length(typelist)-1);
                 set(h_menu_list,'Value',1);
                 set(h_menu_list,'String',typelist);
@@ -601,10 +601,10 @@ function addelement_xls2(command);
                     dim=list(val,format(3,1):format(5,2));
                     cd=list(val,format(6,1):format(6,2));
                     mat=str2num(list(val,format(7,1):format(7,2)));
-                    set(h_edit_elename,'String',toadd);
+                    set(h_edit_elename,'String',add_name);
                     %set(h_edit_elename,'String',ele);
-                    set(h_edit_elebuoy,'String',buoy);
-                    set(h_edit_eledim,'String',dim);
+                    set(h_edit_elebuoy,'String',add_buoy);
+                    set(h_edit_eledim,'String',add_length);
                     set(h_edit_elecd,'String',cd);
                     set(h_menu_material,'Value',mat);
                 end

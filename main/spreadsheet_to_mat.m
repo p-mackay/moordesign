@@ -17,13 +17,16 @@ function spreadsheet_to_mat
     global Z Zoo
     global fs
 
+    global all_list
     global type
     global nlist
     global ifile
-    global toadd
+    global add_name add_buoy add_length
+    global moorname moordepth dep 
     #global h_push_save
     load testdb6.mat
     load empty_mooring.mat
+
     
 
     %[ifile,ipath]=uigetfile({'*.xlsx'},'Load Spread Sheet');
@@ -32,10 +35,13 @@ function spreadsheet_to_mat
     %load empty_mooring.mat
 
     [ifile,ipath]=uigetfile({'*.xlsx'},'Load Spread Sheet');
-    [a,b,c]=xlsread(ifile);
+    [a,b,c]=xlsread([ipath ifile]);
     save xlsdata1.mat c
     load xlsdata1.mat
     
+    moorname = c{1,1};
+    moordepth=num2str(c{2,1});
+    dep = [moordepth ' 10 0'];
 
     %elseif (ext == ".ods") % might add feature for multiple file ext's
     %    [a,b,c]=odsread(ifile);
@@ -49,10 +55,9 @@ function spreadsheet_to_mat
     %    mlist(rows(mlist)+1,:)=anchors(i,:);
     %endfor
     %while (j <= rows(floats))
-    global all_list
 
     list = [""];
-    toadd = "";
+    add_name = "";
     ca = cellfun(@isempty,c);
 
     for i = 3:rows(c)
@@ -139,6 +144,7 @@ function spreadsheet_to_mat
                 if H(1,elenum)==1,
                     H(1,elenum)=c{i,4};
                     H(4,elenum)=1; % flag for wire/chain elements, sub-divide later
+                    break;
                     mat=str2num(all_list(k,format(7,1):format(7,2)));
                     if mat==1, % steel
                         ME(elenum)=1.38e11;
@@ -172,7 +178,11 @@ function spreadsheet_to_mat
                 %addelement_xls2;waitfor(h_push_save);
                 addelement_xls2;
                 set(h_edit_elename,'String',c{i,1});
-                toadd=get(h_edit_elename, 'String');
+                set(h_edit_elebuoy,'String',num2str(-1*c{i,3}));
+                set(h_edit_eledim,'String',num2str(100*c{i,4}));
+                add_name=get(h_edit_elename, 'String');
+                add_buoy=get(h_edit_elebuoy, 'String');
+                add_length=get(h_edit_eledim, 'String');
                 warning("Please fill in data for the following: %s", c{i,1});
                 %pause;
                 k=1;
