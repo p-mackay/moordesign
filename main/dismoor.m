@@ -19,6 +19,10 @@ function dismoor(command)
 
     %ct = strftime ("%e_%B_%Y", localtime (time ())); %current time
     %fileOut = ["Mooring_Elements" ct ".pdf"]; %pdf file produced 
+    if isempty(moordepth)
+        moordepth='150';
+        dep=[moordepth ' 10 0'];
+    endif
     text_data = "";
     ztest=[];
     %velocity_data = getvelocity(40);
@@ -33,7 +37,7 @@ function dismoor(command)
         command=0;
     end
     line0='  0                                                                                                            ';
-    if ~isempty(H) & isempty(Ht),
+    if ~isempty(H) && isempty(Ht),
         [mm,nm]=size(moorele);
     else % this is a towed body case
         moorele=moorelet;
@@ -54,7 +58,7 @@ function dismoor(command)
         dZco=Z0co'-Zfco;   
     end
     clear line
-    if ~isempty(H) & isempty(Ht),
+    if ~isempty(H) && isempty(Ht),
         hdr1=' # Mooring Element   Length[m] Buoy[kg] Height[m]    dZ[m]   dX[m]   dY[m]   Tension[kg]   Angle[deg]   Depth[m]';
         %     1234567891123456789212345678931234567894123456789512345678961234567897123456789812345678991234567890123
         text_data = [text_data newline hdr1];
@@ -154,7 +158,7 @@ function dismoor(command)
             dpth=str2num(moordepth)-hght;
             tmp=num2str(dpth,'%8.2f');
             line(112-length(tmp):111)=tmp;
-        elseif ~isempty(Z) & H(4,el) ~=1 & el ~= mm, % this is an instrument/buoy...
+        elseif ~isempty(Z) && H(4,el) ~=1 && el ~= mm, % this is an instrument/buoy...
             hght=sum(H(1,el:mm));  % Height at the top of this element
             io=io+1;
             tmp=num2str(Z(iobj(io)),'%8.2f');
@@ -178,7 +182,7 @@ function dismoor(command)
             tmp=num2str(dpth,'%8.2f');
             line(112-length(tmp):111)=tmp;
             %line(113-length(tmp):112)="Hello World";
-        elseif ~isempty(Z) & H(4,el) == 1, % this is a wire/rope/chain section
+        elseif ~isempty(Z) && H(4,el) == 1, % this is a wire/rope/chain section
             hght=sum(H(1,el:mm));  % Height at the top of this element
             tmp=num2str(Ti(jobj(jo))/9.81,'%6.1f');
             line(82-length(tmp):81)=tmp;
@@ -263,7 +267,7 @@ function dismoor(command)
     end;
 
     % now display any Clamp-On devices
-    if ~isempty(H) & isempty(Ht),
+    if ~isempty(H) && isempty(Ht),
         hdr1=' #  Device Type    Attched to     m Up      Height[m]    dZ[m]   dX[m]   dY[m]   Angle[deg]';
         %     1234567891123456789212345678931234567894123456789512345678961234567897123456789812345678991234567890123456
         hdr2='                   Element #  This Element  (middle)';
@@ -314,7 +318,7 @@ function dismoor(command)
                         line(5:20)=mooreleCO(elco,:);
                         line(26-length(num2str(Jobj(elco))):25)=num2str(Jobj(elco));
                         %line(21:36)=moorele(Jobj(elco),:);
-                        if ~isempty(Z) & H(4,el) == 1, % a wire, consider some stretching
+                        if ~isempty(Z) && H(4,el) == 1, % a wire, consider some stretching
                             %      tmp=num2str(perc*H(1,el)*(1+2*(Ti(jobj(jo+1))+Ti(jobj(jo+2)+1))/(pi*H(2,el)^2*ME(el))),'%8.2f');
                             tmp=num2str(perc*H(1,el)*(1+2*(Ti(jobj(jo))+Ti(jobj(jo+1)+1))/(pi*H(2,el)^2*ME(el))),'%8.2f');
                         else
@@ -348,7 +352,7 @@ function dismoor(command)
                         else
                             disp(line);
                         end
-                        if command==1 & ell==80, % for printer output, go to next page
+                        if command==1 && ell==80, % for printer output, go to next page
                             ell=1;
                             %figure(5);
                             %orient tall;
@@ -544,9 +548,9 @@ function dismoor(command)
                             for i=1:length(ztest),
                                 if ztest(i)>999.99,
                                     vel_data = [vel_data newline [' ',num2str([ztest(i) U(i) V(i) W(i) rho(i)],'%11.2f')]];
-                                elseif ztest(i)<1000 & ztest(i)>99.99,
+                                elseif ztest(i)<1000 && ztest(i)>99.99,
                                     vel_data = [vel_data newline ['  ',num2str([ztest(i) U(i) V(i) W(i) rho(i)],'%11.2f')]];
-                                elseif ztest(i)<100 & ztest(i)>9.99,
+                                elseif ztest(i)<100 && ztest(i)>9.99,
                                     vel_data = [vel_data newline ['   ',num2str([ztest(i) U(i) V(i) W(i) rho(i)],'%11.2f')]];
                                 elseif ztest(i)<10,
                                     vel_data = [vel_data newline ['    ',num2str([ztest(i) U(i) V(i) W(i) rho(i)],'%11.2f')]];

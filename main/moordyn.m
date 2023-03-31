@@ -48,7 +48,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 	if isempty(iss), Hs=H;Bs=B;Cds=Cd;MEs=ME; end % save the original mooring design.
 	if ~isempty(find(B==0)), B(find(B==0))=-0.0001; end  % things can go horribly wrong with neutral buoyancy
 	[mu,nu]=size(U);
-	if (mu==0 & nu==0) | max(z)==0, % if environmental variable haven't been set
+	if (mu==0 && nu==0) || max(z)==0, % if environmental variable haven't been set
 		U=[0.1 0.1 0];U=U(:);V=U;W=U;z=fix(sum(H(1,:))*[1.5 0.1 0]');z=z(:);rho=[1024 1025 1026]';rho=rho(:);
 	end
 	z(find(z(1:end-1)==0))=0.1; % make sure only last depth is zero
@@ -66,7 +66,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 		end
 		% Add 2% of wind speed to top current (10m) value
 		ztmp=z;Utmp=U;Vtmp=V;Wtmp=W;rhotmp=rho;
-		if mu ~= 1 & nu ~= 1, % then pickoff the first velocity profile.
+		if mu ~= 1 && nu ~= 1, % then pickoff the first velocity profile.
 			if mu==length(z),
 				U=U(:,1);
 				V=V(:,1);
@@ -79,7 +79,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 		end
 		%
 		% Add 2% of wind speed to top current value(s)
-		if uw~=0 | vw ~=0,
+		if uw~=0 || vw ~=0,
 			windepth=sqrt(uw^2+vw^2)/0.02; % wind penetrates about 1m for every 1m/s, otherwise shears too high
 			if (uw^2+vw^2)>0, % we actually have a wind
 				if windepth > z(1), windepth==0.8*z(1); end % maximum wind depth is 80% of water depth
@@ -128,10 +128,10 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 		gamma=1;
 		if Zw > S, % then this is a sub-surface mooring
 			ss=1;
-			if isempty(nomovie) & izloop==2,disp('This is (starting off as) a sub-surface mooring');end
+			if isempty(nomovie) && izloop==2,disp('This is (starting off as) a sub-surface mooring');end
 		else % this is a surface float mooring
 			ss=0;
-			if isempty(nomovie) & izloop==2,disp('This is (starting off as) a potential surface float mooring');end
+			if isempty(nomovie) && izloop==2,disp('This is (starting off as) a potential surface float mooring');end
 		end
 		if izloop==1,
 			disp('First, find neutral (no current) mooring component positions.');
@@ -548,7 +548,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 					Z1std=std(Z1);
 				end
 			end
-			%if iavg > 20 & ss==0 & Z1std > 1, gamma=1; ss=1; end % This is bouncing around, its probably a subsurface solution.
+			%if iavg > 20 && ss==0 && Z1std > 1, gamma=1; ss=1; end % This is bouncing around, its probably a subsurface solution.
 			if iavg > 20, % after 20 avg iterations, start using the average height to assist convergence
 				X=Xavg/iavg;
 				Y=Yavg/iavg;
@@ -644,11 +644,11 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 				% The next section represents the lift/normal drag due to tilted
 				% cylinder/wire segments, associate only with the flow in the theta plane
 				% Hoerner (1965): drag coeficients are reduced by cos(psi)^3=sin(pi/2-psi)^3
-				% Chapter III, equations (22) & (23)
-				% There are two additional horizontal forces associated with the component of u & v along theta
+				% Chapter III, equations (22) && (23)
+				% There are two additional horizontal forces associated with the component of u && v along theta
 				% and a lift component coming from w.
 				% There are two additional vertical components associated with w along theta and
-				% a lift component from u & v along theta.
+				% a lift component from u && v along theta.
 				% see Dewey's mooreleang.m rountine to plot these components.
 				%
 				psi2=psi(j)-pi/2; % this is the normal component to the cylinder element
@@ -661,14 +661,14 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 					CdLW=Cdi(j)*cos(psi2)^2*sin(psi2);
 					%
 					QhUV=0.5*rhoi(i)*A*CdUV*UVLmag^2;
-					Qx(j)=Qx(j) + QhUV*cos(theta3); % add the X component from u&v along theta
-					Qy(j)=Qy(j) + QhUV*sin(theta3); % add the Y component from u&v along theta
+					Qx(j)=Qx(j) + QhUV*cos(theta3); % add the X component from u&&v along theta
+					Qy(j)=Qy(j) + QhUV*sin(theta3); % add the Y component from u&&v along theta
 					%
 					QhLW=0.5*rhoi(i)*A*CdLW*abs(Wi(i))*Wi(i);
 					Qx(j)=Qx(j) + QhLW*cos(theta(j)); % add the X component of lift from w along theta
 					Qy(j)=Qy(j) + QhLW*sin(theta(j)); % add the Y component of lift from w along theta
 					%
-					Qz(j)=Qz(j) + 0.5*rhoi(i)*A*CdLUV*UVLmag^2*sl; % add the lift component from u&v along theta
+					Qz(j)=Qz(j) + 0.5*rhoi(i)*A*CdLUV*UVLmag^2*sl; % add the lift component from u&&v along theta
 					Qz(j)=Qz(j) + 0.5*rhoi(i)*A*CdW*abs(Wi(i))*Wi(i); % add the Z component from w flow along theta
 				end
 				% Now add any lift terms associated with tiltes clamp-on devices
@@ -834,12 +834,12 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 					if ss==1 && Zw>(Zf+Hi(1,1)) && gamma==1, % this is a sub-surface (ss) solution
 						breaknow=1; % then the solution has converged.
 					else % this may be a surface solution
-						if ss==0 && Zw>Zf & Zw<(Zf+Hi(1,1)) && abs(((Zw-Zf)/Hi(1,1))-gamma) < 0.01, % we're within 1%.
+						if ss==0 && Zw>Zf && Zw<(Zf+Hi(1,1)) && abs(((Zw-Zf)/Hi(1,1))-gamma) < 0.01, % we're within 1%.
 							breaknow=1; % then the surface solution has converged
 						end
 					end
 				end
-				if iavg == 120 || (iavg > 100 & dg < 1e-10), % after many iterations, force convergence
+				if iavg == 120 || (iavg > 100 && dg < 1e-10), % after many iterations, force convergence
 					X=Xavg/iavg;
 					Y=Yavg/iavg;
 					Z=Zavg/iavg;
@@ -923,23 +923,23 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 		%           In otherwords, the % submerged = the percent buoyancy (not so for a shpere).
 		%
 		disp(['Total Tension on Anchor [kg] = ',num2str(Wa,'%8.1f')]);
-		anc_info = [anc_info newline ['Total Tension on Anchor [kg] = ',num2str(Wa,'%8.1f')]];
+		anc_info = [anc_info newline ['Total Tension on Anchor [kg] =_______',num2str(Wa,'%8.1f')]];
 
 		disp(['Vertical load [kg] = ',num2str(VWa,'%8.1f'),'  Horizontal load [kg] = ',num2str(HWa,'%8.1f')]);
-		anc_info = [anc_info newline ['Vertical load [kg] = ',num2str(VWa,'%8.1f'),'  Horizontal load [kg] = ',num2str(HWa,'%8.1f')]];
+		anc_info = [anc_info newline ['Vertical load [kg] =__________________',num2str(VWa,'%8.1f'),'  Horizontal load [kg] = ',num2str(HWa,'%8.1f')]];
 		% disp(['After applying a WHOI saftey factor:']);
 		TWa=1.5*(VWa + HWa/0.6);
 		disp(['Safe wet anchor mass = ',num2str(TWa,'%8.1f'),' [kg] = ',num2str((TWa*2.2),'%8.1f'),' [lb]']);
-		anc_info = [anc_info newline ['Safe wet anchor mass = ',num2str(TWa,'%8.1f'),' [kg] = ',num2str((TWa*2.2),'%8.1f'),' [lb]']];
+		anc_info = [anc_info newline ['Safe wet anchor mass =_______________',num2str(TWa,'%8.1f'),' [kg] = ',num2str((TWa*2.2),'%8.1f'),' [lb]']];
 
 		disp(['Safe dry steel anchor mass = ',num2str((TWa/0.87),'%8.1f'),' [kg] = ',num2str((TWa*2.2/0.87),'%8.1f'),' [lb]']);
-		anc_info = [anc_info newline ['Safe dry steel anchor mass = ',num2str((TWa/0.87),'%8.1f'),' [kg] = ',num2str((TWa*2.2/0.87),'%8.1f'),' [lb]']];
+		anc_info = [anc_info newline ['Safe dry steel anchor mass =_________',num2str((TWa/0.87),'%8.1f'),' [kg] = ',num2str((TWa*2.2/0.87),'%8.1f'),' [lb]']];
 
 		disp(['Safe dry concrete anchor mass = ',num2str((TWa/0.65),'%8.1f'),' [kg] = ',num2str((TWa*2.2/0.65),'%8.1f'),' [lb]']);
-		anc_info = [anc_info newline ['Safe dry concrete anchor mass = ',num2str((TWa/0.65),'%8.1f'),' [kg] = ',num2str((TWa*2.2/0.65),'%8.1f'),' [lb]']];
+		anc_info = [anc_info newline ['Safe dry concrete anchor mass =______',num2str((TWa/0.65),'%8.1f'),' [kg] = ',num2str((TWa*2.2/0.65),'%8.1f'),' [lb]']];
 
 		disp(['Weight under anchor = ',num2str(WoB,'%8.1f'),' [kg]  (negative is down)']);
-		anc_info = [anc_info newline ['Weight under anchor = ',num2str(WoB,'%8.1f'),' [kg]  (negative is down)']];
+		anc_info = [anc_info newline ['Weight under anchor =_______________',num2str(WoB,'%8.1f'),' [kg]  (negative is down)']];
 
 		%global dynvar = get_moordyn(Wa,VWa,HWa,TWa,WoB)
 		%dynvar.Wa = Wa
