@@ -53,4 +53,11 @@ Temporarily switch to a different commit
 This will detach your HEAD, that is, leave you with no branch checked out:
 `git checkout 0d1d7fc32`
 
+Replace a string in multiple files in linux command line
+Occurrences of foo will be replaces with bar
+```
+cd /path/to/your/file
+sed -i 's/foo/bar/g' *
+```
+
 
