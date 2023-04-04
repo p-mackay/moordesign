@@ -922,24 +922,26 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 		endif % NOTE: The calculation of % of surface float used assumes a cylinder float.
 		%           In otherwords, the % submerged = the percent buoyancy (not so for a shpere).
 		%
-		disp(['Total Tension on Anchor [kg] = ',num2str(Wa,'%8.1f')]);
-		anc_info = [anc_info newline ['Total Tension on Anchor [kg] =_______',num2str(Wa,'%8.1f')]];
+		disp(['Total Tension on Anchor [kg] =   ',num2str(Wa,'%8.1f')]);
+		anc_info = [anc_info newline ['Total Tension on Anchor [kg] =   ',num2str(Wa,'%8.1f')]];
 
-		disp(['Vertical load [kg] = ',num2str(VWa,'%8.1f'),'  Horizontal load [kg] = ',num2str(HWa,'%8.1f')]);
-		anc_info = [anc_info newline ['Vertical load [kg] =__________________',num2str(VWa,'%8.1f'),'  Horizontal load [kg] = ',num2str(HWa,'%8.1f')]];
+		disp(['Vertical load [kg] =             ',num2str(VWa,'%8.1f')]);
+        disp(['Horizontal load [kg] =           ',num2str(HWa,'%8.1f')]);
+		anc_info = [anc_info newline ['Vertical load [kg] =             ',num2str(VWa,'%8.1f')]];
+		anc_info = [anc_info newline ['Horizontal load [kg] =           ',num2str(HWa,'%8.1f')]];
 		% disp(['After applying a WHOI saftey factor:']);
 		TWa=1.5*(VWa + HWa/0.6);
-		disp(['Safe wet anchor mass = ',num2str(TWa,'%8.1f'),' [kg] = ',num2str((TWa*2.2),'%8.1f'),' [lb]']);
-		anc_info = [anc_info newline ['Safe wet anchor mass =_______________',num2str(TWa,'%8.1f'),' [kg] = ',num2str((TWa*2.2),'%8.1f'),' [lb]']];
+		disp(['Safe wet anchor mass =           ',num2str(TWa,'%8.1f'),' [kg] = ',num2str((TWa*2.2),'%8.1f'),' [lb]']);
+		anc_info = [anc_info newline ['Safe wet anchor mass =           ',num2str(TWa,'%8.1f'),' [kg] = ',num2str((TWa*2.2),'%8.1f'),' [lb]']];
 
-		disp(['Safe dry steel anchor mass = ',num2str((TWa/0.87),'%8.1f'),' [kg] = ',num2str((TWa*2.2/0.87),'%8.1f'),' [lb]']);
-		anc_info = [anc_info newline ['Safe dry steel anchor mass =_________',num2str((TWa/0.87),'%8.1f'),' [kg] = ',num2str((TWa*2.2/0.87),'%8.1f'),' [lb]']];
+		disp(['Safe dry steel anchor mass =     ',num2str((TWa/0.87),'%8.1f'),' [kg] = ',num2str((TWa*2.2/0.87),'%8.1f'),' [lb]']);
+		anc_info = [anc_info newline ['Safe dry steel anchor mass =     ',num2str((TWa/0.87),'%8.1f'),' [kg] = ',num2str((TWa*2.2/0.87),'%8.1f'),' [lb]']];
 
-		disp(['Safe dry concrete anchor mass = ',num2str((TWa/0.65),'%8.1f'),' [kg] = ',num2str((TWa*2.2/0.65),'%8.1f'),' [lb]']);
-		anc_info = [anc_info newline ['Safe dry concrete anchor mass =______',num2str((TWa/0.65),'%8.1f'),' [kg] = ',num2str((TWa*2.2/0.65),'%8.1f'),' [lb]']];
+		disp(['Safe dry concrete anchor mass =  ',num2str((TWa/0.65),'%8.1f'),' [kg] = ',num2str((TWa*2.2/0.65),'%8.1f'),' [lb]']);
+		anc_info = [anc_info newline ['Safe dry concrete anchor mass =  ',num2str((TWa/0.65),'%8.1f'),' [kg] = ',num2str((TWa*2.2/0.65),'%8.1f'),' [lb]']];
 
-		disp(['Weight under anchor = ',num2str(WoB,'%8.1f'),' [kg]  (negative is down)']);
-		anc_info = [anc_info newline ['Weight under anchor =_______________',num2str(WoB,'%8.1f'),' [kg]  (negative is down)']];
+		disp(['Weight under anchor =            ',num2str(WoB,'%8.1f'),' [kg]  (negative is down)']);
+		anc_info = [anc_info newline ['Weight under anchor =            ',num2str(WoB,'%8.1f'),' [kg]  (negative is down)']];
 
 		%global dynvar = get_moordyn(Wa,VWa,HWa,TWa,WoB)
 		%dynvar.Wa = Wa

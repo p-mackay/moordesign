@@ -27,6 +27,7 @@ function spreadsheet_to_mat
     load testdb6.mat
     load empty_mooring.mat
     global testlen
+    
 
     
 
@@ -68,7 +69,6 @@ function spreadsheet_to_mat
         endif
     endfor
     start=i;
-    printf("start: %d\n", start);
     
     all_list = [""];
     for m = 1:rows(floats)
@@ -127,7 +127,8 @@ function spreadsheet_to_mat
             testlen = length(tmp{1,1});
             %if (startsWith(all_list(k,testlen), c(i,1), "IgnoreCase", true) == 1)
             if (startsWith(all_list(k,1:testlen), c(i,1), "IgnoreCase", true) == 1) && (testlen == length(c{i,1}))
-                printf("%d == %d   %s == %s\n",testlen,length(c{i,1}), c{i,1}, tmp{1,1});
+                %printf("%d == %d   %s == %s\n",testlen,length(c{i,1}), c{i,1}, tmp{1,1});
+                ldng = waitbar(1);
                 match=1;
                 elenum=length(B)+1;
                 insert=elenum;
@@ -224,6 +225,7 @@ function spreadsheet_to_mat
             endif
         endwhile
     endfor
+    close(ldng);
 
 
     save('moor007.mat','U','V','W','z','rho','time','H','B','Cd','ME','moorele', 'all_list');
