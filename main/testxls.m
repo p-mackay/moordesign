@@ -44,76 +44,129 @@ function testxls;
     %element name
     currstart=3;
     currend=2+rows(chains);
-    %xlswrite(thisxl,'Hardware','Sheet1','A2');%manually write title of category
-    %for i = 1:rows(chains)
-    %    hw(i,1)=chains(i,format(1,1):format(1,2));
-    %endfor
-    %xlswrite(thisxl,hw,'Sheet1',['A3:A' num2str(3+rows(chains))]);
-    %hw={};
-
-    %for j = 2:7
-    %    hw={};%clear the matrix 
-    %    for i = 1:rows(chains)%first convert to a cell array
-    %        hw(i,1)=str2num(chains(i,format(j,1):format(j,2)));
-    %    endfor
-    %    xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
-    %endfor
-    %printf("%d  %d\n",currstart, currend);
-    %hw={};
-
-    xlswrite(thisxl,'Flotation','Sheet1','A2');%manually write title of category
-    for i = 1:rows(floats)
-        if(hw{i,1}(! isascii(hw{i,1})))
-            printf("%s\n", hw(i,1));
-            break;
-            hw{i,1}(!isasccii(hw{i,1}))=[];
-            hw(i,1)=floats(i,format(1,1):format(1,2));
-            printf("%s\n", hw(i,1));
-        else
-            hw(i,1)=floats(i,format(1,1):format(1,2));
-            printf("%s\n", hw(i,1));
-        endif
+    xlswrite(thisxl,'Hardware','Sheet1','A2');%manually write title of category
+    for i = 1:rows(chains)
+        hw(i,1)=chains(i,format(1,1):format(1,2));
     endfor
-    %xlswrite(thisxl,hw(1,1),'Sheet1',['A3']);
-    %xlswrite(thisxl,hw(7,1),'Sheet1',['A4']);
-    %xlswrite(thisxl,hw,'Sheet1',['A3:A' num2str(3+rows(floats))]);
-    %hw={};
-
-    %for j = 2:7
-    %    hw={};%clear the matrix 
-    %    for i = 1:rows(floats)%first convert to a cell array
-    %        hw(i,1)=str2num(floats(i,format(j,1):format(j,2)));
-    %    endfor
-    %    xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
-    %endfor
-    %printf("%d  %d\n",currstart, currend);
-    %hw={};
-
-
+    xlswrite(thisxl,hw,'Sheet1',['A3:A' num2str(3+rows(chains))]);
+    hw={};
+    for j = 2:7
+        hw={};%clear the matrix 
+        for i = 1:rows(chains)%first convert to a cell array
+            hw(i,1)=str2num(chains(i,format(j,1):format(j,2)));
+        endfor
+        xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
+    endfor
+    printf("%d  %d\n",currstart, currend);
+    hw={};
 
     %FLOATATION
-    %currstart=currstart+currend+1;
-    %currend=currstart+rows(floats);
-    %printf("%d  %d\n",currstart, currend);
-    %%xlswrite(thisxl,'Hardware','Sheet1','A2');%manually write title of category
-    %for i = 1:rows(floats)
-    %    hw(i,1)=floats(i,format(1,1):format(1,2));
-    %endfor
-    %printf("A%s:A%s\n",num2str(currstart),num2str(currend));
-    %xlswrite(thisxl,hw,'Sheet1',['A21:A34']);
-    %xlswrite(thisxl,hw,'Sheet1',['A' num2str(currstart) ':A' num2str(currend)]);
-    %hw={};
+    currstart=currstart+currend+1;
+    currend=currstart+rows(floats);
+    printf("%d  %d\n",currstart, currend);
+    xlswrite(thisxl,'Flotation','Sheet1',['A' num2str(currstart-1)]);%manually write title of category
+    for i = 1:rows(floats)
+        hw(i,1)=floats(i,format(1,1):format(1,2));
+    endfor
+    printf("A%s:A%s\n",num2str(currstart),num2str(currend));
+    xlswrite(thisxl,hw,'Sheet1',['A' num2str(currstart) ':A' num2str(currend)]);
+    hw={};
+    %non string values
+    for j = 2:7
+        hw={};%clear the matrix 
+        for i = 1:rows(floats)%first convert to a cell array
+            hw(i,1)=str2num(floats(i,format(j,1):format(j,2)));
+        endfor
+        xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
+    endfor
+    hw={};
 
-    %for j = 2:7
-    %    hw={};%clear the matrix 
-    %    for i = 1:rows(floats)%first convert to a cell array
-    %        hw(i,1)=str2num(floats(i,format(j,1):format(j,2)));
-    %    endfor
-    %    %xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
-    %    xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(23) ':' char(65+j-1) num2str(100)]);
-    %endfor
-    %hw={};
+    %CURRENT METERS
+    currstart=3;
+    currstart=currstart+currend+1;
+    currend=currstart+rows(cms);
+    printf("%d  %d\n",currstart, currend);
+    xlswrite(thisxl,'Current Meters','Sheet1',['A' num2str(currstart-1)]);%manually write title of category
+    for i = 1:rows(cms)
+        hw(i,1)=cms(i,format(1,1):format(1,2));
+    endfor
+    printf("A%s:A%s\n",num2str(currstart),num2str(currend));
+    xlswrite(thisxl,hw,'Sheet1',['A' num2str(currstart) ':A' num2str(currend)]);
+    hw={};
+    %non string values
+    for j = 2:7
+        hw={};%clear the matrix 
+        for i = 1:rows(cms)%first convert to a cell array
+            hw(i,1)=str2num(cms(i,format(j,1):format(j,2)));
+        endfor
+        xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
+    endfor
+    hw={};
 
+    %RELEASES
+    currstart=3;
+    currstart=currstart+currend+1;
+    currend=currstart+rows(acrels);
+    printf("%d  %d\n",currstart, currend);
+    xlswrite(thisxl,'Releases','Sheet1',['A' num2str(currstart-1)]);%manually write title of category
+    for i = 1:rows(acrels)
+        hw(i,1)=acrels(i,format(1,1):format(1,2));
+    endfor
+    printf("A%s:A%s\n",num2str(currstart),num2str(currend));
+    xlswrite(thisxl,hw,'Sheet1',['A' num2str(currstart) ':A' num2str(currend)]);
+    hw={};
+    %non string values
+    for j = 2:7
+        hw={};%clear the matrix 
+        for i = 1:rows(acrels)%first convert to a cell array
+            hw(i,1)=str2num(acrels(i,format(j,1):format(j,2)));
+        endfor
+        xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
+    endfor
+    hw={};
+
+    %MISCELLANEOUS INSTRUMENTS
+    currstart=3;
+    currstart=currstart+currend+1;
+    currend=currstart+rows(miscs);
+    printf("%d  %d\n",currstart, currend);
+    xlswrite(thisxl,'Miscellaneous Instruments','Sheet1',['A' num2str(currstart-1)]);%manually write title of category
+    for i = 1:rows(miscs)
+        hw(i,1)=miscs(i,format(1,1):format(1,2));
+    endfor
+    printf("A%s:A%s\n",num2str(currstart),num2str(currend));
+    xlswrite(thisxl,hw,'Sheet1',['A' num2str(currstart) ':A' num2str(currend)]);
+    hw={};
+    %non string values
+    for j = 2:7
+        hw={};%clear the matrix 
+        for i = 1:rows(miscs)%first convert to a cell array
+            hw(i,1)=str2num(miscs(i,format(j,1):format(j,2)));
+        endfor
+        xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
+    endfor
+    hw={};
+    %MOORING LINES
+    currstart=3;
+    currstart=currstart+currend+1;
+    currend=currstart+rows(wires);
+    printf("%d  %d\n",currstart, currend);
+    xlswrite(thisxl,'Mooring Lines','Sheet1',['A' num2str(currstart-1)]);%manually write title of category
+    for i = 1:rows(wires)
+        hw(i,1)=wires(i,format(1,1):format(1,2));
+    endfor
+    printf("A%s:A%s\n",num2str(currstart),num2str(currend));
+    xlswrite(thisxl,hw,'Sheet1',['A' num2str(currstart) ':A' num2str(currend)]);
+    hw={};
+    %non string values
+    for j = 2:7
+        hw={};%clear the matrix 
+        for i = 1:rows(wires)%first convert to a cell array
+            hw(i,1)=str2num(wires(i,format(j,1):format(j,2)));
+        endfor
+        xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
+    endfor
+    hw={};
 
 
     %currstart = currstart+currend;
