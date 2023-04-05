@@ -63,10 +63,19 @@ function testxls;
 
     xlswrite(thisxl,'Flotation','Sheet1','A2');%manually write title of category
     for i = 1:rows(floats)
-        hw(i,1)=floats(i,format(1,1):format(1,2));
+        if(hw{i,1}(! isascii(hw{i,1})))
+            printf("%s\n", hw(i,1));
+            break;
+            hw{i,1}(!isasccii(hw{i,1}))=[];
+            hw(i,1)=floats(i,format(1,1):format(1,2));
+            printf("%s\n", hw(i,1));
+        else
+            hw(i,1)=floats(i,format(1,1):format(1,2));
+            printf("%s\n", hw(i,1));
+        endif
     endfor
-    xlswrite(thisxl,hw(1,1),'Sheet1',['A3']);
-    xlswrite(thisxl,hw(13,1),'Sheet1',['A4']);
+    %xlswrite(thisxl,hw(1,1),'Sheet1',['A3']);
+    %xlswrite(thisxl,hw(7,1),'Sheet1',['A4']);
     %xlswrite(thisxl,hw,'Sheet1',['A3:A' num2str(3+rows(floats))]);
     %hw={};
 
