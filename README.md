@@ -30,20 +30,32 @@ moordesign
 [Mooring Design & Dynamics(MathWorks Exchange)](http://web.uvic.ca/~rdewey/mooring/moordyn.php)
 
 
-# Disclaimer
-The user of this package takes full responsibility for designing and building a safe
-and reliable mooring that will allow safe and easy deployment, and safe and easy
-recovery. This set of programs is only an aide in evaluating different mooring designs
-and configurations forced by varying 3D currents. It does not attempt to estimate
-the forces and tensions during deployment or recovery, which may be significantly
-higher than the ‘in-water/static’ tensions, as components hanging out of water will
-have significantly more weight and ‘falling’ moorings will experience significant
-velocities and drag. The author does not provide sources for instruments or mooring
-components (i.e. wire), nor endorse the manufacturers specified strength and tension
-limits. If in doubt, add a safety factor of 1.5, or larger.
-This package can be used to predict wire tensions, anchor weights, and sensor
-heights, potentially for backing out the actual depth/height of a mooring sensor in
-a current and correcting for mooring motion. My intent is to maintain this package
-as a free research tool. However, the potential uses are varied, including commercial
-applications. If you use this package and find it helpful, appropriate reference to this
-article or the Mooring Design and Dynamics web page is appreciated.
+# License
+Copyright (c) 2023, Richard Dewey
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+Redistributions of source code must retain the above copyright notice, this
+list of conditions and the following disclaimer.
+
+Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution
+
+Neither the name of University of Victoria nor the names of its
+contributors may be used to endorse or promote products derived from this
+software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
