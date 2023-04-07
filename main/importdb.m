@@ -17,8 +17,10 @@ function importdb;
     [ifile,ipath]=uigetfile({'*.xlsx'},'Load Spread Sheet');
     [a,b,c]=xlsread([ipath ifile]);
     save xlsdbdata.mat c
-    [start,stop] = rangetest(c);
+    [start,stop] = getxlrange(c);
     
+
+    loading=waitbar(1);
     %hardware
     for i = start(1,1):stop(1,1)
         [m,n]=size(chains);
@@ -305,11 +307,14 @@ function importdb;
 %        disp(newele)
         anchors(m+1,:)=newele;
 
+        close(loading);
 
-    format=[1,30;32,39;41,45;48,51;53,57;59,62;64,64]
+    format=[1,30;32,39;41,45;48,51;53,57;59,62;64,64];
+    printf("Successfully Imported: %s\n",ifile);
 
 
     [ofile,opath]=uiputfile('mdcodes.mat','Save A New MDCODES.MAT');
     save ([opath ofile],'acrels','cms','format','miscs','anchors','chains','floats','wires');
+    printf("Saved: %s\n",ofile);
 
 endfunction

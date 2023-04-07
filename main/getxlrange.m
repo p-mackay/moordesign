@@ -1,4 +1,4 @@
-function [startlist, stoplist] = rangetest(c); 
+function [startlist, stoplist] = getxlrange(c); 
     %accepts matrix, and a file
     %returns range indexes for each element category
     global U V W z rho
@@ -18,6 +18,7 @@ function [startlist, stoplist] = rangetest(c);
     [m,n]=size(c);
 
     %Make this a switch statment switch on element type
+
     for i = 1:m
         if(strcmp(c{i,1}, "Hardware")==1)
             break;
@@ -26,7 +27,6 @@ function [startlist, stoplist] = rangetest(c);
     endfor
     start=i+1;
     startlist(1,1)=start;
-    printf("start: %d\n", start);
     for i = start:m
         if(ca(i,1)==1)
             break;
@@ -35,7 +35,6 @@ function [startlist, stoplist] = rangetest(c);
     endfor
     stop=i-1;
     stoplist(1,1)=stop;
-    printf("stop: %d\n", stop);
     %------------------------------------------------------------- 
     for i = 1:m
         if(strcmp(c{i,1}, "Flotation")==1)
@@ -45,7 +44,6 @@ function [startlist, stoplist] = rangetest(c);
     endfor
     start=i+1;
     startlist(1,2)=start;
-    printf("start: %d\n", start);
     for i = start:m
         if(ca(i,1)==1)
             break;
@@ -54,7 +52,6 @@ function [startlist, stoplist] = rangetest(c);
     endfor
     stop=i-1;
     stoplist(1,2)=stop;
-    printf("stop: %d\n", stop);
 
     %------------------------------------------------------------- 
     for i = 1:m
@@ -65,7 +62,6 @@ function [startlist, stoplist] = rangetest(c);
     endfor
     start=i+1;
 	startlist(1,3)=start;
-    printf("start: %d\n", start);
     for i = start:m
         if(ca(i,1)==1)
             break;
@@ -74,7 +70,6 @@ function [startlist, stoplist] = rangetest(c);
     endfor
     stop=i-1;
 	stoplist(1,3)=stop;
-    printf("stop: %d\n", stop);
 
     %------------------------------------------------------------- 
     for i = 1:m
@@ -85,7 +80,6 @@ function [startlist, stoplist] = rangetest(c);
     endfor
     start=i+1;
 	startlist(1,4)=start;
-    printf("start: %d\n", start);
     for i = start:m
         if(ca(i,1)==1)
             break;
@@ -94,7 +88,6 @@ function [startlist, stoplist] = rangetest(c);
     endfor
     stop=i-1;
 	stoplist(1,4)=stop;
-    printf("stop: %d\n", stop);
 
     %------------------------------------------------------------- 
     for i = 1:m
@@ -105,7 +98,6 @@ function [startlist, stoplist] = rangetest(c);
     endfor
     start=i+1;
 	startlist(1,5)=start;
-    printf("start: %d\n", start);
     for i = start:m
         if(ca(i,1)==1)
             break;
@@ -114,9 +106,6 @@ function [startlist, stoplist] = rangetest(c);
     endfor
     stop=i-1;
 	stoplist(1,5)=stop;
-    printf("Hellostop: %d\n", stop);
-    printf("start: %s\n",c{i,1});
-    printf("i: %d\n",i);
 
     %------------------------------------------------------------- 
     for i = 1:m
@@ -134,7 +123,6 @@ function [startlist, stoplist] = rangetest(c);
         endif
     endfor
     %printf("start: %s\n",c{i,1});
-    printf("i: %d\n",i);
     stop=i;
 	stoplist(1,6)=stop;
     %printf("stop: %d\n", stop);

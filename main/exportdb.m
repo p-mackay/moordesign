@@ -23,7 +23,7 @@ function exportdb;
     thisxl=getxlname();
 
     hdr1={'Buoyancy', 'Length', 'Width of', 'Diameter of', ...
-            'Drag Coef', 'Material'};
+    'Drag Coef', 'Material'};
     hdr2={'(kg)','(cm)','CYL(cm)','SPH(cm)'};
 
     %xlswrite('example2.xlsx',hdr1, 'Sheet1', 'B1:G1');
@@ -34,6 +34,7 @@ function exportdb;
 
  
     
+    loading=waitbar(1);
     %HARDWARE
     %element name
     currstart=3;
@@ -51,18 +52,18 @@ function exportdb;
         endfor
         xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
     endfor
-    printf("%d  %d\n",currstart, currend);
+    %printf("%d  %d\n",currstart, currend);
     hw={};
 
     %FLOATATION
     currstart=currstart+currend+1;
     currend=currstart+rows(floats);
-    printf("%d  %d\n",currstart, currend);
+    %printf("%d  %d\n",currstart, currend);
     xlswrite(thisxl,'Flotation','Sheet1',['A' num2str(currstart-1)]);%manually write title of category
     for i = 1:rows(floats)
         hw(i,1)=floats(i,format(1,1):format(1,2));
     endfor
-    printf("A%s:A%s\n",num2str(currstart),num2str(currend));
+    %printf("A%s:A%s\n",num2str(currstart),num2str(currend));
     xlswrite(thisxl,hw,'Sheet1',['A' num2str(currstart) ':A' num2str(currend)]);
     hw={};
     %non string values
@@ -79,12 +80,12 @@ function exportdb;
     currstart=3;
     currstart=currstart+currend+1;
     currend=currstart+rows(cms);
-    printf("%d  %d\n",currstart, currend);
+    %printf("%d  %d\n",currstart, currend);
     xlswrite(thisxl,'Current Meters','Sheet1',['A' num2str(currstart-1)]);%manually write title of category
     for i = 1:rows(cms)
         hw(i,1)=cms(i,format(1,1):format(1,2));
     endfor
-    printf("A%s:A%s\n",num2str(currstart),num2str(currend));
+    %printf("A%s:A%s\n",num2str(currstart),num2str(currend));
     xlswrite(thisxl,hw,'Sheet1',['A' num2str(currstart) ':A' num2str(currend)]);
     hw={};
     %non string values
@@ -101,12 +102,12 @@ function exportdb;
     currstart=3;
     currstart=currstart+currend+1;
     currend=currstart+rows(acrels);
-    printf("%d  %d\n",currstart, currend);
+    %printf("%d  %d\n",currstart, currend);
     xlswrite(thisxl,'Releases','Sheet1',['A' num2str(currstart-1)]);%manually write title of category
     for i = 1:rows(acrels)
         hw(i,1)=acrels(i,format(1,1):format(1,2));
     endfor
-    printf("A%s:A%s\n",num2str(currstart),num2str(currend));
+    %printf("A%s:A%s\n",num2str(currstart),num2str(currend));
     xlswrite(thisxl,hw,'Sheet1',['A' num2str(currstart) ':A' num2str(currend)]);
     hw={};
     %non string values
@@ -123,12 +124,12 @@ function exportdb;
     currstart=3;
     currstart=currstart+currend+1;
     currend=currstart+rows(miscs);
-    printf("%d  %d\n",currstart, currend);
+    %printf("%d  %d\n",currstart, currend);
     xlswrite(thisxl,'Miscellaneous Instruments','Sheet1',['A' num2str(currstart-1)]);%manually write title of category
     for i = 1:rows(miscs)
         hw(i,1)=miscs(i,format(1,1):format(1,2));
     endfor
-    printf("A%s:A%s\n",num2str(currstart),num2str(currend));
+    %printf("A%s:A%s\n",num2str(currstart),num2str(currend));
     xlswrite(thisxl,hw,'Sheet1',['A' num2str(currstart) ':A' num2str(currend)]);
     hw={};
     %non string values
@@ -144,12 +145,12 @@ function exportdb;
     currstart=3;
     currstart=currstart+currend+1;
     currend=currstart+rows(wires);
-    printf("%d  %d\n",currstart, currend);
+    %printf("%d  %d\n",currstart, currend);
     xlswrite(thisxl,'Mooring Lines','Sheet1',['A' num2str(currstart-1)]);%manually write title of category
     for i = 1:rows(wires)
         hw(i,1)=wires(i,format(1,1):format(1,2));
     endfor
-    printf("A%s:A%s\n",num2str(currstart),num2str(currend));
+    %printf("A%s:A%s\n",num2str(currstart),num2str(currend));
     xlswrite(thisxl,hw,'Sheet1',['A' num2str(currstart) ':A' num2str(currend)]);
     hw={};
     %non string values
@@ -275,9 +276,12 @@ function exportdb;
     %hw={};
 
 
+    close(loading);
+    printf("Successfully written to: %s\n",thisxl);
 
 
     %xlswrite('example3.xlsx',hw,'Sheet1', 'A3:A100');
+
 
 
 
