@@ -271,6 +271,8 @@ function importdb;
     endfor
     %--------------------------------
     %Anchors
+        [m,n]=size(anchors);
+        anchors = "";
         name = "Anchor";
         buoy = -1500;
         dim = [0 0 0];

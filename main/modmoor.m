@@ -37,7 +37,7 @@ function modmoor(command,parameter)
 		h_menu_list = handle_list(4);
 	end 
 	%
-	if isempty(typelist)||strcmp(typelist,[' ']), load mdcodes.mat; end 
+	%if isempty(typelist)||strcmp(typelist,[' ']), load mdcodes.mat; end 
 	%
 	if command == 0,  % then initiale the menus/number
 		if isempty(elenum),
@@ -120,13 +120,10 @@ function modmoor(command,parameter)
 	insert=0;
 	elseif command == 88,
 		[ifile,ipath]=uigetfile('*.mat','Load Database file MDCODES.MAT (cancel loads default)');
-		if ischar(ifile) & ischar(ipath),
-			if ~strcmp(ifile,'*.mat'),
-				load([ipath ifile]);
-			else
-				load mdcodes.mat  % load default file (should be in path
-			end
-		elseif ifile == 0 & ipath == 0,
+        if ischar(ifile) & ischar(ipath),
+            load([ipath ifile]);
+            printf("%s%s",ipath,ifile);
+        elseif ifile == 0 & ipath == 0,
 			load mdcodes.mat
 		end
 		clear ifile ipath
