@@ -10,7 +10,7 @@ global type
 global nlist elenum moorele insert format
 
 pkg load io
-load testdb5.mat
+load mdcodes.mat
 load odsdata.mat
 load empty_mooring.mat
 

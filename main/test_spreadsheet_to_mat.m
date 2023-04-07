@@ -23,7 +23,7 @@ function test_spreadsheet_to_mat
     global handle_list wire_length h_edit_wirel delele 
     global ifile
     global h_push_save
-    load testdb5.mat
+    load mdcodes.mat
     load empty_mooring.mat
     load xlsdata.mat
     global all_list
@@ -105,8 +105,8 @@ function test_spreadsheet_to_mat
 
                 disp(all_list)
                 warning("Please fill in data for the following: %s", c{i,1});
-                save ('testdb5.mat','acrels','cms','format','miscs','anchors','chains','floats','wires','all_list');
-                load('testdb5.mat');
+                save ('mdcodes.mat','acrels','cms','format','miscs','anchors','chains','floats','wires','all_list');
+                load('mdcodes.mat');
                 pause;
 
 

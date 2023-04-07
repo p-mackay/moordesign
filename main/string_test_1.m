@@ -5,7 +5,7 @@
 %   add from database
 
 pkg load io
-load testdb5.mat
+load mdcodes.mat
 [a,b,c]=odsread('Test_Paul1.ods');
 save odsdata.mat c
 

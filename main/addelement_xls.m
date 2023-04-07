@@ -20,10 +20,10 @@ function addelement_xls(command);
                         if ~strcmp(ifile,'*.mat'),
                             load([ipath ifile]);
                         else
-                            load testdb5.mat  % load default file (should be in path
+                            load mdcodes.mat  % load default file (should be in path
                         end
                     elseif ifile == 0 && ipath == 0,
-                        load testdb5.mat 
+                        load mdcodes.mat 
                     end
                     clear ifile ipath
                 end

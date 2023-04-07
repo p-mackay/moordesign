@@ -24,7 +24,7 @@ function spreadsheet_to_mat
     global add_name add_buoy add_length
     global moorname moordepth dep 
     #global h_push_save
-    load testdb6.mat
+    load mdcodes.mat
     load empty_mooring.mat
     global testlen
     
@@ -195,7 +195,7 @@ function spreadsheet_to_mat
                 k=1;
                 match=0;
                 %waitfor(h_push_add);
-                save ('testdb6.mat','acrels','cms','format','miscs','anchors','chains','floats','wires','all_list');
+                save ('mdcodes.mat','acrels','cms','format','miscs','anchors','chains','floats','wires','all_list');
                 all_list = [""];
                 for m = 1:rows(floats)
                     all_list(rows(all_list)+1,:)=floats(m,:);

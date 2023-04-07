@@ -19,10 +19,10 @@ function addelement(command);
 				if ~strcmp(ifile,'*.mat'),
 					load([ipath ifile]);
 				else
-					load testdb5.mat  % load default file (should be in path
+					load mdcodes.mat  % load default file (should be in path
 				end
 			elseif ifile == 0 && ipath == 0,
-				load testdb5.mat 
+				load mdcodes.mat 
 			end
 			clear ifile ipath
 	end
@@ -418,7 +418,7 @@ function addelement(command);
 			'Callback','addelement(1)'); 
 	elseif command == 6,
 		disp('Saving a new MDCODES.MAT File! Should go into mooring directory.');
-		[ofile,opath]=uiputfile('testdb5.mat','Save A New MDCODES.MAT');
+		[ofile,opath]=uiputfile('mdcodes.mat','Save A New MDCODES.MAT');
 		if ~isempty(ofile),
 			save([opath ofile],'acrels','cms','format','miscs','anchors','chains','floats','wires');
 		else

@@ -1,4 +1,4 @@
-function testxls;
+function exportdb;
     % Program to make a GUI for modifying a mooring element in the database
 
     global U V W z rho
@@ -13,12 +13,13 @@ function testxls;
     global currstart currend
     global thisxl
 
-
     pkg load io
     %load xlsToMat.mat % data from xlsx file contained in varable c
-    %load testdb2.mat %initialize empty database
-    load testdb6.mat
+    %load emptydb.mat %initialize empty database
+    load mdcodes.mat
     hw={};
+    bgcolor='#e8e8e8';
+
 
     %[ifile,ipath]=uigetfile({'*.xlsx'},'Load Spread Sheet');
     %[a,b,c]=xlsread(ifile);
@@ -27,7 +28,40 @@ function testxls;
     
     %hardware
     
-    thisxl = 'example5.xlsx';
+    figure(10);clf;drawnow;axis off;
+    set(gcf,'menubar','none','Color',bgcolor);
+    set(gcf, 'numbertitle','off');
+    set(gcf,'name','Create New or Over-Write Data Base');
+    
+    ht = text (-.1,.9, '\color{red}*\color{black}Enter Name of New XLSX file: ',...
+    'units', 'normalized', 'FontSize',15);    
+    hu = uicontrol ('style', 'edit','string','', 'units', 'normalized',...
+    'position', [.05,.72,.44,.08]);
+
+    ht3 = text (.6,.6, '\bfOR ... ',...
+    'units', 'normalized', 'FontSize',15);
+
+    ht1 = text (-.1,.5, '\color{red}*\color{black}Over-Write Existing XLSX file: ',...
+    'units', 'normalized', 'FontSize',15);
+    hu1 = uicontrol ('style', 'pushbutton', 'units', 'normalized',...
+    'String', 'Browse Files',...
+    'FontSize',11,'backgroundcolor',bgcolor,...
+    'position', [.05,.4,.44,.08]);
+    %hu1 = uicontrol ('Style', 'Pushbutton',...
+    %'String', 'Browse Files',...
+    %'FontSize',15,...
+    %'position', [.55,.5,.44,.08], ...
+    %'units','normalized',...
+    %'backgroundcolor','#222222');
+    file1 = get(hu, 'String');
+    printf("%s \n", file1);
+
+
+    if 0 == 1
+    [ifile,ipath]=uigetfile({'*.xlsx'},'Create New/Update Excel Data Base');
+
+    thisxl = [ipath ifile];
+
     hdr1={'Buoyancy', 'Length', 'Width of', 'Diameter of', ...
             'Drag Coef', 'Material'};
     hdr2={'(kg)','(cm)','CYL(cm)','SPH(cm)'};
@@ -167,6 +201,8 @@ function testxls;
         xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
     endfor
     hw={};
+endif
+
 
 
     %currstart = currstart+currend;

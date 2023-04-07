@@ -1,4 +1,4 @@
-function create_db;
+function importdb;
     % Program to make a GUI for modifying a mooring element in the database
 
     global U V W z rho
@@ -12,10 +12,10 @@ function create_db;
 
     pkg load io
     %load xlsToMat.mat % data from xlsx file contained in varable c
-    load testdb2.mat %initialize empty database
+    load emptydb.mat %initialize empty database
 
     [ifile,ipath]=uigetfile({'*.xlsx'},'Load Spread Sheet');
-    [a,b,c]=xlsread(ifile);
+    [a,b,c]=xlsread([ipath ifile]);
     save xlsdbdata.mat c
     [start,stop] = rangetest(c);
     
@@ -268,9 +268,48 @@ function create_db;
         wires(m+1,:)=newele;
     endfor
     %--------------------------------
+    %Anchors
+        name = "Anchor";
+        buoy = -1500;
+        dim = [0 0 0];
+        cd = 0;
+        mat = 1;
+        text='*                              ';
+        text(1:length(name))=name;
+        tbuoy='        ';
+        if abs(buoy) < 999, 
+            buoy=num2str(buoy,'%8.3f');
+        else
+            buoy=num2str(buoy,'%8.2f');
+        end
+        tbuoy((9-length(buoy)):8)=buoy;  % must pad front with blanks
+        tdim='                  ';
+        if dim(1) < 1000,
+            dim1=num2str(dim(1),'%5.1f');
+        else
+            dim1=num2str(dim(1),'%5.0f');
+        end
+        tdim((7-length(dim1)):6)=dim1;
+        dim2=num2str(dim(2),'%5.1f');
+        tdim((13-length(dim2)):12)=dim2;
+        dim3=num2str(dim(3),'%5.1f');
+        tdim((19-length(dim3)):18)=dim3;
+        tcd='     ';
+        cd=num2str(cd,'%4.2f');
+        tcd((6-length(cd)):5)=cd;
+        tmat='  ';
+        mat=num2str(mat,'%1.0f');
+        tmat(2)=mat;
+        newele=[text tbuoy tdim tcd tmat];
+        newele=[text tbuoy tdim tcd tmat];
+%        disp(newele)
+        anchors(m+1,:)=newele;
+
+
     format=[1,30;32,39;41,45;48,51;53,57;59,62;64,64]
 
-    [ofile,opath]=uiputfile('testdb6.mat','Save A New MDCODES.MAT');
+
+    [ofile,opath]=uiputfile('mdcodes.mat','Save A New MDCODES.MAT');
     save ([opath ofile],'acrels','cms','format','miscs','anchors','chains','floats','wires');
 
 endfunction

@@ -37,7 +37,7 @@ function modmoor(command,parameter)
 		h_menu_list = handle_list(4);
 	end 
 	%
-	if isempty(typelist)||strcmp(typelist,[' ']), load testdb5.mat; end 
+	if isempty(typelist)||strcmp(typelist,[' ']), load mdcodes.mat; end 
 	%
 	if command == 0,  % then initiale the menus/number
 		if isempty(elenum),
@@ -124,10 +124,10 @@ function modmoor(command,parameter)
 			if ~strcmp(ifile,'*.mat'),
 				load([ipath ifile]);
 			else
-				load testdb5.mat  % load default file (should be in path
+				load mdcodes.mat  % load default file (should be in path
 			end
 		elseif ifile == 0 & ipath == 0,
-			load testdb5.mat
+			load mdcodes.mat
 		end
 		clear ifile ipath
 		modmoor(0);
