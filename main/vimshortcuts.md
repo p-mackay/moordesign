@@ -60,4 +60,8 @@ cd /path/to/your/file
 sed -i 's/foo/bar/g' *
 ```
 
+clone private/ any repo github
 
+```
+git clone https://[TOKEN]@github.com/[REPO-OWNER]/[REPO-NAME]
+```
