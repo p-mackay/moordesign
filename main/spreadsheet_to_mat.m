@@ -248,6 +248,11 @@ function spreadsheet_to_mat
     H(4,elenum)=0;
     ME(elenum)=inf;  % by default set modulus of elasticity to infinity (no stretch)
 
+    Cd(elenum)=str2num(anchors(1,format(6,1):format(6,2)));
+    elenum0=elenum;
+    elenum=length(B)+1;
+    insert=0;
+
 
     close(ldng);
 
