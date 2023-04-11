@@ -149,10 +149,8 @@ function dismoor(command)
         if isempty(Z),
             hght=sum(H(1,el:mm));  % Height at the top of this element
             %dpth=hght-z(1);
-            printf("%d\n",dpth);
             tmp=num2str(hght,'%8.2f');
             line(50-length(tmp):49)=tmp;
-            printf("%d",50-length(tmp));
             %printf("%d Hello World! tmp = %s length(tmp): %d\n",el,tmp, length(tmp));
             %line(103:108)="Hiilod";
             dpth=str2num(moordepth)-hght;
@@ -346,7 +344,7 @@ function dismoor(command)
                             %ypos=1-ell/90;
                             %h=text(-0.1,ypos,line);
                             %set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
-            disp("%d: Hello 2")
+                            disp("%d: Hello 2")
                             disp(line);
                             text_data = [text_data newline line];
                         else
@@ -512,7 +510,7 @@ function dismoor(command)
                                     %h=text(-0.1,ypos,line);
                                     %set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
                                     text_data = [text_data newline line];
-            disp("%d: Hello 3")
+                                    disp("%d: Hello 3")
                                 else
                                     disp(line);
                                 end
@@ -639,7 +637,7 @@ function dismoor(command)
                         %------------------------
 
                         %saveas (5, fileOut);
-                            %print -f5 -dpsc;
+                        %print -f5 -dpsc;
                         %print -deps figure5.eps
                         %print -f5 figure5.pdf
                         %open figure5.pdf

@@ -40,7 +40,6 @@ function moordesign(command);
     global xlcolor='#BEE5B0';
     %bgcolor='#ececec';
 
-    %
     if nargin == 0,% initialize some variables
         H=[];B=[];Cd=[];ME=[];moorele=[];
         U=[];V=[];W=[];z=[];rho=[];time=[];uw=[];vw=[];

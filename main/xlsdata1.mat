@@ -1,7 +1,7 @@
-# Created by Octave 8.1.0, Tue Apr 11 13:09:09 2023 GMT <unknown@WLBCIOS9082700>
+# Created by Octave 8.1.0, Tue Apr 11 15:52:13 2023 GMT <unknown@WLBCIOS9082700>
 # name: c
 # type: cell
-# rows: 59
+# rows: 60
 # columns: 7
 # name: <cell-element>
 # type: sq_string
@@ -406,6 +406,13 @@ Drop Link
 # name: <cell-element>
 # type: sq_string
 # elements: 1
+# length: 4
+test
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
 # length: 32
 estimated Amsteel II+ stretch   
 
@@ -713,6 +720,11 @@ Weight
 
 # name: <cell-element>
 # type: scalar
+20
+
+
+# name: <cell-element>
+# type: scalar
 0.0050000000000000001
 
 
@@ -1013,6 +1025,11 @@ Wet Weight
 # name: <cell-element>
 # type: scalar
 33.708256029684598
+
+
+# name: <cell-element>
+# type: scalar
+20
 
 
 # name: <cell-element>
@@ -1323,9 +1340,15 @@ Length
 
 
 # name: <cell-element>
-# type: matrix
-# rows: 0
-# columns: 0
+# type: scalar
+1
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2
+sf
 
 
 
@@ -1443,7 +1466,7 @@ off btm (m)
 
 # name: <cell-element>
 # type: scalar
-118.40239999999999
+119.40239999999999
 
 
 # name: <cell-element>
@@ -1513,7 +1536,7 @@ off btm (m)
 
 # name: <cell-element>
 # type: scalar
-88.19619999999999
+89.19619999999999
 
 
 # name: <cell-element>
@@ -1530,7 +1553,7 @@ off btm (m)
 
 # name: <cell-element>
 # type: scalar
-86.796199999999999
+87.796199999999999
 
 
 # name: <cell-element>
@@ -1641,6 +1664,12 @@ off btm (m)
 # name: <cell-element>
 # type: scalar
 7.8300000000000001
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
 
 
 # name: <cell-element>
@@ -1790,7 +1819,13 @@ assumed 1.1% stretch
 
 # name: <cell-element>
 # type: scalar
--332.89774400742118
+-312.89774400742118
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
 
 
 # name: <cell-element>
@@ -2143,7 +2178,7 @@ Inst. Depth
 
 # name: <cell-element>
 # type: scalar
-41.597600000000014
+40.597600000000014
 
 
 # name: <cell-element>
@@ -2202,7 +2237,7 @@ Inst. Depth
 
 # name: <cell-element>
 # type: scalar
--182.209882139765
+-162.209882139765
 
 
 # name: <cell-element>
@@ -2213,7 +2248,7 @@ Inst. Depth
 
 # name: <cell-element>
 # type: scalar
-71.80380000000001
+70.80380000000001
 
 
 # name: <cell-element>
@@ -2230,7 +2265,7 @@ Inst. Depth
 
 # name: <cell-element>
 # type: scalar
-73.203800000000001
+72.203800000000001
 
 
 # name: <cell-element>
@@ -2307,6 +2342,12 @@ Inst. Depth
 # name: <cell-element>
 # type: scalar
 149.97999999999999
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
 
 
 # name: <cell-element>

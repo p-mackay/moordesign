@@ -1,4 +1,4 @@
-# Created by Octave 8.1.0, Tue Apr 11 12:02:51 2023 GMT <unknown@WLBCIOS9082700>
+# Created by Octave 8.1.0, Tue Apr 11 15:53:00 2023 GMT <unknown@WLBCIOS9082700>
 # name: acrels
 # type: global sq_string
 # elements: 5
@@ -16,7 +16,7 @@ IO 1090                          -7.300  81.0  15.0   0.0 1.30 1
 
 # name: cms
 # type: global sq_string
-# elements: 24
+# elements: 25
 # length: 64
 ADP in Frame                    -31.037 175.0  15.0   0.0 1.35 1
 # length: 64
@@ -34,7 +34,7 @@ FloTech(old)+Workhorse          229.327 200.0  91.0   0.0 0.65 1
 # length: 64
 AF36↑ with Quartermaster      116.600 150.0   0.0  91.0 0.65 1
 # length: 64
-AF47E↑+WH600+SBE37            175.500 168.0  39.0   0.0 0.50 1
+ AF47E↑+WH600+SBE37           175.500 168.0  39.0   0.0 0.50 1
 # length: 64
 AF36↑+ Workhorse              170.500 150.0   0.0  91.0 0.65 1
 # length: 64
@@ -65,6 +65,8 @@ WH300 in Frame                  -16.280 130.0  50.0   0.0 1.30 1
 SeapHox in Frame                -11.780 129.0   1.0   1.0 1.00 2
 # length: 64
 AR861 B2S                       -22.000  83.0   1.0   1.0 1.00 2
+# length: 64
+test                            -20.000 100.0   1.0   1.0 1.00 1
 
 
 # name: format
@@ -147,7 +149,7 @@ Drop Link                        -2.007   1.0   1.0   1.0 1.00 2
 
 # name: floats
 # type: global sq_string
-# elements: 14
+# elements: 13
 # length: 64
 WB-17                            18.000  60.0   0.0  43.2 1.00 1
 # length: 64
@@ -174,8 +176,6 @@ Viny on 1 m of 5/16 wire         20.300 100.0   0.0  32.5 0.65 1
 AF36↑ w WH600+SBE37 ODO       155.500 150.0   1.0   1.0 1.00 2
 # length: 64
 AF44↑ w WH150+SBE37 ODO       283.000 213.0   1.0   1.0 1.00 2
-# length: 64
-test float                      100.000 100.0   0.0  30.0 0.65 1
 
 
 # name: wires

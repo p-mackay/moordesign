@@ -184,7 +184,7 @@ function addelement_xls2(command);
                     buoy=str2num(get(h_edit_elebuoy,'String'));
                     dim=str2num(get(h_edit_eledim,'String'));
                     cd=str2num(get(h_edit_elecd,'String'));
-                    mat=get(h_menu_material,'Value');
+                    mat=get(h_menu_material,'Value')-1;
                     if ~strcmp(name,' ') & ~isempty(buoy) & length(dim)== 3 & ~isempty(cd), % OK to add
                         if (buoy >= -9999.99 & buoy <= 9999.99 ) & ... % check range of enteries
                             (dim(1) <= 9999 & dim(1) >= 0) & ...
@@ -446,7 +446,7 @@ function addelement_xls2(command);
                         buoy=str2num(get(h_edit_elebuoy,'String'));
                         dim=str2num(get(h_edit_eledim,'String'));
                         cd=str2num(get(h_edit_elecd,'String'));
-                        mat=get(h_menu_material,'Value');
+                        mat=get(h_menu_material,'Value')-1;
                         if ~strcmp(name,' ') & ~isempty(buoy) & length(dim)== 3 & ~isempty(cd), % OK to modify
                             if (buoy > -10000 & buoy < 10000 ) & ... % check range of enteries
                                 (dim(1) <= 9999 & dim(1) >= 0) & ...
