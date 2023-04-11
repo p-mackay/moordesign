@@ -1,4 +1,4 @@
-# Created by Octave 8.1.0, Fri Apr 07 13:50:30 2023 GMT <unknown@WLBCIOS9082700>
+# Created by Octave 8.1.0, Tue Apr 11 12:02:42 2023 GMT <unknown@WLBCIOS9082700>
 # name: c
 # type: cell
 # rows: 106
@@ -19,106 +19,106 @@ Hardware
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-7/16" Shackle                 
+# length: 13
+7/16" Shackle
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-1/2" Shackle                  
+# length: 12
+1/2" Shackle
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-5/8" Shackle                  
+# length: 12
+5/8" Shackle
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-3/4" Shackle                  
+# length: 12
+3/4" Shackle
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-7/8" Shackle                  
+# length: 12
+7/8" Shackle
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-1" Shackle                    
+# length: 10
+1" Shackle
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-1/2" Sling Link               
+# length: 15
+1/2" Sling Link
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-5/8" Sling Link               
+# length: 15
+5/8" Sling Link
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-3/4" Sling Link               
+# length: 15
+3/4" Sling Link
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-7/8" Sling Link               
+# length: 15
+7/8" Sling Link
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-Miller B212                   
+# length: 11
+Miller B212
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-Miller C212                   
+# length: 11
+Miller C212
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-MillerC3                      
+# length: 8
+MillerC3
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-Drop Link                     
+# length: 9
+Drop Link
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-1" Chain                      
+# length: 8
+1" Chain
 
 
 # name: <cell-element>
@@ -143,98 +143,99 @@ Flotation
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-WB-17                         
+# length: 5
+WB-17
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-SG-17                         
+# length: 5
+SG-17
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-SS-28                         
+# length: 5
+SS-28
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-SS30 (WHH)                    
+# length: 10
+SS30 (WHH)
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-SB30                          
+# length: 4
+SB30
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-HMB-31-0750                   
+# length: 11
+HMB-31-0750
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-Interocean 34                 
+# length: 13
+Interocean 34
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-SS-37                         
+# length: 5
+SS-37
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-SS-41                         
+# length: 5
+SS-41
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-Viny on 1 m of 5/16 wire      
+# length: 24
+Viny on 1 m of 5/16 wire
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-4 Vinies on 3/4" Polysteel    
+# length: 26
+4 Vinies on 3/4" Polysteel
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-AF36↑ w WH600+SBE37 ODO     
+# length: 25
+AF36↑ w WH600+SBE37 ODO
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-AF44↑ w WH150+SBE37 ODO     
+# length: 25
+AF44↑ w WH150+SBE37 ODO
 
 
 # name: <cell-element>
-# type: matrix
-# rows: 0
-# columns: 0
+# type: sq_string
+# elements: 1
+# length: 10
+test float
 
 
 # name: <cell-element>
@@ -259,169 +260,169 @@ Current Meters
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-ADP in Frame                  
+# length: 12
+ADP in Frame
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-Aquadopp↓+SBE37             
+# length: 17
+Aquadopp↓+SBE37
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-Aquadopp↓+SBE37ODO          
+# length: 20
+Aquadopp↓+SBE37ODO
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-Argonaut MD in Frame          
+# length: 20
+Argonaut MD in Frame
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-HF33↑ with Workhorse        
+# length: 22
+HF33↑ with Workhorse
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-HF33↓ with Workhorse        
+# length: 22
+HF33↓ with Workhorse
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-FloTech(old)+Workhorse        
+# length: 22
+FloTech(old)+Workhorse
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-AF36↑ with Quartermaster    
+# length: 26
+AF36↑ with Quartermaster
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
- AF47E↑+WH600+SBE37         
+# length: 20
+AF47E↑+WH600+SBE37
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-AF36↑+ Workhorse            
+# length: 18
+AF36↑+ Workhorse
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-AF36↓ with Workhorse        
+# length: 22
+AF36↓ with Workhorse
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-AF44↑+LR75+SBE37ODO         
+# length: 21
+AF44↑+LR75+SBE37ODO
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-LR75↑ & 45" Float           
+# length: 19
+LR75↑ & 45" Float
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-LR75↓ & 45" Float           
+# length: 19
+LR75↓ & 45" Float
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-RCM11                         
+# length: 5
+RCM11
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-RCM4                          
+# length: 4
+RCM4
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-RCM5                          
+# length: 4
+RCM5
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-RCM7                          
+# length: 4
+RCM7
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-S4                            
+# length: 2
+S4
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-WH300 w 4 Vinies              
+# length: 16
+WH300 w 4 Vinies
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-WH300 w 8 Vinies              
+# length: 16
+WH300 w 8 Vinies
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-WH300 in Frame                
+# length: 14
+WH300 in Frame
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-SeapHox in Frame              
+# length: 16
+SeapHox in Frame
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-AR861 B2S                     
+# length: 9
+AR861 B2S
 
 
 # name: <cell-element>
@@ -452,36 +453,36 @@ Releases
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-AR861                         
+# length: 5
+AR861
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-Paired AR861                  
+# length: 12
+Paired AR861
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-PORT                          
+# length: 4
+PORT
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-Paired PORTs                  
+# length: 12
+Paired PORTs
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-IO 1090                       
+# length: 7
+IO 1090
 
 
 # name: <cell-element>
@@ -512,64 +513,64 @@ Miscellaneous Instruments
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-SM2M+ in Frame                
+# length: 14
+SM2M+ in Frame
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-Aural + Frame                 
+# length: 13
+Aural + Frame
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-Baker Trap                    
+# length: 10
+Baker Trap
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-Double Baker Trap             
+# length: 17
+Double Baker Trap
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-Triple Baker w 3 Vinies       
+# length: 23
+Triple Baker w 3 Vinies
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-Vemco                         
+# length: 5
+Vemco
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-SBE19+ with frame             
+# length: 17
+SBE19+ with frame
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-SBE37                         
+# length: 5
+SBE37
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-SBE37-SMP with frame          
+# length: 20
+SBE37-SMP with frame
 
 
 # name: <cell-element>
@@ -600,134 +601,134 @@ Mooring Lines
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-5/16" Amsteel II+             
+# length: 17
+5/16" Amsteel II+
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-5 mm Dynice Dux               
+# length: 15
+5 mm Dynice Dux
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-1/4" Kevlar                   
+# length: 11
+1/4" Kevlar
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-1" Buoy Chain                 
+# length: 13
+1" Buoy Chain
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-5/16" Amgal                   
+# length: 11
+5/16" Amgal
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-1/4" Amgal                    
+# length: 10
+1/4" Amgal
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-3/4" Poly                     
+# length: 9
+3/4" Poly
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-1" RP12 UB                    
+# length: 10
+1" RP12 UB
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-1" RP12 Nylon                 
+# length: 13
+1" RP12 Nylon
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-7/8" RP12 Nylon               
+# length: 15
+7/8" RP12 Nylon
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-1" Polysteel                  
+# length: 12
+1" Polysteel
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-3/4" Nylon                    
+# length: 10
+3/4" Nylon
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-1/4" Amsteel                  
+# length: 12
+1/4" Amsteel
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-5 mm Dynice Dux               
+# length: 15
+5 mm Dynice Dux
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-5/16" Tenex                   
+# length: 11
+5/16" Tenex
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-3/8" Tenex                    
+# length: 10
+3/8" Tenex
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-1/2" Polyester                
+# length: 14
+1/2" Polyester
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-5/8" Polyester                
+# length: 14
+5/8" Polyester
 
 
 # name: <cell-element>
 # type: sq_string
 # elements: 1
-# length: 30
-1/4" Tenex                    
+# length: 10
+1/4" Tenex
 
 
 
@@ -904,9 +905,8 @@ Buoyancy
 
 
 # name: <cell-element>
-# type: matrix
-# rows: 0
-# columns: 0
+# type: scalar
+100
 
 
 # name: <cell-element>
@@ -1458,9 +1458,8 @@ Length
 
 
 # name: <cell-element>
-# type: matrix
-# rows: 0
-# columns: 0
+# type: scalar
+100
 
 
 # name: <cell-element>
@@ -2012,9 +2011,8 @@ CYL(cm)
 
 
 # name: <cell-element>
-# type: matrix
-# rows: 0
-# columns: 0
+# type: scalar
+0
 
 
 # name: <cell-element>
@@ -2566,9 +2564,8 @@ SPH(cm)
 
 
 # name: <cell-element>
-# type: matrix
-# rows: 0
-# columns: 0
+# type: scalar
+30
 
 
 # name: <cell-element>
@@ -3119,9 +3116,8 @@ Drag Coef
 
 
 # name: <cell-element>
-# type: matrix
-# rows: 0
-# columns: 0
+# type: scalar
+0.65000000000000002
 
 
 # name: <cell-element>
@@ -3672,9 +3668,8 @@ Material
 
 
 # name: <cell-element>
-# type: matrix
-# rows: 0
-# columns: 0
+# type: scalar
+1
 
 
 # name: <cell-element>
