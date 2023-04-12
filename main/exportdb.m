@@ -1,5 +1,19 @@
 function exportdb;
     % Program to make a GUI for modifying a mooring element in the database
+    %{
+    The variable chains is a char array. I think you should take the text out and then the numbers out and write them separately.
+
+    For the text,
+
+    txt = cellstr (chains(:,1:30));
+    xlswrite(thisxl,txt,'Sheet1', 'A3');
+    The last argument for xlswrite anchors the top-left corner of where the data will be placed and the lower right-hand corner is determined by the size of the data itself—no need to be fancy and try to calculate the range yourself.
+
+    The numeric data can be extracted with
+
+    data = str2num (chains(:,31:end));
+    xlswrite(thisxl,data,'Sheet1', 'B3');
+    %}
 
     global U V W z rho
     global H B Cd ME moorele
