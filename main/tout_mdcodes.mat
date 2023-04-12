@@ -1,0 +1,77 @@
+# Created by Octave 8.1.0, Wed Apr 12 13:18:43 2023 GMT <unknown@WLBCIOS9082700>
+# name: acrels
+# type: global sq_string
+# elements: 0
+
+
+# name: cms
+# type: global sq_string
+# elements: 0
+
+
+# name: format
+# type: global matrix
+# rows: 7
+# columns: 2
+ 1 30
+ 32 48
+ 50 54
+ 57 60
+ 62 66
+ 68 71
+ 73 73
+
+
+# name: miscs
+# type: global sq_string
+# elements: 0
+
+
+# name: anchors
+# type: global sq_string
+# elements: 0
+
+
+# name: chains
+# type: global sq_string
+# elements: 0
+
+
+# name: floats
+# type: global sq_string
+# elements: 14
+# length: 73
+WB-17                            10.000     18.0  60.0   0.0  43.2 1.00 1
+# length: 73
+SG-17                            10.000     23.0  60.0   0.0  43.2 1.00 1
+# length: 73
+SS-28                            10.000    133.0 111.0   0.0  71.1 0.65 1
+# length: 73
+SS30 (WHH)                       10.000    161.0 111.0   0.0  75.0 0.65 1
+# length: 73
+SB30                             10.000    166.0  87.0   0.0  75.0 0.65 1
+# length: 73
+HMB-31-0750                      10.000    135.0  90.0   0.0  77.5 0.65 1
+# length: 73
+Interocean 34                    10.000    190.0  97.0   0.0  86.0 0.65 1
+# length: 73
+SS-37                            10.000    300.0 129.0   0.0  92.5 0.65 1
+# length: 73
+SS-41                            10.000    435.0 135.0   0.0 102.5 0.65 1
+# length: 73
+Viny on 1 m of 5/16 wire         10.000     20.3 100.0   0.0  32.5 0.65 1
+# length: 73
+4 Vinies on 3/4" Polysteel       10.000     83.3 150.0   1.0   1.0 1.00 2
+# length: 73
+AF36↑ w WH600+SBE37 ODO        10.000    155.5 150.0   1.0   1.0 1.00 2
+# length: 73
+AF44↑ w WH150+SBE37 ODO        10.000    283.0 213.0   1.0   1.0 1.00 2
+# length: 73
+test float                       10.000    100.0 100.0   0.0  30.0 0.65 1
+
+
+# name: wires
+# type: global sq_string
+# elements: 0
+
+

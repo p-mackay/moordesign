@@ -65,3 +65,11 @@ clone private/ any repo github
 ```
 git clone https://[TOKEN]@github.com/[REPO-OWNER]/[REPO-NAME]
 ```
+
+Visually select all the lines you want to increment, and do the following:
+
+```
+:s/\d\+/\=submatch(0) + 132
+
+```
+

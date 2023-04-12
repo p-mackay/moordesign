@@ -32,7 +32,7 @@ function moordesign(command);
 
     global U V W z rho time uw vw
     global Xts Yts Zts Tits psits iobjts M figs   % these are time series variables
-    global H B Cd ME moorele
+    global H B Wt Cd ME moorele
     global X Y Z Ti iobj jobj psi
     global Ht Bt Cdt MEt moorelet Usp Vsp DD
     global fs
@@ -41,7 +41,7 @@ function moordesign(command);
     %bgcolor='#ececec';
 
     if nargin == 0,% initialize some variables
-        H=[];B=[];Cd=[];ME=[];moorele=[];
+        H=[];B=[];Wt=[];Cd=[];ME=[];moorele=[];
         U=[];V=[];W=[];z=[];rho=[];time=[];uw=[];vw=[];
         M=[];Xts=[];Yts=[];Zts=[];Tits=[];psits=[];iobjts=[]; figs=[];
         X=[];Y=[];Z=[];Zoo=[];Ti=[];psi=[];iobj=[];jobj=[];
@@ -49,7 +49,7 @@ function moordesign(command);
         command=0;
     end
     if command==2, % load a new mooring/towed body
-        H=[];B=[];Cd=[];ME=[];moorele=[];
+        H=[];B=[];Wt=[];Cd=[];ME=[];moorele=[];
         U=[];V=[];W=[];z=[];rho=[];time=[];uw=[];vw=[];
         M=[];Xts=[];Yts=[];Zts=[];Tits=[];psits=[];iobjts=[]; figs=[];
         X=[];Y=[];Z=[];Zoo=[];Ti=[];psi=[];iobj=[];jobj=[];

@@ -27,9 +27,9 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 
 	if nargin == 0,
 		global U V W z rho uw vw
-		global H B Cd ME
+		global H B Wt Cd ME
 	end
-	global Hs Bs Cds MEs iss % saved for multiple float or "S" moorings
+	global Hs Bs Wts Cds MEs iss % saved for multiple float or "S" moorings
 	global moorele X Y Z Ti iobj jobj psi iEle theta
 	global HCO BCO CdCO mooreleCO ZCO Jobj Pobj PIobj IEle % any clamped on devices
 	global Z0co Zfco Xfco Yfco psifco
@@ -45,7 +45,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
     ztest=z;
 
 	X=[];Y=[];Z=[];Ti=[];iobj=[];jobj=[];psi=[];
-	if isempty(iss), Hs=H;Bs=B;Cds=Cd;MEs=ME; end % save the original mooring design.
+	if isempty(iss), Hs=H;Bs=B;Wts=Wt;Cds=Cd;MEs=ME; end % save the original mooring design.
 	if ~isempty(find(B==0)), B(find(B==0))=-0.0001; end  % things can go horribly wrong with neutral buoyancy
 	[mu,nu]=size(U);
 	if (mu==0 && nu==0) || max(z)==0, % if environmental variable haven't been set
@@ -115,6 +115,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 		%
 		% first change masses/buoyancies into forces (Newtons)
 		Bw=B*9.81; % Turn masses/buoyancies into forces
+        Wtw=Wt*9.81; % When a surface mooring, Wt(1)/B(1) (10-25%) of buoyancy used to float
 		BwCO=BCO*9.81;
 		Bmax=Bw(1); % maximum buoyancy available at top of mooring
 		%
@@ -123,27 +124,32 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 		% First determine if this is a sub-surface or surface float mooring.
 		% This is determined by the maximum height of the velocity profile as the water depth
 		Zw=max(z);  % The water depth!
-		S=sum(H(1,:)); % maximum length of the mooring
-		if isempty(nomovie), disp('  '); end
-		gamma=1;
-		if Zw > S, % then this is a sub-surface mooring
-			ss=1;
-			if isempty(nomovie) && izloop==2,disp('This is (starting off as) a sub-surface mooring');end
-		else % this is a surface float mooring
-			ss=0;
-			if isempty(nomovie) && izloop==2,disp('This is (starting off as) a potential surface float mooring');end
-		end
-		if izloop==1,
-			disp('First, find neutral (no current) mooring component positions.');
-		else
-			disp('Searching for a converged solution.');
-		end
-		%
-		Zi=[];Hi=[];Bi=[];Cdi=[];MEi=[];iobj=[];
+        S=sum(H(1,:)); % maximum length of the mooring
+        if isempty(nomovie), disp('  '); end
+
+            gamma=1;  % fraction of top float used to keep mooring up (start with 100%)
+            gamma_min=Wt(1)/B(1); % this is the fraction of the float used to float the buoy itself (10-30%)
+
+
+            if Zw > S, % then this is a sub-surface mooring
+                ss=1;
+                if isempty(nomovie) && izloop==2,disp('This is (starting off as) a sub-surface mooring');end
+                else % this is a surface float mooring
+                    ss=0;
+                    if isempty(nomovie) && izloop==2,disp('This is (starting off as) a potential surface float mooring');end
+                    end
+                    if izloop==1,
+                        disp('First, find neutral (no current) mooring component positions.');
+                    else
+                        disp('Searching for a converged solution.');
+                    end
+                    %
+		Zi=[];Hi=[];Bi=[];Wti=[];Cdi=[];MEi=[];iobj=[];
 		j=1; % for node setup, segment from bottom to top
 		Zi(1)=H(1,N);  % height of the top of the anchor, start of mooring
 		Hi(:,1)=H(:,N); % setup interpolated H,B,Cd variables
 		Bi(:,1)=Bw(:,N);
+        Wti(:,1)=Wtw(:,N);
 		Cdi(1)=Cd(N);
 		MEi(1)=ME(N);
 		z0=H(1,N); % height of top of first element (anchor)
@@ -169,6 +175,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 					z0=z0+dz;
 					Hi(:,jj)=[dz H(2,i) H(3,i) H(4,i)]';
 					Bi(jj)=Bw(i)*dz; % the stored mass is per unit metre
+                    Wti(jj)=Wtw(i)*dz;
 					Cdi(jj)=Cd(i);
 					MEi(jj)=ME(i);
 				end
@@ -180,6 +187,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 				z0=z0+H(1,i);
 				Hi(:,j)=H(:,i);
 				Bi(j)=Bw(i);
+                Wti(j)=Wtw(i);
 				Cdi(j)=Cd(i);
 				MEi(j)=ME(i);
 			end
@@ -245,10 +253,13 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 		% Now find the drag on each element assuming first a vertical mooring.
 		if ss==0, % for surface float moorings...
 			Bo=-sum(Bi(2:N-1)) + sum(BwCO);% sum the weight of all elements except the surface float and anchor
+            Bo=Bo + Wtw(1);
 			Zi=Zi*Zw/S; % force elements to be in water for drag, etc....
 			Boo=Bo;
 			gamma=Bo/Bmax;
-			if gamma> 1, gamma=0.9; end
+			if gamma> 1, gamma=0.9; gammas=-1; end
+            gamma_min=max([gamma_min gamma]);
+            if gamma < gamma_min, gamma=gamma_min; gammas=1; end
 		end
 		for j=1:N,  % from bottom-to-top for this first go through
 			ico=[];if ~isempty(Iobj),ico=find(Iobj==j); end % If ~isempty(ico), then there is a clamp on device here
@@ -332,7 +343,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 		Ti(1)=0;
 		theta(1)=0;
 		psi(1)=0;
-		b=gamma*(Bi(1)+Qz(1));
+		b=gamma*(Bi(1)+Qz(1));% vertical tension/force under buoy is due to the % submerged (gamma)
 		theta(2)=atan2(Qy(1),Qx(1));
 		Ti(2)=sqrt(Qx(1)^2 + Qy(1)^2 + b^2);
 		psi(2)=real(acos(b/Ti(2)));
@@ -376,7 +387,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 				if Z(i) <= Z(N), Z(i)= Z(N); psi(i)=pi/2; end % bottom chain
 			end
 		end
-		if max(Z)>Zw && ss==1, ss=0; gamma=sqrt(gamma); end % this may be a surface mooring after all
+		if max(Z)>Zw && ss==1, ss=0; end % this may be a surface mooring after all
 		%
 		% Now with the first order positions, we must re-estimate the new
 		% drags at the new heights (Zi) and for cylinders tilted by psi in flow.
@@ -389,16 +400,15 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 		icnt=0;
 		iavg=0;
 		isave=0;
-		dg=0.1;gf=2;dgf=0;
-		dgc=0;
+		dg=0.1;gf=2;dgf=0;dgc=0;
 		if izloop==1,
 			deltaz=0.1; % first zero current case, not as accurate 10 cm
 		else
 			deltaz=0.01;  % how close to you want the convergence! 0.01=1cm
 		end
-		gamma0=Ti(2)*cos(psi(2))/Bi(1); % estimate required lift
+        gamma=(Wtw(1)+Ti(2)*cos(psi(2)))/Bw(1); % estimate required lift
 		gammas=-1; % assume we're too high and start by decreasing gamma
-		if gamma < gamma0, gammas=1;end % otherwise start by increasing
+        if gamma < gamma_min, gamma=gamma_min; gammas=1; end % otherwise start by increasing
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		%                                    %
 		% Main iteration/convergence loop    %
@@ -422,109 +432,110 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 				end
 				izm=find(Z<0); % just in case any elements are below the bottom, oops.
 				Z(izm)=0;      % dig them up.
-				gamma0=Ti(2)*cos(psi(2))/Bi(1); % estimate required lift to support the mooring
-				if (1+gf)*dg >= gamma && gammas==-1, dg=dg/10; end % be careful if gamma is very small
-				if gamma+((1+gf)*gammas*dg) >=1 && gammas==-1, dg=dg/10; end % or if gamma is very large (1)
+                gamma0=(Wtw(1)+Ti(2)*cos(psi(2)))/Bi(1); % estimate required lift to support the mooring
+                if gamma>1, gamma=1; ss=1; end
+                if (1+gf)*dg >= gamma & gammas==-1, dg=dg/fact; end % be careful if gamma is very small
+                if gamma+((1+gf)*gammas*dg) >=1 & gammas==-1, dg=dg/fact; end % or if gamma is very large (1)
 				if (Zf+Hi(1,1)) <= Zw,  % then we're completely submerged! Increase % buoyancy.
 					dgc=dgc+1;
 					dgf=0;
 					if gammas == -1, % was decreasing, now increase
 						gammas=1;
-						dg=dg/10;
-						if dg < 1e-10, dg = 1e-5; end % shake things up a bit.
+						dg=dg/fact;
+						%if dg < 1e-10, dg = 1e-5; end % shake things up a bit.
 						dgc=0;
 					end
 					gamma=gamma + gammas*dg*(gf * rand);
 					if dgc > dgci,
-						dg=dg*10;
+						dg=dg*fact;
 						dgc=0;
 					end
-					%if (gamma+dg>1, gamma=1; ss=1; end % this is now a subsurface mooring.
+					if (gamma+dg>1, gamma=1; ss=1; end % this is now a subsurface mooring.
 				elseif Zw > Zf && Zw < (Zf+Hi(1,1)),  % then we're partially floating (we're close)
 					dgc=dgc+1;
 					dgf=0;
 					if ((Zw-Zf)/Hi(1,1)) < gamma, % then decrease gamma
 						if gammas == 1,
 							gammas=-1;
-							dg=dg/10;
+							dg=dg/fact;
 							dgc=0;
 						end
 						gamma=gamma + gammas*dg*(gf * rand);
 						if dgc > dgci,
-							dg=dg*10;
+							dg=dg*fact;
 							dgc=0;
 						end
 					else % then increase gamma
 						if gammas == -1,
 							gammas=1;
-							dg=dg/10;
+							dg=dg/fact;
 							dgc=0;
 						end
 						gamma=gamma + gammas*dg*(gf * rand);
 						if dgc > dgci,
-							dg=dg*10;
+							dg=dg*fact;
 							dgc=0;
 						end
 					end
-					izz=find(Hi(4,:)==0);
-					if gamma<1e-10 && dg < 1e-09 && max(Z(izz))>(Zf+Hi(1,1)) && iavg > 200, % then there is still part of this mooring above water!
-						NN=length(B);
-						inext=find(B>1); % look for positive (floation device)
-						if length(inext)>1,  % remove the top part of the mooring that is not contributing to top buoyancy
-							H=H(:,inext(2):NN);
-							B=B(:,inext(2):NN);
-							Cd=Cd(inext(2):NN);
-							ME=ME(inext(2):NN);
-							moorele=moorele(inext(2):NN,:);
-							U=Utmp;V=Vtmp;W=Wtmp;z=ztmp;rho=rhotmp;
-							disp('!! Top link(s) in mooring removed !!');
-							Z=[];iss=1;
-							dismoor;
-							moordyn;
-							return;
-						else
-							error('This mooring''s not working! Please examine. Strong currents or shears? Try reducing them.');
-						end
-					end
+					%izz=find(Hi(4,:)==0);
+					%if gamma<1e-10 && dg < 1e-09 && max(Z(izz))>(Zf+Hi(1,1)) && iavg > 200, % then there is still part of this mooring above water!
+					%	NN=length(B);
+					%	inext=find(B>1); % look for positive (floation device)
+					%	if length(inext)>1,  % remove the top part of the mooring that is not contributing to top buoyancy
+					%		H=H(:,inext(2):NN);
+					%		B=B(:,inext(2):NN);
+					%		Cd=Cd(inext(2):NN);
+					%		ME=ME(inext(2):NN);
+					%		moorele=moorele(inext(2):NN,:);
+					%		U=Utmp;V=Vtmp;W=Wtmp;z=ztmp;rho=rhotmp;
+					%		disp('!! Top link(s) in mooring removed !!');
+					%		Z=[];iss=1;
+					%		dismoor;
+					%		moordyn;
+					%		return;
+					%	else
+					%		error('This mooring''s not working! Please examine. Strong currents or shears? Try reducing them.');
+					%	end
+					%end
 				elseif Zf >= Zw,  % we're in trouble, the float is flying! Decrease % of float used.
 					dgc=dgc+1;
 					dgf=dgf+1;
 					if gammas == 1, % was increasing gamma, need to decrease it
 						gammas=-1;
-						%dg=dg/10;
-						if dg < 1e-10, dg = 1e-5; end % shake things up a bit.
+						dg=dg/fact;
+						%if dg < 1e-10, dg = 1e-5; end % shake things up a bit.
 						dgc=0;
 					end
 					if dgf > 5, dg=1e-3; dgf=0; end % we gotta get back into the water
 					gamma=gamma + gammas*dg*(gf * rand);
 					if dgc > dgci,
-						dg=dg*10;
+						dg=dg*fact;
 						dgc=0;
 					end
 					if gamma>=1, gamma=1; ss=1; end
-					if abs(gamma) < 1e-6, % then this float is not required. Less than 0.01% of float used.
-						NN=length(B);
-						inext=find(B>1);
-						if length(inext)>1,
-							H=H(:,inext(2):NN);
-							B=B(inext(2):NN);
-							Cd=Cd(inext(2):NN);
-							ME=ME(inext(2):NN);
-							moorele=moorele(inext(2):NN,:);
-							U=Utmp;V=Vtmp;W=Wtmp;z=ztmp;rho=rhotmp;
-							disp('!! Top link(s) in mooring removed !!');
-							Z=[];iss=1;
-							dismoor;
-							moordyn;
-							return
-						else
-							error('This mooring''s not working! Solution isn''t converging. Please reduce shear and max speeds.');
-						end
-					end
+					%if abs(gamma) < 1e-6, % then this float is not required. Less than 0.01% of float used.
+					%	NN=length(B);
+					%	inext=find(B>1);
+					%	if length(inext)>1,
+					%		H=H(:,inext(2):NN);
+					%		B=B(inext(2):NN);
+					%		Cd=Cd(inext(2):NN);
+					%		ME=ME(inext(2):NN);
+					%		moorele=moorele(inext(2):NN,:);
+					%		U=Utmp;V=Vtmp;W=Wtmp;z=ztmp;rho=rhotmp;
+					%		disp('!! Top link(s) in mooring removed !!');
+					%		Z=[];iss=1;
+					%		dismoor;
+					%		moordyn;
+					%		return
+					%	else
+					%		error('This mooring''s not working! Solution isn''t converging. Please reduce shear and max speeds.');
+					%	end
+					%end
 				end
 			end % end loop looking for gamma, fraction of top buoyancy needed in surface solution
 
-			if gamma<0, gamma=abs(gamma); end
+			if gamma<gamma_min, gamma=gamm_min;gammas=1; end
 			if gamma>=1, gamma=1; ss=1; end        
 			if isave >= 20, % if it's having problems converging, start a running average when it's close
 				iavg=iavg+1;
@@ -555,6 +566,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 				Z=Zavg/iavg;
 				Ti=Tiavg/iavg;
 				psi=psiavg/iavg;
+                gamma=gammavg/iavg;
 			end
 			%
 			Zf=Z(1)-Hi(1,1)/2;
@@ -564,7 +576,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 				if mod(icnt,ilines)==0,fprintf(1,'.');end
 				if icnt>=60*ilines, icnt=0; ilines=ilines+1; fprintf(1,'%8i',isave); disp(' ');end
 			end
-			if iavg>iprt && ss==1, disp([Z(1) (Z(1)-Z1(isave-1))]); end
+			%if iavg>iprt && ss==1, disp([Z(1) (Z(1)-Z1(isave-1))]); end
 			%
 			phix=atan2((cos(theta).*sin(psi)),cos(psi));
 			phiy=atan2((sin(theta).*sin(psi)),cos(psi));
@@ -579,10 +591,10 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 					i=find(zi>=(Z(j)-Hi(1,1)) & zi<=(Z(j)+Hi(1,1)));
 					if isempty(i), i=1; end % take the top velocity value
 				end
-				if isempty(i),
-					disp([' Check this configuration: ',num2str([j Z(1) Z(j)])]);
-					error(' Can''t find the velocity at this element! Near line 572 of moordyn.m');
-				end
+				%if isempty(i),
+				%	disp([' Check this configuration: ',num2str([j Z(1) Z(j)])]);
+				%	error(' Can''t find the velocity at this element! Near line 572 of moordyn.m');
+				%end
 				i=i(1); % just in case it got more than one velocity value/index
 				%
 				theta2=atan2(Vi(i),Ui(i)); % the horizontal current vector angle
@@ -717,11 +729,11 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 			thetaNew(2)=atan2(Qy(1),Qx(1));
 			Ti(2)=sqrt(Qx(1)^2 + Qy(1)^2 + b^2); % total tension/force on top element, must be balanced from below
 			if gamma < 1, % for surface float, just use submerged drag and buoysncy.
-				Ti(2)=sqrt((gamma*Qx(1))^2 + (gamma*Qy(1))^2 + (gamma*b)^2);
+				Ti(2)=gamma*Ti(2);%sqrt((gamma*Qx(1))^2 + (gamma*Qy(1))^2 + (gamma*b)^2);
 			end
 			%
-			psiNew(2)=real(acos(b/Ti(2)));  % tilt under top element(float)
-			psiNew(1)=psiNew(2)/2;       % top float is inclined upwards
+			psiNew(2)=real(acos(gamma*b/Ti(2)));  % tilt under top element(float)
+			psiNew(1)=psiNew(2);       % top float is inclined upwards
 			thetaNew(1)=thetaNew(2);     % top float is tilted in X/Y as a solid object.
 			% Now Solve from top (just under float) to bottom (top of anchor).
 			for Zii0=1:1, % do this twice to confirm all angles/tensions are set 
@@ -826,7 +838,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 			psi=real(psi);
 
 			Zf=Z(1)-Hi(1,1)/2;
-			if max(Z)>Zw && ss==1, ss=0; gamma=sqrt(gamma); end % this may be a surface mooring after all
+			if max(Z)>Zw && ss==1, ss=0; end % this may be a surface mooring after all
 			%
 			%
 			if isave > 2, % must do at least three iterations to check convergence

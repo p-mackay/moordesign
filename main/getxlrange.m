@@ -19,22 +19,22 @@ function [startlist, stoplist] = getxlrange(c);
 
     %Make this a switch statment switch on element type
 
-    for i = 1:m
-        if(strcmp(c{i,1}, "Hardware")==1)
-            break;
-        else
-        endif
-    endfor
-    start=i+1;
-    startlist(1,1)=start;
-    for i = start:m
-        if(ca(i,1)==1)
-            break;
-        else
-        endif
-    endfor
-    stop=i-1;
-    stoplist(1,1)=stop;
+%    for i = 1:m
+%        if(strcmp(c{i,1}, "Hardware")==1)
+%            break;
+%        else
+%        endif
+%    endfor
+%    start=i+1;
+%    startlist(1,1)=start;
+%    for i = start:m
+%        if(ca(i,1)==1)
+%            break;
+%        else
+%        endif
+%    endfor
+%    stop=i-1;
+%    stoplist(1,1)=stop;
     %------------------------------------------------------------- 
     for i = 1:m
         if(strcmp(c{i,1}, "Flotation")==1)
@@ -54,78 +54,78 @@ function [startlist, stoplist] = getxlrange(c);
     stoplist(1,2)=stop;
 
     %------------------------------------------------------------- 
-    for i = 1:m
-        if(strcmp(c{i,1}, "Current Meters")==1)
-            break;
-        else
-        endif
-    endfor
-    start=i+1;
-	startlist(1,3)=start;
-    for i = start:m
-        if(ca(i,1)==1)
-            break;
-        else
-        endif
-    endfor
-    stop=i-1;
-	stoplist(1,3)=stop;
-
-    %------------------------------------------------------------- 
-    for i = 1:m
-        if(strcmp(c{i,1}, "Releases")==1)
-            break;
-        else
-        endif
-    endfor
-    start=i+1;
-	startlist(1,4)=start;
-    for i = start:m
-        if(ca(i,1)==1)
-            break;
-        else
-        endif
-    endfor
-    stop=i-1;
-	stoplist(1,4)=stop;
-
-    %------------------------------------------------------------- 
-    for i = 1:m
-        if(strcmp(c{i,1}, "Miscellaneous Instruments")==1)
-            break;
-        else
-        endif
-    endfor
-    start=i+1;
-	startlist(1,5)=start;
-    for i = start:m
-        if(ca(i,1)==1)
-            break;
-        else
-        endif
-    endfor
-    stop=i-1;
-	stoplist(1,5)=stop;
-
-    %------------------------------------------------------------- 
-    for i = 1:m
-        if(strcmp(c{i,1}, "Mooring Lines")==1)
-            break;
-        else
-        endif
-    endfor
-    start=i+1;
-	startlist(1,6)=start;
-    for i = start:m
-        if(ca(i,1)==1)
-            break;
-        else
-        endif
-    endfor
-    %printf("start: %s\n",c{i,1});
-    stop=i;
-	stoplist(1,6)=stop;
-    %printf("stop: %d\n", stop);
+%    for i = 1:m
+%        if(strcmp(c{i,1}, "Current Meters")==1)
+%            break;
+%        else
+%        endif
+%    endfor
+%    start=i+1;
+%	startlist(1,3)=start;
+%    for i = start:m
+%        if(ca(i,1)==1)
+%            break;
+%        else
+%        endif
+%    endfor
+%    stop=i-1;
+%	stoplist(1,3)=stop;
+%
+%    %------------------------------------------------------------- 
+%    for i = 1:m
+%        if(strcmp(c{i,1}, "Releases")==1)
+%            break;
+%        else
+%        endif
+%    endfor
+%    start=i+1;
+%	startlist(1,4)=start;
+%    for i = start:m
+%        if(ca(i,1)==1)
+%            break;
+%        else
+%        endif
+%    endfor
+%    stop=i-1;
+%	stoplist(1,4)=stop;
+%
+%    %------------------------------------------------------------- 
+%    for i = 1:m
+%        if(strcmp(c{i,1}, "Miscellaneous Instruments")==1)
+%            break;
+%        else
+%        endif
+%    endfor
+%    start=i+1;
+%	startlist(1,5)=start;
+%    for i = start:m
+%        if(ca(i,1)==1)
+%            break;
+%        else
+%        endif
+%    endfor
+%    stop=i-1;
+%	stoplist(1,5)=stop;
+%
+%    %------------------------------------------------------------- 
+%    for i = 1:m
+%        if(strcmp(c{i,1}, "Mooring Lines")==1)
+%            break;
+%        else
+%        endif
+%    endfor
+%    start=i+1;
+%	startlist(1,6)=start;
+%    for i = start:m
+%        if(ca(i,1)==1)
+%            break;
+%        else
+%        endif
+%    endfor
+%    %printf("start: %s\n",c{i,1});
+%    stop=i;
+%	stoplist(1,6)=stop;
+%    %printf("stop: %d\n", stop);
 
 
 endfunction

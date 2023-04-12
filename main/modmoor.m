@@ -2,7 +2,7 @@ function modmoor(command,parameter)
 	% Program to make a GUI for modifying a mooring design
 
 	global U V W z rho
-	global H B Cd ME moorele
+	global H B Wt Cd ME moorele
 	global Ht Bt Cdt MEt moorelet
 	global BCO ZCO Jobj Pobj
 	global floats wires chains acrels cms anchors miscs format typelist type list
@@ -12,7 +12,7 @@ function modmoor(command,parameter)
 
 	if nargin == 0 | command <= 0,
 		if command == -1,
-			H=[];B=[];Cd=[];ME=[];moorele=[];X=[];Y=[];Z=[];Zoo=[];
+			H=[];B=[];Wt=[];Cd=[];ME=[];moorele=[];X=[];Y=[];Z=[];Zoo=[];
 			Ht=[];Bt=[];Cdt=[];MEt=[];moorelet=[];
 			moorele='112345678901234562345678901234';
 			handle_list=[];
@@ -171,16 +171,18 @@ function modmoor(command,parameter)
 				if delele == 1,
 					if mb>1,
 						B=B(2:mb);
+                        Wt=Wt(2:mb);
 						H=H(:,2:mb);
 						Cd=Cd(2:mb);
 						moorele=moorele(2:mb,:);
 						ME=ME(2:mb); %JHJH
 					else
-						B=[];H=[];Cd=[];moorele=[];
+						B=[];Wt=[];H=[];Cd=[];moorele=[];
 						ME=[]; %JHJH
 					end
 				elseif delele == mb,
 					B=B(1:(mb-1));
+                    Wt=Wt(1:(mb-1));
 					H=H(:,1:(mb-1));
 					Cd=Cd(1:(mb-1));
 					moorele=moorele(1:(mb-1),:);
@@ -188,6 +190,7 @@ function modmoor(command,parameter)
 				elseif delele>1 & delele<mb,
 					inew=[1:delele-1 delele+1:mb];
 					B=B(inew);
+					Wt=Wt(inew);
 					H=H(:,inew);
 					Cd=Cd(inew);
 					moorele=moorele(inew,:);
@@ -207,13 +210,15 @@ function modmoor(command,parameter)
 				bump=[insert+1:mb+1];
 				moorele(bump,:)=moorele(elenum:mb,:);
 				B(bump)=B(elenum:mb);
+                Wt(bump)=Wt(elenum:mb);
 				H(:,bump)=H(:,elenum:mb);
 				Cd(bump)=Cd(elenum:mb);
 				ME(bump)=ME(elenum:mb);
 			end
-			moorele(elenum,:)=list(val,format(1,1):format(1,2));
-			B(elenum)=str2num(list(val,format(2,1):format(2,2)));
-			H(1,elenum)=str2num(list(val,format(3,1):format(3,2)))/100; % convert to metres pm
+            moorele(elenum,:)=list(val,format(1,1):format(1,2));
+            BW=str2num(list(val,format(2,1):format(2,2)));
+            B(elenum)=BW(1);Wt(elenum)=BW(2); % for floats we need weight (Wt)
+            H(1,elenum)=str2num(list(val,format(3,1):format(3,2)))/100; % convert to metres pm
             printf("H(1,elenum): %d line 219\nelenum = %d\n", H(1,elenum), elenum) %pm
 			H(2,elenum)=str2num(list(val,format(4,1):format(4,2)))/100;
             printf("H(2,elenum): %d line 221\nelenum = %d\n", H(2,elenum), elenum) %pm
