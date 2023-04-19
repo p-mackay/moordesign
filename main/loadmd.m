@@ -4,7 +4,7 @@ function loadmd
 	clear U V W z rho time Xts Yts Zts Tits psits iobjts M figs H B Cd ME moorele
 	global U V W z rho time 
 	global Xts Yts Zts Tits psits iobjts M figs   % these are time series variables
-	global H B Cd ME moorele
+	global H B Wt Cd ME moorele
 	global Ht Bt Cdt MEt moorelet Usp Vsp
 	global ifile
 
@@ -15,6 +15,7 @@ function loadmd
 			load([ipath ifile]);
 		end
 		if isempty(time), clear time; end
+        if isempty(Wt), Wt=0.15*B; end % new- add weight of buoy as 15% of buoyancy
 		if ~isempty(moorele),dismoor; end
 		if ~isempty(moorelet),dismoor; end
 	end

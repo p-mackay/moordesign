@@ -1,3 +1,14 @@
+Temporarily switch to a different commit
+This will detach your HEAD, that is, leave you with no branch checked out:
+```
+git checkout 0d1d7fc32
+```
+
+Or if you want to make commits while you're there, go ahead and make a new branch while you're at it:
+```
+git checkout -b old-state 0d1d7fc32
+```
+
 The ex *command g* is very useful for acting on lines that match a pattern. You can use it with the d command, to delete all lines that contain a particular pattern, or all lines that do not contain a pattern.
 
 For example, to delete all lines containing "profile" (remove the /d to show the lines that the command will delete):
@@ -73,3 +84,9 @@ Visually select all the lines you want to increment, and do the following:
 
 ```
 
+Schedule a bash command later in time:
+```
+at 1200 << EOF
+bash command
+EOF
+```

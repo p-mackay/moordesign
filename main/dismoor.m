@@ -2,7 +2,7 @@ function dismoor(command)
     % function to display the present mooring elements in the command window
 
     global U V W z rho % U,V,W velocity profiles -- z height profile 
-    global moorele H B ME X Y Z Ti iobj jobj psi  % for in-line and mooring elements
+    global moorele H B Wt ME X Y Z Ti iobj jobj psi  % for in-line and mooring elements
     global HCO BCO CdCO mooreleCO ZCO Iobj Jobj Pobj % for clamp-on devices
     global Z0co Zfco Xfco Yfco psifco
     global Zoo

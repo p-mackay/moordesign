@@ -18,7 +18,7 @@ function savemd
 			elseif ~isempty(Ht) & isempty(BCO), % towed body
 				save([opath ofile],'U','V','W','z','rho','time','Ht','Bt','Cdt','MEt','moorelet','Usp','Vsp','afh');      
 			elseif ~isempty(Ht) & ~isempty(BCO), % towed body
-				save([opath ofile],'U','V','W','z','rho','time','Ht','Bt','Cdt','MEt','moorelet','Usp','Vsp','afh'...      
+				save([opath ofile],'U','V','W','z','rho','time','Ht','Bt','Cdt','MEt','moorelet','Usp','Vsp','afh'...
 				,'HCO','BCO','CdCO','ZCO','mooreleCO','Pobj','Jobj','Iobj');
 			end
 		end

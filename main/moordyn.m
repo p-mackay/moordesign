@@ -41,7 +41,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 	anc_info = "";
 
 	iprt=100; % If solution isn't converging, set this to 50-100 and watch to see what's happening.
-	%pm
+    fact=10;
     ztest=z;
 
 	X=[];Y=[];Z=[];Ti=[];iobj=[];jobj=[];psi=[];
@@ -434,8 +434,8 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 				Z(izm)=0;      % dig them up.
                 gamma0=(Wtw(1)+Ti(2)*cos(psi(2)))/Bi(1); % estimate required lift to support the mooring
                 if gamma>1, gamma=1; ss=1; end
-                if (1+gf)*dg >= gamma & gammas==-1, dg=dg/fact; end % be careful if gamma is very small
-                if gamma+((1+gf)*gammas*dg) >=1 & gammas==-1, dg=dg/fact; end % or if gamma is very large (1)
+                if (1+gf)*dg >= gamma && gammas==-1, dg=dg/fact; end % be careful if gamma is very small
+                if gamma+((1+gf)*gammas*dg) >=1 && gammas==-1, dg=dg/fact; end % or if gamma is very large (1)
 				if (Zf+Hi(1,1)) <= Zw,  % then we're completely submerged! Increase % buoyancy.
 					dgc=dgc+1;
 					dgf=0;
@@ -450,7 +450,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 						dg=dg*fact;
 						dgc=0;
 					end
-					if (gamma+dg>1, gamma=1; ss=1; end % this is now a subsurface mooring.
+					if (gamma+dg)>1, gamma=1; ss=1; end % this is now a subsurface mooring.
 				elseif Zw > Zf && Zw < (Zf+Hi(1,1)),  % then we're partially floating (we're close)
 					dgc=dgc+1;
 					dgf=0;
@@ -535,7 +535,7 @@ function [X,Y,Z,iobj]=moordyn(U,z,H,B,Cd,ME,V,W,rho)
 				end
 			end % end loop looking for gamma, fraction of top buoyancy needed in surface solution
 
-			if gamma<gamma_min, gamma=gamm_min;gammas=1; end
+			if gamma<gamma_min, gamma=gamma_min;gammas=1; end
 			if gamma>=1, gamma=1; ss=1; end        
 			if isave >= 20, % if it's having problems converging, start a running average when it's close
 				iavg=iavg+1;
