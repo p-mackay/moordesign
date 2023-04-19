@@ -1,0 +1,117 @@
+# Created by Octave 8.1.0, Wed Apr 19 01:02:26 2023 PDT <paul@jaro>
+# name: U
+# type: global matrix
+# rows: 1
+# columns: 3
+ 2 0.59999999999999998 0
+
+
+# name: V
+# type: global matrix
+# rows: 1
+# columns: 3
+ 0 0 0
+
+
+# name: W
+# type: global matrix
+# rows: 1
+# columns: 3
+ 0 0 0
+
+
+# name: z
+# type: global matrix
+# rows: 1
+# columns: 3
+ 120 10 0
+
+
+# name: rho
+# type: global matrix
+# rows: 1
+# columns: 3
+ 1025 1025 1025
+
+
+# name: time
+# type: global matrix
+# rows: 0
+# columns: 0
+
+
+# name: H
+# type: global matrix
+# rows: 4
+# columns: 16
+ 0.93999999999999995 0.080000000000000002 80 0.12 1.5 0.12 0.55000000000000004 0.080000000000000002 5 0.080000000000000002 0.14000000000000001 0.080000000000000002 0.93999999999999995 0.065000000000000002 5 0.34999999999999998
+ 0 0.025000000000000001 0.0090000000000000011 0.025000000000000001 0 0.025000000000000001 0.128 0.025000000000000001 0.0090000000000000011 0.025000000000000001 0.050000000000000003 0.025000000000000001 0.13 0.050000000000000003 0.040000000000000001 1
+ 0.93999999999999995 0 0 0 0.59999999999999998 0 0 0 0 0 0 0 0 0 0 0
+ 0 2 1 2 0 2 0 2 1 2 2 2 0 2 1 0
+
+
+# name: B
+# type: global matrix
+# rows: 1
+# columns: 16
+ 300 -0.29999999999999999 -0.33000000000000002 -0.42499999999999999 56 -0.42499999999999999 -18.300000000000001 -0.29999999999999999 -0.33000000000000002 -0.29999999999999999 -0.65000000000000002 -0.29999999999999999 -28 -0.65000000000000002 -13 915
+
+
+# name: Wt
+# type: global matrix
+# rows: 1
+# columns: 16
+ 45 -0.044999999999999998 -0.049500000000000002 -0.063750000000000001 8.4000000000000004 -0.063750000000000001 -2.7450000000000001 -0.044999999999999998 -0.049500000000000002 -0.044999999999999998 -0.097500000000000003 -0.044999999999999998 -4.2000000000000002 -0.097500000000000003 -1.95 137.25
+
+
+# name: Cd
+# type: global matrix
+# rows: 1
+# columns: 16
+ 0.65000000000000002 1.3 1.3 1.3 0.59999999999999998 1.3 1.3 1.3 1.3 1.3 1.3 1.3 1.3 1.3 1.3 1.3
+
+
+# name: ME
+# type: global matrix
+# rows: 1
+# columns: 16
+ Inf Inf 138000000000 Inf Inf Inf Inf Inf 138000000000 Inf Inf Inf Inf Inf 138000000000 Inf
+
+
+# name: moorele
+# type: global sq_string
+# elements: 16
+# length: 30
+37in ORE                      
+# length: 30              
+1/2 shackle                   
+# length: 30              
+3/8 wire rope                 
+# length: 30              
+1/2 shac+3/8shac              
+# length: 30              
+Trpl 16 in Viny               
+# length: 30              
+1/2 shac+3/8shac              
+# length: 30              
+Aanderaa RCM-7                
+# length: 30              
+1/2 shackle                   
+# length: 30              
+3/8 wire rope                 
+# length: 30              
+1/2 shackle                   
+# length: 30              
+1/2 swivel                    
+# length: 30              
+1/2 shackle                   
+# length: 30              
+EG&G 8242                     
+# length: 30              
+5/8 shackle                   
+# length: 30              
+1 chain SL                    
+# length: 30              
+2 Railway Wheels              
+
+
