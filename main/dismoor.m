@@ -14,7 +14,7 @@ function dismoor(command)
     global thisele
     global thisele1 elesize
     global dpth hght
-    global moorname moordepth dep ztest 
+    global moorname moordepth dep ztest tally
 
 
     %ct = strftime ("%e_%B_%Y", localtime (time ())); %current time
@@ -25,6 +25,7 @@ function dismoor(command)
     endif
     text_data = "";
     ztest=[];
+    tally="";
     %velocity_data = getvelocity(40);
     %text_data = [nthargout(5,@moordyn)];
     %text_data = [text_data newline velocity_data newline];
@@ -231,7 +232,6 @@ function dismoor(command)
             ell=1;
             %figure(5);
             %orient tall;
-            disp("1HELLLLLLLLO")
             %disp(mobj.height)
 
             tmpfname = tempname ();
@@ -350,7 +350,7 @@ function dismoor(command)
                         else
                             disp(line);
                         end
-                        if command==1 && ell==80, % for printer output, go to next page
+                        if command==1 && ell==80 , % for printer output, go to next page
                             ell=1;
                             %figure(5);
                             %orient tall;
@@ -460,7 +460,7 @@ function dismoor(command)
                         hdr4=' #    Element Name        Total Number/Length          #   Device Name       Total Number';
                     end
 
-                    if command==1,
+                    if command ==1,
                         %	ypos=(mt+2)/90-.1;
                         %	h=text(-0.1,ypos,hdr3);
                         %	set(h,'Units','Normalized','Position',[-0.075 ypos],'Fontname','Courier New','FontSize',fs);
@@ -471,6 +471,7 @@ function dismoor(command)
                         disp(' ');
                         disp(hdr3);
                         disp(hdr4);
+                        tally = hdr3;
                     end
                     ii=0;
                     for i=1:mt,
@@ -509,8 +510,6 @@ function dismoor(command)
                                     %ypos=(mt-i)/90-.1;
                                     %h=text(-0.1,ypos,line);
                                     %set(h,'Units','normalized','Position',[-0.075 ypos],'FontName','Courier New','FontSize',fs);
-                                    text_data = [text_data newline line];
-                                    disp("%d: Hello 3")
                                 else
                                     disp(line);
                                 end
@@ -535,8 +534,8 @@ function dismoor(command)
                         ele_data = ""; %tally of mooring elements
                         vel_data = ""; %velocity data
 
-                        hdr4 = 'Water Height[m]    U [m/s]    V [m/s]    W [m/s] Density [kg/m^3]'
-                        vel_data = [vel_data hdr4]
+                        hdr7 = 'Water Height[m]    U [m/s]    V [m/s]    W [m/s] Density [kg/m^3]'
+                        vel_data = [vel_data hdr7]
 
                         ztest=str2num(dep);
 
@@ -627,6 +626,8 @@ function dismoor(command)
                         fprintf (fid, "%s", newline)
                         fprintf (fid, "%s", newline)
                         fprintf (fid, "%s", anc_info)
+                        fprintf (fid, "%s", newline)
+                        fprintf (fid, "%s", tally)
                         fclose (fid)
                         edit (tmpfname)
 
@@ -652,11 +653,13 @@ function dismoor(command)
                         clear text_data
                         clear vel_data
                         clear anc_info
+                        clear tally
                     else
                         disp(' ');
                         clear text_data
                         clear vel_data
                         clear anc_info
+                        clear tally
                     end
                     if ~isempty(Ht), moorele=[]; H=[]; B=[]; ME=[]; psi=psisave; end
                         drawnow
@@ -664,3 +667,4 @@ function dismoor(command)
                         clear text_data
                         clear vel_data
                         clear anc_info
+                        clear tally
