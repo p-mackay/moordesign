@@ -16,7 +16,7 @@ function exportdb;
     %}
 
     global U V W z rho
-    global H B Cd ME moorele
+    global H B Wt Cd ME moorele
     global floats wires chains acrels cms anchors miscs format
     global typelist type list addel mat
     global h_menu_type h_menu_list h_menu_addel h_menu_material
@@ -32,13 +32,14 @@ function exportdb;
     %load emptydb.mat %initialize empty database
     load mdcodes.mat
     hw={};
+    hw1={};
     bgcolor='#e8e8e8';
 
     thisxl=getxlname();
 
-    hdr1={'Buoyancy', 'Length', 'Width of', 'Diameter of', ...
+    hdr1={'Buoyancy', 'Weight', 'Length', 'Width of', 'Diameter of', ...
     'Drag Coef', 'Material'};
-    hdr2={'(kg)','(cm)','CYL(cm)','SPH(cm)'};
+    hdr2={'(kg)','(kg)','(cm)','CYL(cm)','SPH(cm)'};
 
     %xlswrite('example2.xlsx',hdr1, 'Sheet1', 'B1:G1');
     
@@ -54,240 +55,296 @@ function exportdb;
     currstart=3;
     currend=2+rows(chains);
     xlswrite(thisxl,'Hardware','Sheet1','A2');%manually write title of category
-    for i = 1:rows(chains)
+
+
+    %prints names of elements
+    %
+    for i = 1:rows(chains)%first convert to a cell array
         hw(i,1)=chains(i,format(1,1):format(1,2));
     endfor
-    xlswrite(thisxl,hw,'Sheet1',['A3:A' num2str(3+rows(chains))]);
-    hw={};
-    for j = 2:7
-        hw={};%clear the matrix 
-        for i = 1:rows(chains)%first convert to a cell array
-            hw(i,1)=str2num(chains(i,format(j,1):format(j,2)));
-        endfor
-        xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
+    xlswrite('example3.xlsx',hw,'Sheet1',[char(65) '3:' char(65) num2str(3+rows(chains))]);
+    hw={};%clear the matrix 
+
+    %element buoyancy
+    for i = 1:rows(chains)
+        [hw(i,1),hw1(i,1)]=strsplit(str2num(chains(i,format(2,1):format(2,2))));
     endfor
-    %printf("%d  %d\n",currstart, currend);
+    xlswrite('example3.xlsx',hw,'Sheet1',['B3:B4']);
+    xlswrite('example3.xlsx',hw1,'Sheet1',['B4:B5']);
     hw={};
+    hw1={};
 
-    %FLOATATION
-    currstart=currstart+currend+1;
-    currend=currstart+rows(floats);
-    %printf("%d  %d\n",currstart, currend);
-    xlswrite(thisxl,'Flotation','Sheet1',['A' num2str(currstart-1)]);%manually write title of category
-    for i = 1:rows(floats)
-        hw(i,1)=floats(i,format(1,1):format(1,2));
-    endfor
-    %printf("A%s:A%s\n",num2str(currstart),num2str(currend));
-    xlswrite(thisxl,hw,'Sheet1',['A' num2str(currstart) ':A' num2str(currend)]);
-    hw={};
-    %non string values
-    for j = 2:7
-        hw={};%clear the matrix 
-        for i = 1:rows(floats)%first convert to a cell array
-            hw(i,1)=str2num(floats(i,format(j,1):format(j,2)));
-        endfor
-        xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
-    endfor
-    hw={};
+%    %element length
+%    for i = 1:rows(chains)
+%        hw(i,1)=str2num(chains(i,format(3,1):format(3,2)));
+%    endfor
+%    xlswrite('example3.xlsx',hw,'Sheet1',['C3:C' num2str(3+rows(chains))]);
+%    hw={};
+%    
+%    %element width
+%    for i = 1:rows(chains)
+%        hw(i,1)=str2num(chains(i,format(4,1):format(4,2)));
+%    endfor
+%    xlswrite('example3.xlsx',hw,'Sheet1',['D3:D' num2str(3+rows(chains))]);
+%    hw={};
+%
+%    %element diameter
+%    for i = 1:rows(chains)
+%        hw(i,1)=str2num(chains(i,format(5,1):format(5,2)));
+%    endfor
+%    xlswrite('example3.xlsx',hw,'Sheet1',['E3:E' num2str(3+rows(chains))]);
+%    hw={};
+%
+%    %element drag coef 
+%    for i = 1:rows(chains)
+%        hw(i,1)=str2num(chains(i,format(6,1):format(6,2)));
+%    endfor
+%    xlswrite('example3.xlsx',hw,'Sheet1',['F3:F' num2str(3+rows(chains))]);
+%    hw={};
+%
+%    %element material 
+%    for i = 1:rows(chains)
+%        hw(i,1)=str2num(chains(i,format(7,1):format(7,2)));
+%    endfor
+%    xlswrite('example3.xlsx',hw,'Sheet1',['G3:G' num2str(3+rows(chains))]);
+%    hw={};
+%    currstart=3+rows(chains);
 
-    %CURRENT METERS
-    currstart=3;
-    currstart=currstart+currend+1;
-    currend=currstart+rows(cms);
-    %printf("%d  %d\n",currstart, currend);
-    xlswrite(thisxl,'Current Meters','Sheet1',['A' num2str(currstart-1)]);%manually write title of category
-    for i = 1:rows(cms)
-        hw(i,1)=cms(i,format(1,1):format(1,2));
-    endfor
-    %printf("A%s:A%s\n",num2str(currstart),num2str(currend));
-    xlswrite(thisxl,hw,'Sheet1',['A' num2str(currstart) ':A' num2str(currend)]);
-    hw={};
-    %non string values
-    for j = 2:7
-        hw={};%clear the matrix 
-        for i = 1:rows(cms)%first convert to a cell array
-            hw(i,1)=str2num(cms(i,format(j,1):format(j,2)));
-        endfor
-        xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
-    endfor
-    hw={};
+    %end
+%    for i = 1:rows(chains)
+%        hw(i,1)=chains(i,format(1,1):format(1,2));
+%    endfor
+%    xlswrite(thisxl,hw,'Sheet1',['A3:A' num2str(3+rows(chains))]);
+%    hw={};
+%    for j = 2:8
+%        hw={};%clear the matrix 
+%        for i = 1:rows(chains)%first convert to a cell array
+%            hw(i,1)=str2num(chains(i,format(j,1):format(j,2)));
+%        endfor
+%        xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
+%    endfor
+%    %printf("%d  %d\n",currstart, currend);
+%    hw={};
 
-    %RELEASES
-    currstart=3;
-    currstart=currstart+currend+1;
-    currend=currstart+rows(acrels);
-    %printf("%d  %d\n",currstart, currend);
-    xlswrite(thisxl,'Releases','Sheet1',['A' num2str(currstart-1)]);%manually write title of category
-    for i = 1:rows(acrels)
-        hw(i,1)=acrels(i,format(1,1):format(1,2));
-    endfor
-    %printf("A%s:A%s\n",num2str(currstart),num2str(currend));
-    xlswrite(thisxl,hw,'Sheet1',['A' num2str(currstart) ':A' num2str(currend)]);
-    hw={};
-    %non string values
-    for j = 2:7
-        hw={};%clear the matrix 
-        for i = 1:rows(acrels)%first convert to a cell array
-            hw(i,1)=str2num(acrels(i,format(j,1):format(j,2)));
-        endfor
-        xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
-    endfor
-    hw={};
-
-    %MISCELLANEOUS INSTRUMENTS
-    currstart=3;
-    currstart=currstart+currend+1;
-    currend=currstart+rows(miscs);
-    %printf("%d  %d\n",currstart, currend);
-    xlswrite(thisxl,'Miscellaneous Instruments','Sheet1',['A' num2str(currstart-1)]);%manually write title of category
-    for i = 1:rows(miscs)
-        hw(i,1)=miscs(i,format(1,1):format(1,2));
-    endfor
-    %printf("A%s:A%s\n",num2str(currstart),num2str(currend));
-    xlswrite(thisxl,hw,'Sheet1',['A' num2str(currstart) ':A' num2str(currend)]);
-    hw={};
-    %non string values
-    for j = 2:7
-        hw={};%clear the matrix 
-        for i = 1:rows(miscs)%first convert to a cell array
-            hw(i,1)=str2num(miscs(i,format(j,1):format(j,2)));
-        endfor
-        xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
-    endfor
-    hw={};
-    %MOORING LINES
-    currstart=3;
-    currstart=currstart+currend+1;
-    currend=currstart+rows(wires);
-    %printf("%d  %d\n",currstart, currend);
-    xlswrite(thisxl,'Mooring Lines','Sheet1',['A' num2str(currstart-1)]);%manually write title of category
-    for i = 1:rows(wires)
-        hw(i,1)=wires(i,format(1,1):format(1,2));
-    endfor
-    %printf("A%s:A%s\n",num2str(currstart),num2str(currend));
-    xlswrite(thisxl,hw,'Sheet1',['A' num2str(currstart) ':A' num2str(currend)]);
-    hw={};
-    %non string values
-    for j = 2:7
-        hw={};%clear the matrix 
-        for i = 1:rows(wires)%first convert to a cell array
-            hw(i,1)=str2num(wires(i,format(j,1):format(j,2)));
-        endfor
-        xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
-    endfor
-    hw={};
-
-
-
-    %currstart = currstart+currend;
-    %currend = currstart+rows(floats);
-    %for j = 1:7
-    %    for i = 1:rows(floats)%first convert to a cell array
-    %        hw(i,1)=floats(i,format(j,1):format(1,2));
-    %    endfor
-    %    xlswrite('example3.xlsx',hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
-    %    hw={};%clear the matrix 
-    %endfor
-
-
-
-
-
-
-    %%element buoyancy
-    %for i = 1:rows(chains)
-    %    hw(i,1)=str2num(chains(i,format(2,1):format(2,2)));
-    %endfor
-    %xlswrite('example3.xlsx',hw,'Sheet1',['B3:B' num2str(3+rows(chains))]);
-    %hw={};
-
-    %%element length
-    %for i = 1:rows(chains)
-    %    hw(i,1)=str2num(chains(i,format(3,1):format(3,2)));
-    %endfor
-    %xlswrite('example3.xlsx',hw,'Sheet1',['C3:C' num2str(3+rows(chains))]);
-    %hw={};
-    %
-    %%element width
-    %for i = 1:rows(chains)
-    %    hw(i,1)=str2num(chains(i,format(4,1):format(4,2)));
-    %endfor
-    %xlswrite('example3.xlsx',hw,'Sheet1',['D3:D' num2str(3+rows(chains))]);
-    %hw={};
-
-    %%element diameter
-    %for i = 1:rows(chains)
-    %    hw(i,1)=str2num(chains(i,format(5,1):format(5,2)));
-    %endfor
-    %xlswrite('example3.xlsx',hw,'Sheet1',['E3:E' num2str(3+rows(chains))]);
-    %hw={};
-
-    %%element drag coef 
-    %for i = 1:rows(chains)
-    %    hw(i,1)=str2num(chains(i,format(6,1):format(6,2)));
-    %endfor
-    %xlswrite('example3.xlsx',hw,'Sheet1',['F3:F' num2str(3+rows(chains))]);
-    %hw={};
-
-    %%element drag coef 
-    %for i = 1:rows(chains)
-    %    hw(i,1)=str2num(chains(i,format(7,1):format(7,2)));
-    %endfor
-    %xlswrite('example3.xlsx',hw,'Sheet1',['G3:G' num2str(3+rows(chains))]);
-    %hw={};
-    %currstart=3+rows(chains);
-
-
-    %%FLOATATION
-    %%element name
-    %for i = 1:rows(floats)%first convert to a cell array
-    %    hw(i,1)=floats(i,format(1,1):format(1,2));
-    %endfor
-    %xlswrite('example3.xlsx','Hardware','Sheet1',['A' num2str(3+currstart)]);%manually write title of category
-    %xlswrite('example3.xlsx',hw,'Sheet1',['A' num2str(4+currstart) ':A' num2str(3+rows(floats))]);
-    %hw={};%clear the matrix 
-
-    %%element buoyancy
-    %for i = 1:rows(floats)
-    %    hw(i,1)=str2num(floats(i,format(2,1):format(2,2)));
-    %endfor
-    %xlswrite('example3.xlsx',hw,'Sheet1',['B3:B' num2str(3+rows(floats))]);
-    %hw={};
-
-    %%element length
-    %for i = 1:rows(floats)
-    %    hw(i,1)=str2num(floats(i,format(3,1):format(3,2)));
-    %endfor
-    %xlswrite('example3.xlsx',hw,'Sheet1',['C3:C' num2str(3+rows(floats))]);
-    %hw={};
-    %
-    %%element width
-    %for i = 1:rows(floats)
-    %    hw(i,1)=str2num(floats(i,format(4,1):format(4,2)));
-    %endfor
-    %xlswrite('example3.xlsx',hw,'Sheet1',['D3:D' num2str(3+rows(floats))]);
-    %hw={};
-
-    %%element diameter
-    %for i = 1:rows(floats)
-    %    hw(i,1)=str2num(floats(i,format(5,1):format(5,2)));
-    %endfor
-    %xlswrite('example3.xlsx',hw,'Sheet1',['E3:E' num2str(3+rows(floats))]);
-    %hw={};
-
-    %%element drag coef 
-    %for i = 1:rows(floats)
-    %    hw(i,1)=str2num(floats(i,format(6,1):format(6,2)));
-    %endfor
-    %xlswrite('example3.xlsx',hw,'Sheet1',['F3:F' num2str(3+rows(floats))]);
-    %hw={};
-
-    %%element drag coef 
-    %for i = 1:rows(floats)
-    %    hw(i,1)=str2num(floats(i,format(6,1):format(6,2)));
-    %endfor
-    %xlswrite('example3.xlsx',hw,'Sheet1',['F3:F' num2str(3+rows(floats))]);
-    %hw={};
+%    %FLOATATION
+%    currstart=currstart+currend+1;
+%    currend=currstart+rows(floats);
+%    %printf("%d  %d\n",currstart, currend);
+%    xlswrite(thisxl,'Flotation','Sheet1',['A' num2str(currstart-1)]);%manually write title of category
+%    for i = 1:rows(floats)
+%        hw(i,1)=floats(i,format(1,1):format(1,2));
+%    endfor
+%    %printf("A%s:A%s\n",num2str(currstart),num2str(currend));
+%    xlswrite(thisxl,hw,'Sheet1',['A' num2str(currstart) ':A' num2str(currend)]);
+%    hw={};
+%    %non string values
+%    for j = 2:7
+%        hw={};%clear the matrix 
+%        for i = 1:rows(floats)%first convert to a cell array
+%            hw(i,1)=str2num(floats(i,format(j,1):format(j,2)));
+%        endfor
+%        xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
+%    endfor
+%    hw={};
+%
+%    %CURRENT METERS
+%    currstart=3;
+%    currstart=currstart+currend+1;
+%    currend=currstart+rows(cms);
+%    %printf("%d  %d\n",currstart, currend);
+%    xlswrite(thisxl,'Current Meters','Sheet1',['A' num2str(currstart-1)]);%manually write title of category
+%    for i = 1:rows(cms)
+%        hw(i,1)=cms(i,format(1,1):format(1,2));
+%    endfor
+%    %printf("A%s:A%s\n",num2str(currstart),num2str(currend));
+%    xlswrite(thisxl,hw,'Sheet1',['A' num2str(currstart) ':A' num2str(currend)]);
+%    hw={};
+%    %non string values
+%    for j = 2:7
+%        hw={};%clear the matrix 
+%        for i = 1:rows(cms)%first convert to a cell array
+%            hw(i,1)=str2num(cms(i,format(j,1):format(j,2)));
+%        endfor
+%        xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
+%    endfor
+%    hw={};
+%
+%    %RELEASES
+%    currstart=3;
+%    currstart=currstart+currend+1;
+%    currend=currstart+rows(acrels);
+%    %printf("%d  %d\n",currstart, currend);
+%    xlswrite(thisxl,'Releases','Sheet1',['A' num2str(currstart-1)]);%manually write title of category
+%    for i = 1:rows(acrels)
+%        hw(i,1)=acrels(i,format(1,1):format(1,2));
+%    endfor
+%    %printf("A%s:A%s\n",num2str(currstart),num2str(currend));
+%    xlswrite(thisxl,hw,'Sheet1',['A' num2str(currstart) ':A' num2str(currend)]);
+%    hw={};
+%    %non string values
+%    for j = 2:7
+%        hw={};%clear the matrix 
+%        for i = 1:rows(acrels)%first convert to a cell array
+%            hw(i,1)=str2num(acrels(i,format(j,1):format(j,2)));
+%        endfor
+%        xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
+%    endfor
+%    hw={};
+%
+%    %MISCELLANEOUS INSTRUMENTS
+%    currstart=3;
+%    currstart=currstart+currend+1;
+%    currend=currstart+rows(miscs);
+%    %printf("%d  %d\n",currstart, currend);
+%    xlswrite(thisxl,'Miscellaneous Instruments','Sheet1',['A' num2str(currstart-1)]);%manually write title of category
+%    for i = 1:rows(miscs)
+%        hw(i,1)=miscs(i,format(1,1):format(1,2));
+%    endfor
+%    %printf("A%s:A%s\n",num2str(currstart),num2str(currend));
+%    xlswrite(thisxl,hw,'Sheet1',['A' num2str(currstart) ':A' num2str(currend)]);
+%    hw={};
+%    %non string values
+%    for j = 2:7
+%        hw={};%clear the matrix 
+%        for i = 1:rows(miscs)%first convert to a cell array
+%            hw(i,1)=str2num(miscs(i,format(j,1):format(j,2)));
+%        endfor
+%        xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
+%    endfor
+%    hw={};
+%    %MOORING LINES
+%    currstart=3;
+%    currstart=currstart+currend+1;
+%    currend=currstart+rows(wires);
+%    %printf("%d  %d\n",currstart, currend);
+%    xlswrite(thisxl,'Mooring Lines','Sheet1',['A' num2str(currstart-1)]);%manually write title of category
+%    for i = 1:rows(wires)
+%        hw(i,1)=wires(i,format(1,1):format(1,2));
+%    endfor
+%    %printf("A%s:A%s\n",num2str(currstart),num2str(currend));
+%    xlswrite(thisxl,hw,'Sheet1',['A' num2str(currstart) ':A' num2str(currend)]);
+%    hw={};
+%    %non string values
+%    for j = 2:7
+%        hw={};%clear the matrix 
+%        for i = 1:rows(wires)%first convert to a cell array
+%            hw(i,1)=str2num(wires(i,format(j,1):format(j,2)));
+%        endfor
+%        xlswrite(thisxl,hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
+%    endfor
+%    hw={};
+%
+%
+%
+%    %currstart = currstart+currend;
+%    %currend = currstart+rows(floats);
+%    %for j = 1:7
+%    %    for i = 1:rows(floats)%first convert to a cell array
+%    %        hw(i,1)=floats(i,format(j,1):format(1,2));
+%    %    endfor
+%    %    xlswrite('example3.xlsx',hw,'Sheet1',[char(65+j-1) num2str(currstart) ':' char(65+j-1) num2str(currend)]);
+%    %    hw={};%clear the matrix 
+%    %endfor
+%
+%
+%
+%
+%
+%
+%    %%element buoyancy
+%    %for i = 1:rows(chains)
+%    %    hw(i,1)=str2num(chains(i,format(2,1):format(2,2)));
+%    %endfor
+%    %xlswrite('example3.xlsx',hw,'Sheet1',['B3:B' num2str(3+rows(chains))]);
+%    %hw={};
+%
+%    %%element length
+%    %for i = 1:rows(chains)
+%    %    hw(i,1)=str2num(chains(i,format(3,1):format(3,2)));
+%    %endfor
+%    %xlswrite('example3.xlsx',hw,'Sheet1',['C3:C' num2str(3+rows(chains))]);
+%    %hw={};
+%    %
+%    %%element width
+%    %for i = 1:rows(chains)
+%    %    hw(i,1)=str2num(chains(i,format(4,1):format(4,2)));
+%    %endfor
+%    %xlswrite('example3.xlsx',hw,'Sheet1',['D3:D' num2str(3+rows(chains))]);
+%    %hw={};
+%
+%    %%element diameter
+%    %for i = 1:rows(chains)
+%    %    hw(i,1)=str2num(chains(i,format(5,1):format(5,2)));
+%    %endfor
+%    %xlswrite('example3.xlsx',hw,'Sheet1',['E3:E' num2str(3+rows(chains))]);
+%    %hw={};
+%
+%    %%element drag coef 
+%    %for i = 1:rows(chains)
+%    %    hw(i,1)=str2num(chains(i,format(6,1):format(6,2)));
+%    %endfor
+%    %xlswrite('example3.xlsx',hw,'Sheet1',['F3:F' num2str(3+rows(chains))]);
+%    %hw={};
+%
+%    %%element drag coef 
+%    %for i = 1:rows(chains)
+%    %    hw(i,1)=str2num(chains(i,format(7,1):format(7,2)));
+%    %endfor
+%    %xlswrite('example3.xlsx',hw,'Sheet1',['G3:G' num2str(3+rows(chains))]);
+%    %hw={};
+%    %currstart=3+rows(chains);
+%
+%
+%    %%FLOATATION
+%    %%element name
+%    %for i = 1:rows(floats)%first convert to a cell array
+%    %    hw(i,1)=floats(i,format(1,1):format(1,2));
+%    %endfor
+%    %xlswrite('example3.xlsx','Hardware','Sheet1',['A' num2str(3+currstart)]);%manually write title of category
+%    %xlswrite('example3.xlsx',hw,'Sheet1',['A' num2str(4+currstart) ':A' num2str(3+rows(floats))]);
+%    %hw={};%clear the matrix 
+%
+%    %%element buoyancy
+%    %for i = 1:rows(floats)
+%    %    hw(i,1)=str2num(floats(i,format(2,1):format(2,2)));
+%    %endfor
+%    %xlswrite('example3.xlsx',hw,'Sheet1',['B3:B' num2str(3+rows(floats))]);
+%    %hw={};
+%
+%    %%element length
+%    %for i = 1:rows(floats)
+%    %    hw(i,1)=str2num(floats(i,format(3,1):format(3,2)));
+%    %endfor
+%    %xlswrite('example3.xlsx',hw,'Sheet1',['C3:C' num2str(3+rows(floats))]);
+%    %hw={};
+%    %
+%    %%element width
+%    %for i = 1:rows(floats)
+%    %    hw(i,1)=str2num(floats(i,format(4,1):format(4,2)));
+%    %endfor
+%    %xlswrite('example3.xlsx',hw,'Sheet1',['D3:D' num2str(3+rows(floats))]);
+%    %hw={};
+%
+%    %%element diameter
+%    %for i = 1:rows(floats)
+%    %    hw(i,1)=str2num(floats(i,format(5,1):format(5,2)));
+%    %endfor
+%    %xlswrite('example3.xlsx',hw,'Sheet1',['E3:E' num2str(3+rows(floats))]);
+%    %hw={};
+%
+%    %%element drag coef 
+%    %for i = 1:rows(floats)
+%    %    hw(i,1)=str2num(floats(i,format(6,1):format(6,2)));
+%    %endfor
+%    %xlswrite('example3.xlsx',hw,'Sheet1',['F3:F' num2str(3+rows(floats))]);
+%    %hw={};
+%
+%    %%element drag coef 
+%    %for i = 1:rows(floats)
+%    %    hw(i,1)=str2num(floats(i,format(6,1):format(6,2)));
+%    %endfor
+%    %xlswrite('example3.xlsx',hw,'Sheet1',['F3:F' num2str(3+rows(floats))]);
+%    %hw={};
 
 
     close(loading);
