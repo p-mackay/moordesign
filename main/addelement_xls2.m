@@ -48,13 +48,13 @@ function addelement_xls2(command);
                 'Position',[.1 .875 .8 .1]);
                 %set(h_menu_type,'String','Floatation');
 
+                set(h_menu_list,'String',typelist);
                 %set(h_menu_list,'String',typelist);
                 %h_menu_list=uicontrol('Style','popupmenu',...
                 %'Callback','addelement_xls2(2)','FontSize',fs,...
                 %'String',typelist,...
                 %'Units','Normalized',...
                 %'Position',[.1 .785 .8 .1]);
-                set(h_menu_list,'String',typelist);
                 %addelement_xls2(2);
                 
                 %h_menu_addel=uicontrol('Style','popupmenu',...
@@ -71,7 +71,7 @@ function addelement_xls2(command);
                 'Units','Normalized',...
                 'Position',[.45 .6 .5 .08]);
                 h_text_elebuoy=uicontrol('Style','text',...
-                'String','Buoyancy [kg]','FontSize',fs,...
+                'String','<Buoyancy [kg]> <Weight [kg]>','FontSize',fs,...
                 'Units','Normalized',...
                 'Position',[.05 .51 .3 .08]);
                 h_edit_elebuoy=uicontrol('Style','edit',...
@@ -186,10 +186,11 @@ function addelement_xls2(command);
                     cd=str2num(get(h_edit_elecd,'String'));
                     mat=get(h_menu_material,'Value')-1;
                     if ~strcmp(name,' ') & ~isempty(buoy) & length(dim)== 3 & ~isempty(cd), % OK to add
-                        if (buoy >= -9999.99 & buoy <= 9999.99 ) & ... % check range of enteries
-                            (dim(1) <= 9999 & dim(1) >= 0) & ...
-                            (dim(2) <= 1000 & dim(2) >= 0) & ...
-                            (dim(3) <= 1000 & dim(3) >= 0) & ...
+                        if (buoy(1) > -100000 & buoy(1) < 100000 ) & ... % check range of enteries
+                            (buoy(2) < 100000 & buoy(2) >= 0) & ...
+                            (dim(1) < 10000 & dim(1) >= 0) & ...
+                            (dim(2) < 10000 & dim(2) >= 0) & ...
+                            (dim(3) < 10000 & dim(3) >= 0) & ...
                             (cd >= 0 & cd <= 100),
                             text='*                              '; % initialize empty array 31 char
                             %12345678901234567
@@ -197,13 +198,17 @@ function addelement_xls2(command);
                             if length(name)>30, disp('Warning: Element Name has too many characters! Limited to 30.'); end
                                 text(1:lname)=name(1:lname);
                                 tbuoy='        ';
-                                if abs(buoy) < 999, 
-                                    buoy=num2str(buoy,'%8.3f');
+                                if abs(buoy(1)) < 999, 
+                                    buoy1=num2str(buoy(1),'%8.2f');
                                 else
-                                    buoy=num2str(buoy,'%8.2f');
+                                    buoy1=num2str(buoy(1),'%8.1f');
                                 end
-                                tbuoy((9-length(buoy)):8)=buoy;  % must pad front with blanks
-                                tdim='                  ';
+
+                                tbuoy((9-length(buoy1)):8)=buoy1;  % must pad front with blanks
+                                buoy2=num2str(buoy(2),'%8.1f');
+                                tbuoy((18-length(buoy2)):17)=buoy2;
+
+
                                 if dim(1) < 1000,
                                     dim1=num2str(dim(1),'%5.1f');
                                 else
@@ -448,27 +453,36 @@ function addelement_xls2(command);
                         cd=str2num(get(h_edit_elecd,'String'));
                         mat=get(h_menu_material,'Value')-1;
                         if ~strcmp(name,' ') & ~isempty(buoy) & length(dim)== 3 & ~isempty(cd), % OK to modify
-                            if (buoy > -10000 & buoy < 10000 ) & ... % check range of enteries
-                                (dim(1) <= 9999 & dim(1) >= 0) & ...
-                                (dim(2) <= 9999 & dim(2) >= 0) & ...
-                                (dim(3) <= 9999 & dim(3) >= 0) & ...
+                            if (buoy(1) > -100000 & buoy(1) < 100000 ) & ... % check range of enteries
+                                (buoy(2) < 100000 & buoy(2) >= 0) & ...
+                                (dim(1) < 10000 & dim(1) >= 0) & ...
+                                (dim(2) < 10000 & dim(2) >= 0) & ...
+                                (dim(3) < 10000 & dim(3) >= 0) & ...
                                 (cd >= 0 & cd <= 10),
                                 text='*                              '; % initialize empty array
                                 %12345678901234567
                                 text(1:length(name))=name;
-                                tbuoy='        ';
-                                if abs(buoy) < 999, 
-                                    buoy=num2str(buoy,'%8.3f');
+
+
+
+                                tbuoy='                 ';
+                                if abs(buoy(1)) < 1000, 
+                                    buoy1=num2str(buoy(1),'%8.3f');
                                 else
-                                    buoy=num2str(buoy,'%8.2f');
+                                    buoy1=num2str(buoy(1),'%8.2f');
                                 end
-                                tbuoy((9-length(buoy)):8)=buoy;  % must pad front with blanks
+                                buoy2=num2str(buoy(2),'%8.1f');
+                                tbuoy((9-length(buoy1)):8)=buoy1;  % must pad front with blanks
+                                tbuoy((18-length(buoy2)):17)=buoy2;
                                 tdim='                  ';
                                 if dim(1) < 1000,
                                     dim1=num2str(dim(1),'%5.1f');
                                 else
                                     dim1=num2str(dim(1),'%5.0f');
                                 end
+
+
+
                                 tdim((7-length(dim1)):6)=dim1;
                                 dim2=num2str(dim(2),'%5.1f');
                                 tdim((13-length(dim2)):12)=dim2;
@@ -594,7 +608,7 @@ function addelement_xls2(command);
                     'Callback','addelement_xls2(1)'); 
                 end
 
-                if command == 1 | command == 2,
+                if command == 1 || command == 2,
                     val=get(h_menu_list,'Value');
                     ele=list(val,format(1,1):format(1,2));
                     buoy=list(val,format(2,1):format(2,2));
@@ -602,9 +616,8 @@ function addelement_xls2(command);
                     cd=list(val,format(6,1):format(6,2));
                     mat=str2num(list(val,format(7,1):format(7,2)));
                     set(h_edit_elename,'String',add_name);
-                    %set(h_edit_elename,'String',ele);
-                    set(h_edit_elebuoy,'String',add_buoy);
-                    set(h_edit_eledim,'String',add_length);
+                    set(h_edit_elebuoy,'String',buoy);
+                    set(h_edit_eledim,'String',dim);
                     set(h_edit_elecd,'String',cd);
                     set(h_menu_material,'Value',mat);
                 end

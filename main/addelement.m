@@ -594,7 +594,7 @@ function addelement(command);
                     'Callback','addelement(1)'); 
                 end
 
-                if command == 1 | command == 2,
+                if command == 1 || command == 2,
                     val=get(h_menu_list,'Value');
                     ele=list(val,format(1,1):format(1,2));
                     buoy=list(val,format(2,1):format(2,2));

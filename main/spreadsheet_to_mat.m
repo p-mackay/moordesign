@@ -1,5 +1,5 @@
-function spreadsheet_to_mat 
-    %TODO 
+function spreadsheet_to_mat
+    %TODO
     %call subroutine that adds the element to the mooring (recycle code from modmoor.m)
     %else
     %   ask user to if add element to data base or
@@ -7,12 +7,13 @@ function spreadsheet_to_mat
     pkg load io
 
     global U V W z rho
-    global H B Cd ME moorele
+    global H B Wt Cd ME moorele
     global Ht Bt Cdt MEt moorelet
     global BCO ZCO Jobj Pobj
     global floats wires chains acrels cms anchors miscs format typelist type list
     global h_menu_type h_menu_list h_menu_addel h_menu_material
     global h_push_add h_edit_elename h_edit_elebuoy h_edit_eledim h_edit_elecd hmaincls
+    global h_edit_wirel
     global handle_list wire_length  insert elenum delele val
     global Z Zoo
     global fs
@@ -22,7 +23,7 @@ function spreadsheet_to_mat
     global nlist
     global ifile
     global add_name add_buoy add_length
-    global moorname moordepth dep 
+    global moorname moordepth dep
     #global h_push_save
     load mdcodes.mat
     load empty_mooring.mat
@@ -58,7 +59,6 @@ function spreadsheet_to_mat
     %endfor
     %while (j <= rows(floats))
 
-    list = [""];
     add_name = "";
     ca = cellfun(@isempty,c);
 
@@ -139,20 +139,23 @@ function spreadsheet_to_mat
                     bump=[insert+1:mb+1];
                     moorele(bump,:)=moorele(elenum:mb,:);
                     B(bump)=B(elenum:mb);
+                    Wt(bump)=Wt(elenum:mb);
                     H(:,bump)=H(:,elenum:mb);
                     Cd(bump)=Cd(elenum:mb);
                     ME(bump)=ME(elenum:mb);
 
 
                     moorele(elenum,:)=all_list(k,format(1,1):format(1,2));
-                    B(elenum)=str2num(all_list(k,format(2,1):format(2,2)));
+                    BW=str2num(all_list(k,format(2,1):format(2,2)));
+                    B(elenum)=BW(1);Wt(elenum)=BW(2); % for floats we need weight (Wt)
                     H(1,elenum)=str2num(all_list(k,format(3,1):format(3,2)))/100; % convert to metres pm
                     H(2,elenum)=str2num(all_list(k,format(4,1):format(4,2)))/100;
                     H(3,elenum)=str2num(all_list(k,format(5,1):format(5,2)))/100;
                     H(4,elenum)=0;
                     ME(elenum)=inf;  % by default set modulus of elasticity to infinity (no stretch)
                     if H(1,elenum)==1,
-                        H(1,elenum)=c{i,4};
+                        getwirel;waitfor(h_edit_wirel);
+                        H(1,elenum)=wire_length;
                         H(4,elenum)=1; % flag for wire/chain elements, sub-divide later
                         %break;
                         mat=str2num(all_list(k,format(7,1):format(7,2)));
@@ -184,15 +187,12 @@ function spreadsheet_to_mat
                 elseif (k == rows(all_list) && match == 0)
                     %printf("%d\n",)
                     %printf("list(k+1): %s\nk: %d\nc(i,1): %d\n",list(k,:),k, c{i,1})
-                    printf("%d\n",match)
+                    %printf("%d\n",match)
                     %addelement_xls2;waitfor(h_push_save);
                     addelement_xls2;
-                    set(h_edit_elename,'String',c{i,1});
-                    set(h_edit_elebuoy,'String',num2str(-1*c{i,3}));
-                    set(h_edit_eledim,'String',num2str(100*c{i,4}));
+
+                    set(h_edit_elename,'String',c{i});
                     add_name=get(h_edit_elename, 'String');
-                    add_buoy=get(h_edit_elebuoy, 'String');
-                    add_length=get(h_edit_eledim, 'String');
                     warning("Please fill in data for the following: %s", c{i,1});
                     %pause;
                     k=1;
@@ -230,34 +230,10 @@ function spreadsheet_to_mat
         endif
     endfor
 
-    insert=elenum;
-    mb=length(B);
-    bump=[insert+1:mb+1];
-    moorele(bump,:)=moorele(elenum:mb,:);
-    B(bump)=B(elenum:mb);
-    H(:,bump)=H(:,elenum:mb);
-    Cd(bump)=Cd(elenum:mb);
-    ME(bump)=ME(elenum:mb);
-
-
-    moorele(elenum,:)=anchors(1,format(1,1):format(1,2));
-    B(elenum)=str2num(anchors(1,format(2,1):format(2,2)));
-    H(1,elenum)=str2num(anchors(1,format(3,1):format(3,2)))/100; % convert to metres pm
-    H(2,elenum)=str2num(anchors(1,format(4,1):format(4,2)))/100;
-    H(3,elenum)=str2num(anchors(1,format(5,1):format(5,2)))/100;
-    H(4,elenum)=0;
-    ME(elenum)=inf;  % by default set modulus of elasticity to infinity (no stretch)
-
-    Cd(elenum)=str2num(anchors(1,format(6,1):format(6,2)));
-    elenum0=elenum;
-    elenum=length(B)+1;
-    insert=0;
-
-
     close(ldng);
 
 
-    save('moor007.mat','U','V','W','z','rho','time','H','B','Cd','ME','moorele', 'all_list');
+    save('moor007.mat','U','V','W','z','rho','time','H','B', 'Wt' ,'Cd','ME','moorele', 'all_list');
     load ('moor007.mat');
     moordesign(100);
 
