@@ -13,14 +13,16 @@ to the names that are in the database. If an element in the mooring is not in
 the database then you will be prompted to provide the information for that element,
 it will then be added to the database. (by default it will update mdcodes.mat)
 The input Excel file should be in the following format:
-```
-Mooring title
-name of element_1
-.
-.
-.
-name of element_n
-```
+
+| Format of mooring design from Excel |
+|-------------------------------------|
+| Mooring Title |
+| Name of element 1 |
+| . |
+| . |
+| . |
+| Name of element n |
+
 - "Import Database from Excel": 
 Reads an Excel file and creates a MAT file database. The Excel file should have
 the following format to be read properly: Here is an example input database:
@@ -29,8 +31,9 @@ The top row is not needed it is only for illustration purposes. (Shown for illus
 | Shown for illustration | Buoyancy | Weight | Length | Width | Diameter | Drag Coef | Material |
 |------------------------|----------|--------|--------|-------|----------|-----------|----------|
 
+| Format of input Excel Database |        |   |   |   |   |     |   |
+|--------------------------------|--------|---|---|---|---|-----|---|
 | Hardware     |        |   |   |   |   |     |   |
-|--------------|--------|---|---|---|---|-----|---|
 | 7/16" Shackle | -0.194 | 0 | 4 | 3 | 0 | 1.3 | 1 |
 | 7/16" Shackle | -0.194 | 0 | 4 | 3 | 0 | 1.3 | 1 |
 | 7/16" Shackle | -0.194 | 0 | 4 | 3 | 0 | 1.3 | 1 |
