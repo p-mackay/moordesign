@@ -44,7 +44,7 @@ function spreadsheet_to_mat
 
     moorname = c{1,1};
     moordepth=num2str(c{2,1});
-    dep = [moordepth ' 10 0'];
+    dep = [moordepth ' 20 0'];
 
     %elseif (ext == ".ods") % might add feature for multiple file ext's
     %    [a,b,c]=odsread(ifile);
@@ -154,6 +154,7 @@ function spreadsheet_to_mat
                     H(4,elenum)=0;
                     ME(elenum)=inf;  % by default set modulus of elasticity to infinity (no stretch)
                     if H(1,elenum)==1,
+                        printf("**Please provide WIRE LENGTH for: %s**\n",c{i});
                         getwirel;waitfor(h_edit_wirel);
                         H(1,elenum)=wire_length;
                         H(4,elenum)=1; % flag for wire/chain elements, sub-divide later
@@ -189,7 +190,8 @@ function spreadsheet_to_mat
                     %printf("list(k+1): %s\nk: %d\nc(i,1): %d\n",list(k,:),k, c{i,1})
                     %printf("%d\n",match)
                     %addelement_xls2;waitfor(h_push_save);
-                    addelement_xls2;
+                    %addelement_xls2;
+                    addelement;
 
                     set(h_edit_elename,'String',c{i});
                     add_name=get(h_edit_elename, 'String');
