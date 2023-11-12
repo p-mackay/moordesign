@@ -32,15 +32,27 @@ The top row is not needed it is only for illustration purposes. (Shown for illus
 | Hardware     |        |   |   |   |   |     |   |
 |--------------|--------|---|---|---|---|-----|---|
 | 7/16" Shackle | -0.194 | 0 | 4 | 3 | 0 | 1.3 | 1 |
+| 7/16" Shackle | -0.194 | 0 | 4 | 3 | 0 | 1.3 | 1 |
+| 7/16" Shackle | -0.194 | 0 | 4 | 3 | 0 | 1.3 | 1 |
 | Flotation     |        |   |   |   |   |     |   |
+| WB-17 | 18 | 10 | 60 | 0 | 43.2 | 1 | 1 |
+| WB-17 | 18 | 10 | 60 | 0 | 43.2 | 1 | 1 |
 | WB-17 | 18 | 10 | 60 | 0 | 43.2 | 1 | 1 |
 | Current Meters     |        |   |   |   |   |     |   |
 | ADP in Frame | . | . | . | . | . | . | . |
+| ADP in Frame | . | . | . | . | . | . | . |
+| ADP in Frame | . | . | . | . | . | . | . |
 | Releases     |        |   |   |   |   |     |   |
+| AR861 | . | . | . | . | . | . | . |
+| AR861 | . | . | . | . | . | . | . |
 | AR861 | . | . | . | . | . | . | . |
 | Miscellaneous     |        |   |   |   |   |     |   |
 | SM2M+ in Frame | . | . | . | . | . | . | . |
+| SM2M+ in Frame | . | . | . | . | . | . | . |
+| SM2M+ in Frame | . | . | . | . | . | . | . |
 | Mooring Lines     |        |   |   |   |   |     |   |
+| 5/16" Amsteel | . | . | . | . | . | . | . |
+| 5/16" Amsteel | . | . | . | . | . | . | . |
 | 5/16" Amsteel | . | . | . | . | . | . | . |
 
 
