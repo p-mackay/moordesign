@@ -25,8 +25,8 @@ name of element_n
 Reads an Excel file and creates a MAT file database. The Excel file should have
 the following format to be read properly: Here is an example input database:
 
-| Hardware |
-|----------|
+| Hardware     |        |   |   |   |   |     |   |
+|--------------|--------|---|---|---|---|-----|---|
 | 7/16" Shackle | -0.194 | 0 | 4 | 3 | 0 | 1.3 | 1 |
 
 
