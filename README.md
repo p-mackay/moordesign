@@ -3,11 +3,12 @@
 This is a GNU Octave adaptation of Richard Dewey's Mooring Design and Dynamics. 
 
 # Usage and Features
-- The main database is called 'mdcodes.mat', which contains Buoyancy, Weight, 
+- The main database is called **mdcodes.mat**, which contains Buoyancy, Weight, 
 Length, Width, Diameter, Drag Coef, Material. For the following categories: 
 Hardware(Shackles, Sling Link, Miller, Drop Link, Chain), Floatation devices,
 Current meters, Releases, Misc Instruments and Mooring Lines.
-- "Load Mooring From Excel":
+
+**Load Mooring From Excel":**
 Compares the names of elements from the Excel file
 to the names that are in the database. If an element in the mooring is not in 
 the database then you will be prompted to provide the information for that element,
@@ -83,12 +84,12 @@ The input Excel file should be in the following format:
 
 </details>
 
-- "Import Database from Excel": 
+**Import Database from Excel:**
 Reads an Excel file and creates a MAT file database. The Excel file should have
 the following format to be read properly: Here is an example input database:
 
 <details>
-    <summary>Click to show full Excel database</summary>
+    <summary>Click to show example</summary>
 
 The top row is not needed it is only for illustration purposes. (Shown for illustration)
 | Shown for illustration | Buoyancy | Weight | Length | Width | Diameter | Drag Coef | Material |
@@ -123,7 +124,8 @@ The top row is not needed it is only for illustration purposes. (Shown for illus
 
 </details>
 
-
+**Mooring Summary**
+Gives an overview of the mooring. The file can then be viewed, saved, or printed.
 
 # Installation
 ## Prerequisites 
