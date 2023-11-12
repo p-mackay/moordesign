@@ -25,9 +25,28 @@ name of element_n
 Reads an Excel file and creates a MAT file database. The Excel file should have
 the following format to be read properly: Here is an example input database:
 
+The top row is not needed it is only for illustration purposes. (Shown for illustration)
+| Shown for illustration | Buoyancy | Weight | Length | Width | Diameter | Drag Coef | Material |
+|------------------------|----------|--------|--------|-------|----------|-----------|----------|
+
 | Hardware     |        |   |   |   |   |     |   |
 |--------------|--------|---|---|---|---|-----|---|
 | 7/16" Shackle | -0.194 | 0 | 4 | 3 | 0 | 1.3 | 1 |
+| Flotation     |        |   |   |   |   |     |   |
+|--------------|--------|---|---|---|---|-----|---|
+| WB-17 | 18 | 10 | 60 | 0 | 43.2 | 1 | 1 |
+| Current Meters     |        |   |   |   |   |     |   |
+|--------------|--------|---|---|---|---|-----|---|
+| ADP in Frame | . | . | . | . | . | . | . |
+| Releases     |        |   |   |   |   |     |   |
+|--------------|--------|---|---|---|---|-----|---|
+| AR861 | . | . | . | . | . | . | . |
+| Miscellaneous     |        |   |   |   |   |     |   |
+|--------------|--------|---|---|---|---|-----|---|
+| SM2M+ in Frame | . | . | . | . | . | . | . |
+| Mooring Lines     |        |   |   |   |   |     |   |
+|--------------|--------|---|---|---|---|-----|---|
+| 5/16" Amsteel | . | . | . | . | . | . | . |
 
 
 
