@@ -23,6 +23,66 @@ The input Excel file should be in the following format:
 | . |
 | Name of element n |
 
+<details>
+    <summary>Click to show full example</summary>
+
+| Mooring Title |
+|------|
+| 4 Vinies on 3/4" Polysteel |
+| 1/2" Shackle |
+| 1/2" Shackle |
+| SBE37 |
+| 1/2" Shackle |
+| 1/2" Sling Link2 |
+| 7/16" Shackle |
+| 1/4" Tenex |
+| 7/16" Shackle |
+| 1/2" Shackle |
+| AF36↑ w WH600+SBE37 ODO |
+| 1/2" Shackle |
+| 1/2" Shackle |
+| SeapHox in Frame |
+| 1/2" Shackle |
+| 1/2" Shackle |
+| Miller C212 |
+| 1/2" Shackle |
+| 1/2" Sling Link |
+| 7/16" Shackle |
+| 5/16" Amsteel II+ |
+| 7/16" Shackle |
+| 1/2" Shackle |
+| SB30 |
+| 1/2" Shackle |
+| SM2M+ in Frame |
+| 1/2" Shackle |
+| 1/2" Shackle |
+| SM2M+ in Frame |
+| 1/2" Shackle |
+| 1/2" Shackle |
+| Aquadopp↓+SBE37 |
+| 1/2" Shackle |
+| 1/2" Shackle |
+| Miller C212 |
+| 1/2" Shackle |
+| 1/2" Sling Link |
+| 7/16" Shackle |
+| 5/16" Amsteel II+ |
+| 7/16" Shackle |
+| 1/2" Shackle |
+| AF44↑ w WH150+SBE37 ODO |
+| 1/2" Shackle |
+| 1/2" Shackle |
+| MillerC3 |
+| 1/2" Shackle |
+| 5/8" Shackle |
+| AR861 B2S |
+| Drop Link |
+| 1" Polysteel |
+| 7/8" Shackle |
+| 1" Chain |
+
+</details>
+
 - "Import Database from Excel": 
 Reads an Excel file and creates a MAT file database. The Excel file should have
 the following format to be read properly: Here is an example input database:
