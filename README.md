@@ -87,6 +87,9 @@ The input Excel file should be in the following format:
 Reads an Excel file and creates a MAT file database. The Excel file should have
 the following format to be read properly: Here is an example input database:
 
+<details>
+    <summary>Click to show full Excel database</summary>
+
 The top row is not needed it is only for illustration purposes. (Shown for illustration)
 | Shown for illustration | Buoyancy | Weight | Length | Width | Diameter | Drag Coef | Material |
 |------------------------|----------|--------|--------|-------|----------|-----------|----------|
@@ -118,6 +121,7 @@ The top row is not needed it is only for illustration purposes. (Shown for illus
 | 5/16" Amsteel | . | . | . | . | . | . | . |
 | 5/16" Amsteel | . | . | . | . | . | . | . |
 
+</details>
 
 
 
