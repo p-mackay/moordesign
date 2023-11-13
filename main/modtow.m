@@ -44,7 +44,7 @@ function modtow(command,parameter)
 		if length(handle_list)>6, h_edit_chele = handle_list(7); end
 	end 
 	%
-	if isempty(typelist) | strcmp(typelist,' '), load mdcodes1; end 
+	if isempty(typelist) | strcmp(typelist,' '), load mdcodes; end 
 	%
 	if command == 0,  % then initiale the menus/number
 		if isempty(elenum),
@@ -58,7 +58,7 @@ function modtow(command,parameter)
 			typelist(((ii-1)*17+1):((ii-1)*17+17))=[list(ii,1:16),'|'];
 		end
 		typelist=typelist(1:length(typelist)-1);
-		figure(2);clf;
+		figure(2);clf;drawnow;
 		set(gcf,'Units', 'Normalized',...
 			'Position',[.02 .05 .3 .4],...
 			'Name','Modify Towed Body Configureation',...
@@ -155,10 +155,10 @@ function modtow(command,parameter)
 			if ~strcmp(ifile,'*.mat'),
 				load([ipath ifile]);
 			else
-				load mdcodes1  % load default file (should be in path
+				load mdcodes  % load default file (should be in path
 			end
 		elseif ifile == 0 & ipath == 0,
-			load mdcodes1
+			load mdcodes
 		end
 		clear ifile ipath
 		modtow(0);

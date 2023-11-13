@@ -607,7 +607,7 @@ function [X,Y,Z,iobj]=towdyn(U,z,Ht,Bt,Cdt,MEt,V,W,rho,Usp,Vsp)
 			end
 		end
 		%
-		if isave==1&iprt==1, hf9=figure(9);set(hf9,'Position',[ss(3)-220 10 190 100]);clf; end
+		if isave==1&iprt==1, hf9=figure(9);set(hf9,'Position',[ss(3)-220 10 190 100]);clf;drawnow; end
 		if iprt==1 & isave>20, 
 			figure(9);hold on;
 			plot(isave,Z(1),'ob'); drawnow;

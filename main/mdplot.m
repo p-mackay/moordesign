@@ -155,7 +155,7 @@ function mdplot(command)
 					%
 				end
 			end
-			figure(3);clf;hold on;drawnow;
+			figure(3);clf;drawnow;hold on;drawnow;
 			if isempty(Ht),
 				set(gcf,'Units', 'Normalized',...
 					'Position',[.4 .3 .5 .6],...
@@ -348,7 +348,7 @@ function mdplot(command)
 			U(1,itplt)=U(1,itplt)+uw;
 			V(1,itplt)=V(1,itplt)+vw;
 			%
-			figure(3);clf;axis normal;drawnow;
+			figure(3);clf;drawnow;axis normal;drawnow;
 			plot3(X,Y,Z,'b');hold on;
 			li=length(iobj);
 			plot3(X(iobj(2:li-1)),Y(iobj(2:li-1)),Z(iobj(2:li-1)),'or',...
@@ -438,8 +438,7 @@ function mdplot(command)
 			rotate3d
 			help rotate3d
 		elseif command ==7,
-			close(3);
-			close(4);
+			close(all);
 		end
 	else
 		disp(' Must load or enter a mooring before evaluation/plotting. ');

@@ -18,10 +18,10 @@ function plot_elements(command)
 	if ischar(ifile) && ischar(ipath),
 		load ([ipath ifile]);
 	elseif ifile == 0 && ipath == 0,
-		load mdcodes1.mat
+		load mdcodes.mat
 	end
 	%
-	figure(5);clf; %close(5);figure(5);
+	figure(5);clf;drawnow; %close(5);figure(5);
 	set(5,'Units','Normalized','Position',[0.525 0.1 .45 .8],'Visible','on');
 	dates=datestr(now); %num2str(fix(clock),'%3.0f');dates(8)='/';dates([14 17])=':';
 	tit=['Mooring Design and Dynamics  ',dates];

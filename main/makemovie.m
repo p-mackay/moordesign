@@ -254,7 +254,7 @@ function makemovie(command)
 		iframe=0;
 		for it=tindx,
 			iframe=iframe+1;
-			figure(3);clf;
+			figure(3);clf;drawnow;
 			hold on;
 			set(3,'Units', 'Normalized',...
 				'Position',[0.3 0.1/figs 0.4*figs 0.6*figs],...
@@ -344,7 +344,7 @@ function makemovie(command)
 			M(:,iframe)=getframe(cfh);
 		end % movie time loop
 		if length(tindx)>1,
-			figure(3);clf;
+			figure(3);clf;drawnow;
 			set(3,'Units', 'Normalized',...
 				'Position',[0.3 0.1/figs 0.4*figs 0.6*figs],...
 				'Name','The Mooring Movie');
@@ -402,7 +402,7 @@ function makemovie(command)
 		figs=str2num(get(h_edit_figs,'String'));
 		makemovie(2);
 	elseif command==3,
-		hf3=figure(3);clf;axes('Visible','off');
+		hf3=figure(3);clf;drawnow;axes('Visible','off');
 		set(hf3,'Units', 'Normalized',...
 			'Position',[0.3 0.1/figs 0.4*figs 0.6*figs],...
 			'Name','The Mooring Movie');

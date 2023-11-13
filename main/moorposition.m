@@ -67,7 +67,7 @@ function moorposition(command)
 		clear ofile opath
 		moorposition(0);
 	elseif command == 1,
-		figure(4);clf;
+		figure(4);clf;drawnow;
 		h_push_latval=uicontrol('Style','pushbutton',...
 			'Callback','moorposition(5)',...
 			'String','Enter Latitude Values','FontSize',fs,...
@@ -114,7 +114,7 @@ function moorposition(command)
 			else
 				figure(mpf);
 			end
-			clf;
+			clf;drawnow;
 			%
 			set(gca,'Visible','off');
 			xlim=get(gca,'XLim');
@@ -189,7 +189,7 @@ function moorposition(command)
 
 		%
 	elseif command == 5,
-		clf;
+		clf;drawnow;
 		if ~isempty(latranges),
 			[ml,nl]=size(latranges);
 			if mu==length(longranges),
@@ -226,7 +226,7 @@ function moorposition(command)
 		latranges=str2num(get(h_edit_latitudes,'String'));
 		moorposition(1);
 	elseif command == 6,
-		clf;
+		clf;drawnow;
 		if ~isempty(longranges),
 			[ml,nl]=size(longranges);
 			if mu==length(ranges),
@@ -263,7 +263,7 @@ function moorposition(command)
 		longranges=str2num(get(h_edit_longitudes,'String'));
 		moorposition(1);
 	elseif command == 7,
-		clf;
+		clf;drawnow;
 		if ~isempty(ranges),
 			[ml,nl]=size(ranges);
 			if mu==length(latranges),

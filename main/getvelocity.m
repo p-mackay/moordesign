@@ -127,7 +127,7 @@ function getvelocity(command)
 		end
 		clear ifile ipath
 	elseif command == 2,
-		figure(4);clf;
+		figure(4);clf;drawnow;
 		h_push_uvel=uicontrol('Style','pushbutton',...
 			'Callback','getvelocity(3)',...
 			'String','Enter U Velocities','FontSize',fs,...
@@ -164,7 +164,7 @@ function getvelocity(command)
 			'Position',[.65 .03 .2 .1],...
 			'Callback','getvelocity(0)');
 	elseif command == 22,
-		figure(4);clf;
+		figure(4);clf;drawnow;
 		h_push_den=uicontrol('Style','pushbutton',...
 			'Callback','getvelocity(23)',...
 			'String','Enter Densities','FontSize',fs,...
@@ -191,7 +191,7 @@ function getvelocity(command)
 			'Position',[.65 .03 .2 .1],...
 			'Callback','getvelocity(0)');
 	elseif command == 3,
-		clf;
+		clf;drawnow;
 		if ~isempty(U),
 			[mu,nu]=size(U);
 			if mu==length(z),
@@ -225,7 +225,7 @@ function getvelocity(command)
 			'Position',[.65 .03 .2 .15],...
 			'Callback','getvelocity(50)');
 	elseif command == 23,
-		clf;
+		clf;drawnow;
 		if ~isempty(rho),
 			[md,nd]=size(rho);
 			if md==length(z),
@@ -269,7 +269,7 @@ function getvelocity(command)
 		rho=str2num(den);
 		getvelocity(22);
 	elseif command == 5,
-		clf;
+		clf;drawnow;
 		if ~isempty(z),
 			[mz,nz]=size(z);
 			if mz==length(z),
@@ -312,7 +312,7 @@ function getvelocity(command)
 			getvelocity(0); 
 		end
 	elseif command == 7,
-		clf;
+		clf;drawnow;
 		if ~isempty(V), 
 			[mv,nv]=size(V);
 			if mv==length(z),
@@ -351,7 +351,7 @@ function getvelocity(command)
 		V=V(:);
 		getvelocity(2);
 	elseif command == 9,
-		clf;
+		clf;drawnow;
 		if ~isempty(W), 
 			[mw,nw]=size(W);
 			if mw==length(W), W=W'; end
@@ -489,7 +489,7 @@ function getvelocity(command)
 		end
 
 	elseif command==41,
-		clf;
+		clf;drawnow;
 		h_text_winds1=uicontrol('Style','text',...
 			'String','Enter Wind Speed [m/s]','FontSize',fs,...
 			'Units','normalized',...
@@ -534,7 +534,7 @@ function getvelocity(command)
 		vw=windspd*0.02*sin((90-winddir+180)*pi/180);
 		getvelocity(41);
 	elseif command==44,
-		clf;
+		clf;drawnow;
 		h_text_shipsp1=uicontrol('Style','text',...
 			'String','Enter Ship Velocities [m/s]','FontSize',fs,...
 			'Units','normalized',...

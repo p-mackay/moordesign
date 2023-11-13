@@ -10,7 +10,7 @@ function moordesign(command);
     % Time varying currents can be fed to moordyn.m (the engine) by user written MATLAB
     % code in order to simulate and even make movies of element positions.
     % A preliminary data base of mooring components has been included (c/o C.Darnall of APL UW).
-    % Advanced users can add and modify the text mooring database (mdcodes1.mat), which
+    % Advanced users can add and modify the text mooring database (mdcodes.mat), which
     % includes the component names, their buoyancy/mass [in kg], their dimensions 
     %  (Length/height, Cylinder Width, Sphere Diameter, all in [m]), and Drag
     %   Coefficients (0.65-0.95 for spheres, 1.1-1.3 for cylinders).

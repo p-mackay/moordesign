@@ -229,7 +229,7 @@ function spreadsheet_to_mat
                         all_list(rows(all_list)+1,:)=miscs(m,:);
                     endfor
                     waitfor(h_edit_elename);
-                    %waitfor(hmaincls);figure(4);clf;close;
+                    %waitfor(hmaincls);figure(4);clf;drawnow;close;
                 else
                     k=k+1;
                 endif

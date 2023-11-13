@@ -34,7 +34,7 @@ function modtowCO(command,parameter)
 		h_edit_heightCO = handle_listCO(5);
 	end 
 	%
-	if isempty(floats), load mdcodes1; end 
+	if isempty(floats), load mdcodes; end 
 	%
 	if command == 0,  % then initialize the menus/number
 		elenumCO=length(BCO)+1;
@@ -47,7 +47,7 @@ function modtowCO(command,parameter)
 			typelist(((ii-1)*17+1):((ii-1)*17+17))=[list(ii,1:16),'|'];
 		end
 		typelist=typelist(1:length(typelist)-1);
-		figure(2);clf;
+		figure(2);clf;drawnow;
 		set(gcf,'Units', 'Normalized',...
 			'Position',[.05 .05 .25 .275],...
 			'Name','Modify Clamp-On Devices',...
@@ -125,10 +125,10 @@ function modtowCO(command,parameter)
 			if ~strcmp(ifile,'*.mat'),
 				load([ipath ifile]);
 			else
-				load mdcodes1  % load default file (should be in path
+				load mdcodes  % load default file (should be in path
 			end
 		elseif ifile == 0 & ipath == 0,
-			load mdcodes1
+			load mdcodes
 		end
 		clear ifile ipath
 		modtowCO(0);
