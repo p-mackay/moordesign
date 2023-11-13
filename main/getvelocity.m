@@ -9,11 +9,11 @@ function getvelocity(command)
     global zdis
 
 	if nargin==0, command=0; end
-	if command<40 & (uw^2+vw^2)==0,
+	if command<40 && (uw^2+vw^2)==0,
 		windspd=0;winddir=360;
 		uw=windspd*0.02*cos((90-winddir+180)*pi/180);
 		vw=windspd*0.02*sin((90-winddir+180)*pi/180);
-	elseif command<40 & (uw^2+vw^2)>0,
+	elseif command<40 && (uw^2+vw^2)>0,
 		windspd=sqrt(uw^2+vw^2)/0.02;
 		winddir=90-(atan2(vw,uw)*180/pi)+180;
 		winddir=mod(winddir,360);
@@ -37,7 +37,7 @@ function getvelocity(command)
 			'String','Enter/Edit Velocities Manually','FontSize',fs,...
 			'Units','normalized',...
 			'Position',[.2 .85 .6 .1]);
-		if ~isempty(U) & ~isempty(z),
+		if ~isempty(U) && ~isempty(z),
 			h_push_loadvel=uicontrol('Style','pushbutton',...
 				'Callback','getvelocity(1)',...
 				'String','Load Velocity File','FontSize',fs,...
@@ -387,12 +387,12 @@ function getvelocity(command)
 		getvelocity(2);
 	elseif command == 11,
 		[ofile,opath]=uiputfile('*.mat','Save Velocities File');
-		if ~isempty(ofile) & ~isempty(opath), save([opath,ofile],'U','V','W','z');end
+		if ~isempty(ofile) && ~isempty(opath), save([opath,ofile],'U','V','W','z');end
 		clear ofile opath
 		getvelocity(0);
 	elseif command == 31,
 		[ofile,opath]=uiputfile('*.mat','Save Density File');
-		if ~isempty(ofile) & ~isempty(opath), save([opath,ofile],'den','z');end
+		if ~isempty(ofile) && ~isempty(opath), save([opath,ofile],'den','z');end
 		clear ofile opath
 		getvelocity(0);
 	elseif command == 12,
@@ -473,9 +473,9 @@ function getvelocity(command)
 		for i=1:length(zdis),
 			if zdis(i)>999.99,
 				disp([' ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]);
-			elseif zdis(i)<1000 & zdis(i)>99.99,
+			elseif zdis(i)<1000 && zdis(i)>99.99,
 				disp(['  ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]);
-			elseif zdis(i)<100 & zdis(i)>9.99,
+			elseif zdis(i)<100 && zdis(i)>9.99,
 				disp(['   ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]);
 			elseif zdis(i)<10,
 				disp(['    ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]);
@@ -589,7 +589,7 @@ function getvelocity(command)
 		Vsp=uvsp(2);
 	end
 	%
-	if command>=50 & command <=52,
+	if command>=50 && command <=52,
 		% clean up vectors
 		[mu,nu]=size(U);
 		if mu==1 | nu==1,
@@ -600,7 +600,7 @@ function getvelocity(command)
 				rho=rho(:);
 			end
 		end
-		if min(z) ~= 0 & length(time)<2,
+		if min(z) ~= 0 && length(time)<2,
 			z(length(z)+1)=0;
 			U(length(U)+1)=0;
 			V(length(V)+1)=0;
@@ -672,9 +672,9 @@ function getvelocity(command)
 		for i=1:length(zdis),
 			if zdis(i)>999.99,
 				disp([' ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]);
-			elseif zdis(i)<1000 & zdis(i)>99.99,
+			elseif zdis(i)<1000 && zdis(i)>99.99,
 				disp(['  ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]);
-			elseif zdis(i)<100 & zdis(i)>9.99,
+			elseif zdis(i)<100 && zdis(i)>9.99,
 				disp(['   ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]);
 			elseif zdis(i)<10,
 				disp(['    ',num2str([zdis(i) Udis(i) Vdis(i) Wdis(i) rhodis(i)],'%11.2f')]);

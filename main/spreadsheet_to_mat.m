@@ -17,6 +17,7 @@ function spreadsheet_to_mat
     global handle_list wire_length  insert elenum delele val
     global Z Zoo
     global fs
+    global this_moorele
 
     global all_list
     global type
@@ -93,6 +94,7 @@ function spreadsheet_to_mat
         all_list(rows(all_list)+1,:)=miscs(m,:);
     endfor
 
+    count = 0;
     k=1;
     match = 0;
     flag1=0;
@@ -153,11 +155,12 @@ function spreadsheet_to_mat
                     H(3,elenum)=str2num(all_list(k,format(5,1):format(5,2)))/100;
                     H(4,elenum)=0;
                     ME(elenum)=inf;  % by default set modulus of elasticity to infinity (no stretch)
+                    %printf("Line %d, %s\n",moorele(elenum,:));
                     if H(1,elenum)==1,
                         printf("**Please provide WIRE LENGTH for: %s**\n",c{i});
                         % TODO have wire length automatically read from the spreadsheet
                         % For now enter manually
-                        getwirel;waitfor(h_edit_wirel);
+                        getwirel(0,moorele(elenum,:));waitfor(h_edit_wirel);
                         H(1,elenum)=wire_length;
                         H(4,elenum)=1; % flag for wire/chain elements, sub-divide later
                         %break;
@@ -233,6 +236,34 @@ function spreadsheet_to_mat
             endwhile
         endif
     endfor
+
+    %If last element in the mooring is not an anchor then add a default anchor
+    lastElement = moorele(end, :);
+    if !strcmp(strtrim(lastElement), 'Anchor')
+        elenum=length(B)+1;
+        insert=elenum;
+        mb=length(B);
+        bump=[insert+1:mb+1];
+        moorele(bump,:)=moorele(elenum:mb,:);
+        B(bump)=B(elenum:mb);
+        Wt(bump)=Wt(elenum:mb);
+        H(:,bump)=H(:,elenum:mb);
+        Cd(bump)=Cd(elenum:mb);
+        ME(bump)=ME(elenum:mb);
+        moorele(elenum,:)=anchors(1,format(1,1):format(1,2));
+        BW=str2num(anchors(1,format(2,1):format(2,2)));
+        B(elenum)=BW(1);Wt(elenum)=BW(2); % for floats we need weight (Wt)
+        H(1,elenum)=str2num(anchors(1,format(3,1):format(3,2)))/100; % convert to metres pm
+        H(2,elenum)=str2num(anchors(1,format(4,1):format(4,2)))/100;
+        H(3,elenum)=str2num(anchors(1,format(5,1):format(5,2)))/100;
+        H(4,elenum)=0;
+        ME(elenum)=inf;  % by default set modulus of elasticity to infinity (no stretch)
+        Cd(elenum)=str2num(anchors(1,format(6,1):format(6,2)));
+        elenum0=elenum;
+        elenum=length(B)+1;
+        insert=0;
+    end
+
 
     close(ldng);
 

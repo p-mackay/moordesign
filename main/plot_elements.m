@@ -15,9 +15,9 @@ function plot_elements(command)
 	[mh,nh]=size(H);
 	%
 	[ifile,ipath]=uigetfile('*.mat','Load Database file MDCODES.MAT (cancel loads default)');
-	if ischar(ifile) & ischar(ipath),
+	if ischar(ifile) && ischar(ipath),
 		load ([ipath ifile]);
-	elseif ifile == 0 & ipath == 0,
+	elseif ifile == 0 && ipath == 0,
 		load mdcodes1.mat
 	end
 	%
@@ -34,7 +34,7 @@ function plot_elements(command)
 	ich=find(H(4,:)==1 | H(4,:)==2);  % indecise of wire/rope and shackles
 	lengthch=sum(H(1,ich));
 	chainf=20; % plot chain/wire at 10% of real length,
-	if realhgt < 20 & lengthch>(0.1*realhgt), chainf=1; end % if shallow mooring, don't reduce
+	if realhgt < 20 && lengthch>(0.1*realhgt), chainf=1; end % if shallow mooring, don't reduce
 	if realhgt > 100, chainf=10; end % reduce to 5% for deep moorings
 	if realhgt > 500, chainf=50; end % reduce to 5% for deep moorings
 	if realhgt > 1000, chainf=100; end % reduce to 5% for deep moorings
@@ -149,7 +149,7 @@ function plot_elements(command)
 			id=0;
 		end
 		% now plot the name/type of element
-		if H(4,el)~=1 & H(4,el)~=2, % don't lable wire/rope or chain/shackles
+		if H(4,el)~=1 && H(4,el)~=2, % don't lable wire/rope or chain/shackles
 			htx=text(th/6,h(el),line);
 			set(htx,'FontName','Courier','FontSize',fs);
 		end

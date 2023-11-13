@@ -23,15 +23,15 @@ function pltfloat
 
 	% floats are plotted as spheres
 	sing=1;
-	if h>d & strcmp(moorele(el,1:4),'Trpl'),
+	if h>d && strcmp(moorele(el,1:4),'Trpl'),
 		% then this is a vertical string of (3) small balls
 		d=sqrt((d^2)/3);
 		sing=3;
-	elseif h<d & strcmp(moorele(el,1:4),'Doub'),
+	elseif h<d && strcmp(moorele(el,1:4),'Doub'),
 		% then this is a horizontal sting of (2) balls
 		d=sqrt((d^2)/2);
 		sing=2;
-	elseif h>d & strcmp(moorele(el,8:11),'Clam'),
+	elseif h>d && strcmp(moorele(el,8:11),'Clam'),
 		d=h;
 		sing=4; % a clam shell with a fin
 	end

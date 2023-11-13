@@ -1,19 +1,27 @@
-function getwirel(command);
+function getwirel(command, mooreleValue);
 	% get the wire/chain length 
-	global h_edit_wirel wire_length
+	global h_edit_wirel wire_length 
 	global fs
+
+    if nargin < 2
+        mooreleValue = '';
+        labelText = 'Enter Wire Length [m]';
+    else
+        labelText = sprintf('Enter Wire Length [m]\n%s', mooreleValue);
+    end
+
 
 	if nargin==0, command=0;end
 	if command == 0,
 		if isempty(wire_length) wire_length=0; end
-		figure(4);clf
+		figure(4);clf;drawnow;
 		set(gcf,'Units', 'Normalized',...
 			'Position',[.05 .05 .3 .1],...
 			'Name','Wire length',...
 			'Color',[.8 .8 .8],...
 			'tag','getwirel');
 		h_text=uicontrol('Style','text',...
-			'String','Enter Wire Length [m]',...
+			'String',labelText,...
 			'Units','normalized','FontSize',fs,...
 			'Position',[.05 .35 .6 .4]);
 		h_edit_wirel=uicontrol('Style','edit',...

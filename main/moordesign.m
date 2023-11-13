@@ -39,6 +39,7 @@ function moordesign(command);
     global bgcolor='#e8e8e8';
     global xlcolor='#BEE5B0';
     %bgcolor='#ececec';
+    load mdcodes
 
     if nargin == 0,% initialize some variables
         H=[];B=[];Wt=[];Cd=[];ME=[];moorele=[];
