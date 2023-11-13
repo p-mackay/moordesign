@@ -155,6 +155,8 @@ function spreadsheet_to_mat
                     ME(elenum)=inf;  % by default set modulus of elasticity to infinity (no stretch)
                     if H(1,elenum)==1,
                         printf("**Please provide WIRE LENGTH for: %s**\n",c{i});
+                        % TODO have wire length automatically read from the spreadsheet
+                        % For now enter manually
                         getwirel;waitfor(h_edit_wirel);
                         H(1,elenum)=wire_length;
                         H(4,elenum)=1; % flag for wire/chain elements, sub-divide later
